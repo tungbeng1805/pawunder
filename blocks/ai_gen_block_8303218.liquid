@@ -1,0 +1,613 @@
+{% doc %}
+  @prompt
+    upload photo to custom product
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-photo-upload-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: {{ block.settings.padding }}px;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+  }
+
+  .ai-photo-upload__heading-{{ ai_gen_id }} {
+    margin: 0 0 12px;
+    font-size: {{ block.settings.heading_size }}px;
+    color: {{ block.settings.text_color }};
+    font-weight: 600;
+  }
+
+  .ai-photo-upload__description-{{ ai_gen_id }} {
+    margin: 0 0 20px;
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.8;
+  }
+
+  .ai-photo-upload__dropzone-{{ ai_gen_id }} {
+    position: relative;
+    border: 2px dashed {{ block.settings.border_color }};
+    border-radius: {{ block.settings.dropzone_border_radius }}px;
+    padding: 40px 20px;
+    text-align: center;
+    background-color: {{ block.settings.dropzone_background }};
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .ai-photo-upload__dropzone-{{ ai_gen_id }}:hover {
+    border-color: {{ block.settings.border_hover_color }};
+    background-color: {{ block.settings.dropzone_hover_background }};
+  }
+
+  .ai-photo-upload__dropzone-{{ ai_gen_id }}.dragging {
+    border-color: {{ block.settings.border_hover_color }};
+    background-color: {{ block.settings.dropzone_hover_background }};
+    transform: scale(1.02);
+  }
+
+  .ai-photo-upload__input-{{ ai_gen_id }} {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .ai-photo-upload__icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    margin: 0 auto 16px;
+    color: {{ block.settings.icon_color }};
+  }
+
+  .ai-photo-upload__label-{{ ai_gen_id }} {
+    display: block;
+    font-size: {{ block.settings.label_size }}px;
+    color: {{ block.settings.text_color }};
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .ai-photo-upload__hint-{{ ai_gen_id }} {
+    font-size: {{ block.settings.hint_size }}px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.6;
+  }
+
+  .ai-photo-upload__preview-{{ ai_gen_id }} {
+    display: none;
+    margin-top: 20px;
+  }
+
+  .ai-photo-upload__preview-{{ ai_gen_id }}.active {
+    display: block;
+  }
+
+  .ai-photo-upload__preview-grid-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+  }
+
+  .ai-photo-upload__preview-item-{{ ai_gen_id }} {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+  }
+
+  .ai-photo-upload__preview-image-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-photo-upload__remove-{{ ai_gen_id }} {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: {{ block.settings.remove_button_color }};
+    color: {{ block.settings.remove_button_text_color }};
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+  }
+
+  .ai-photo-upload__remove-{{ ai_gen_id }}:hover {
+    transform: scale(1.1);
+    background-color: {{ block.settings.remove_button_hover_color }};
+  }
+
+  .ai-photo-upload__error-{{ ai_gen_id }} {
+    display: none;
+    margin-top: 12px;
+    padding: 12px;
+    background-color: {{ block.settings.error_background }};
+    color: {{ block.settings.error_text_color }};
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .ai-photo-upload__error-{{ ai_gen_id }}.active {
+    display: block;
+  }
+
+  .ai-photo-upload__count-{{ ai_gen_id }} {
+    margin-top: 12px;
+    font-size: 14px;
+    color: {{ block.settings.text_color }};
+    opacity: 0.7;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-photo-upload-{{ ai_gen_id }} {
+      width: 100%;
+    }
+
+    .ai-photo-upload__dropzone-{{ ai_gen_id }} {
+      padding: 30px 16px;
+    }
+
+    .ai-photo-upload__preview-grid-{{ ai_gen_id }} {
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+  }
+{% endstyle %}
+
+<photo-uploader-{{ ai_gen_id }}
+  class="ai-photo-upload-{{ ai_gen_id }}"
+  data-max-files="{{ block.settings.max_files }}"
+  data-max-size="{{ block.settings.max_file_size }}"
+  {{ block.shopify_attributes }}
+>
+  {% if block.settings.heading != blank %}
+    <h3 class="ai-photo-upload__heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h3>
+  {% endif %}
+
+  {% if block.settings.description != blank %}
+    <div class="ai-photo-upload__description-{{ ai_gen_id }}">{{ block.settings.description }}</div>
+  {% endif %}
+
+  <div class="ai-photo-upload__dropzone-{{ ai_gen_id }}">
+    <input
+      type="file"
+      id="ai-photo-input-{{ ai_gen_id }}"
+      class="ai-photo-upload__input-{{ ai_gen_id }}"
+      accept="image/*"
+      multiple
+      aria-label="Upload photos"
+    >
+
+    <svg
+      class="ai-photo-upload__icon-{{ ai_gen_id }}"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+      />
+    </svg>
+
+    <label for="ai-photo-input-{{ ai_gen_id }}" class="ai-photo-upload__label-{{ ai_gen_id }}">
+      {{ block.settings.upload_label }}
+    </label>
+
+    <div class="ai-photo-upload__hint-{{ ai_gen_id }}">
+      {{ block.settings.upload_hint }}
+    </div>
+  </div>
+
+  <div class="ai-photo-upload__error-{{ ai_gen_id }}"></div>
+
+  <div class="ai-photo-upload__preview-{{ ai_gen_id }}">
+    <div class="ai-photo-upload__preview-grid-{{ ai_gen_id }}"></div>
+    <div class="ai-photo-upload__count-{{ ai_gen_id }}"></div>
+  </div>
+</photo-uploader-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class PhotoUploader{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.files = [];
+        this.maxFiles = parseInt(this.dataset.maxFiles) || 5;
+        this.maxSize = parseInt(this.dataset.maxSize) * 1024 * 1024;
+      }
+
+      connectedCallback() {
+        this.dropzone = this.querySelector('.ai-photo-upload__dropzone-{{ ai_gen_id }}');
+        this.input = this.querySelector('.ai-photo-upload__input-{{ ai_gen_id }}');
+        this.preview = this.querySelector('.ai-photo-upload__preview-{{ ai_gen_id }}');
+        this.previewGrid = this.querySelector('.ai-photo-upload__preview-grid-{{ ai_gen_id }}');
+        this.errorDiv = this.querySelector('.ai-photo-upload__error-{{ ai_gen_id }}');
+        this.countDiv = this.querySelector('.ai-photo-upload__count-{{ ai_gen_id }}');
+
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        this.dropzone.addEventListener('click', () => {
+          this.input.click();
+        });
+
+        this.input.addEventListener('change', (e) => {
+          this.handleFiles(e.target.files);
+        });
+
+        this.dropzone.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          this.dropzone.classList.add('dragging');
+        });
+
+        this.dropzone.addEventListener('dragleave', () => {
+          this.dropzone.classList.remove('dragging');
+        });
+
+        this.dropzone.addEventListener('drop', (e) => {
+          e.preventDefault();
+          this.dropzone.classList.remove('dragging');
+          this.handleFiles(e.dataTransfer.files);
+        });
+      }
+
+      handleFiles(fileList) {
+        this.hideError();
+        const newFiles = Array.from(fileList);
+
+        for (const file of newFiles) {
+          if (!file.type.startsWith('image/')) {
+            this.showError('Please upload only image files');
+            continue;
+          }
+
+          if (file.size > this.maxSize) {
+            this.showError(`File ${file.name} is too large. Maximum size is ${this.dataset.maxSize}MB`);
+            continue;
+          }
+
+          if (this.files.length >= this.maxFiles) {
+            this.showError(`Maximum ${this.maxFiles} files allowed`);
+            break;
+          }
+
+          this.files.push(file);
+          this.addPreview(file);
+        }
+
+        this.updateCount();
+      }
+
+      addPreview(file) {
+        const reader = new FileReader();
+        const fileId = Date.now() + Math.random();
+
+        reader.onload = (e) => {
+          const previewItem = document.createElement('div');
+          previewItem.className = 'ai-photo-upload__preview-item-{{ ai_gen_id }}';
+          previewItem.dataset.fileId = fileId;
+
+          previewItem.innerHTML = `
+            <img
+              src="${e.target.result}"
+              alt="Preview"
+              class="ai-photo-upload__preview-image-{{ ai_gen_id }}"
+            >
+            <button
+              type="button"
+              class="ai-photo-upload__remove-{{ ai_gen_id }}"
+              aria-label="Remove photo"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          `;
+
+          const removeBtn = previewItem.querySelector('.ai-photo-upload__remove-{{ ai_gen_id }}');
+          removeBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            this.removeFile(fileId, file);
+          });
+
+          this.previewGrid.appendChild(previewItem);
+          this.preview.classList.add('active');
+        };
+
+        reader.readAsDataURL(file);
+        file.id = fileId;
+      }
+
+      removeFile(fileId, file) {
+        this.files = this.files.filter(f => f.id !== fileId);
+        const previewItem = this.previewGrid.querySelector(`[data-file-id="${fileId}"]`);
+        if (previewItem) {
+          previewItem.remove();
+        }
+
+        if (this.files.length === 0) {
+          this.preview.classList.remove('active');
+        }
+
+        this.updateCount();
+        this.hideError();
+      }
+
+      updateCount() {
+        if (this.files.length > 0) {
+          this.countDiv.textContent = `${this.files.length} of ${this.maxFiles} photos uploaded`;
+        } else {
+          this.countDiv.textContent = '';
+        }
+      }
+
+      showError(message) {
+        this.errorDiv.textContent = message;
+        this.errorDiv.classList.add('active');
+      }
+
+      hideError() {
+        this.errorDiv.classList.remove('active');
+      }
+    }
+
+    customElements.define('photo-uploader-{{ ai_gen_id }}', PhotoUploader{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Custom photo upload",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Upload your photos"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Add your custom photos to personalize this product"
+    },
+    {
+      "type": "text",
+      "id": "upload_label",
+      "label": "Upload label",
+      "default": "Click to upload or drag and drop"
+    },
+    {
+      "type": "text",
+      "id": "upload_hint",
+      "label": "Upload hint",
+      "default": "PNG, JPG up to 10MB"
+    },
+    {
+      "type": "header",
+      "content": "Upload settings"
+    },
+    {
+      "type": "range",
+      "id": "max_files",
+      "label": "Maximum files",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "max_file_size",
+      "label": "Maximum file size",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "unit": "MB",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Padding",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "dropzone_border_radius",
+      "label": "Dropzone border radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "dropzone_background",
+      "label": "Dropzone background",
+      "default": "#fafafa"
+    },
+    {
+      "type": "color",
+      "id": "dropzone_hover_background",
+      "label": "Dropzone hover background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border",
+      "default": "#dfdfdf"
+    },
+    {
+      "type": "color",
+      "id": "border_hover_color",
+      "label": "Border hover",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "remove_button_color",
+      "label": "Remove button background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "remove_button_text_color",
+      "label": "Remove button icon",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "remove_button_hover_color",
+      "label": "Remove button hover",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "error_background",
+      "label": "Error background",
+      "default": "#fee"
+    },
+    {
+      "type": "color",
+      "id": "error_text_color",
+      "label": "Error text",
+      "default": "#c00"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "label_size",
+      "label": "Label size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "hint_size",
+      "label": "Hint size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 32,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom photo upload"
+    }
+  ]
+}
+{% endschema %}

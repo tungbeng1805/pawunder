@@ -1,0 +1,353 @@
+{% doc %}
+  @prompt
+    time to deliver
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-delivery-time-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: {{ block.settings.padding }}px;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    border: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+  }
+
+  .ai-delivery-time-container-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: {{ block.settings.icon_spacing }}px;
+  }
+
+  .ai-delivery-time-icon-{{ ai_gen_id }} {
+    flex-shrink: 0;
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    color: {{ block.settings.icon_color }};
+  }
+
+  .ai-delivery-time-icon-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .ai-delivery-time-content-{{ ai_gen_id }} {
+    flex-grow: 1;
+  }
+
+  .ai-delivery-time-title-{{ ai_gen_id }} {
+    margin: 0 0 4px 0;
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: 600;
+    color: {{ block.settings.title_color }};
+  }
+
+  .ai-delivery-time-date-{{ ai_gen_id }} {
+    margin: 0;
+    font-size: {{ block.settings.date_size }}px;
+    font-weight: 500;
+    color: {{ block.settings.date_color }};
+  }
+
+  .ai-delivery-time-description-{{ ai_gen_id }} {
+    margin: 4px 0 0 0;
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.description_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-delivery-time-{{ ai_gen_id }} {
+      width: 100%;
+    }
+  }
+{% endstyle %}
+
+<delivery-time-{{ ai_gen_id }}
+  class="ai-delivery-time-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-delivery-time-container-{{ ai_gen_id }}">
+    {% if block.settings.show_icon %}
+      <div class="ai-delivery-time-icon-{{ ai_gen_id }}">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="1" y="3" width="15" height="13"></rect>
+          <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+          <circle cx="5.5" cy="18.5" r="2.5"></circle>
+          <circle cx="18.5" cy="18.5" r="2.5"></circle>
+        </svg>
+      </div>
+    {% endif %}
+
+    <div class="ai-delivery-time-content-{{ ai_gen_id }}">
+      {% if block.settings.title != blank %}
+        <div class="ai-delivery-time-title-{{ ai_gen_id }}">
+          {{ block.settings.title }}
+        </div>
+      {% endif %}
+
+      <div
+        class="ai-delivery-time-date-{{ ai_gen_id }}"
+        data-delivery-days="{{ block.settings.delivery_days }}"
+        data-date-format="{{ block.settings.date_format }}"
+      >
+        <span class="ai-delivery-date-text-{{ ai_gen_id }}"></span>
+      </div>
+
+      {% if block.settings.description != blank %}
+        <div class="ai-delivery-time-description-{{ ai_gen_id }}">
+          {{ block.settings.description }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</delivery-time-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class DeliveryTime{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.calculateDeliveryDate();
+      }
+
+      calculateDeliveryDate() {
+        const dateElement = this.querySelector('.ai-delivery-time-date-{{ ai_gen_id }}');
+        const textElement = this.querySelector('.ai-delivery-date-text-{{ ai_gen_id }}');
+        
+        if (!dateElement || !textElement) return;
+
+        const deliveryDays = parseInt(dateElement.getAttribute('data-delivery-days')) || 0;
+        const dateFormat = dateElement.getAttribute('data-date-format') || 'long';
+
+        const today = new Date();
+        const deliveryDate = new Date(today);
+        deliveryDate.setDate(today.getDate() + deliveryDays);
+
+        let formattedDate = '';
+        
+        if (dateFormat === 'long') {
+          const options = { weekday: 'long', month: 'long', day: 'numeric' };
+          formattedDate = deliveryDate.toLocaleDateString('en-US', options);
+        } else if (dateFormat === 'short') {
+          const options = { month: 'short', day: 'numeric' };
+          formattedDate = deliveryDate.toLocaleDateString('en-US', options);
+        } else if (dateFormat === 'numeric') {
+          const options = { month: 'numeric', day: 'numeric', year: 'numeric' };
+          formattedDate = deliveryDate.toLocaleDateString('en-US', options);
+        }
+
+        textElement.textContent = formattedDate;
+      }
+    }
+
+    customElements.define('delivery-time-{{ ai_gen_id }}', DeliveryTime{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Delivery time",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Estimated delivery"
+    },
+    {
+      "type": "range",
+      "id": "delivery_days",
+      "label": "Delivery days",
+      "min": 1,
+      "max": 30,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "select",
+      "id": "date_format",
+      "label": "Date format",
+      "options": [
+        {
+          "value": "long",
+          "label": "Long (Monday, April 14)"
+        },
+        {
+          "value": "short",
+          "label": "Short (Apr 14)"
+        },
+        {
+          "value": "numeric",
+          "label": "Numeric (4/14/2026)"
+        }
+      ],
+      "default": "long"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "Order within the next 24 hours"
+    },
+    {
+      "type": "header",
+      "content": "Icon"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon",
+      "label": "Show icon",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "icon_spacing",
+      "label": "Icon spacing",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Padding",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "Border width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border",
+      "default": "#e6e6e6"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "label": "Title size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "date_size",
+      "label": "Date size",
+      "min": 12,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "date_color",
+      "label": "Date color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "label": "Description size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#666666"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Delivery time"
+    }
+  ]
+}
+{% endschema %}

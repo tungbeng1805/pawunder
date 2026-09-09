@@ -1,0 +1,430 @@
+{% doc %}
+  @prompt
+    create for me a brand session with multiple columns to insert partner logos across the screen, compatible with both mobile and computer, editable session background color, customizable session width and height, session logos can move from right to left, above the logo insertion row there is an editable headline, the background of the logo insertion boxes can be adjusted in color, the boxes have no borders.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-brand-logos-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.section_padding_top }}px 0 {{ block.settings.section_padding_bottom }}px;
+    overflow: hidden;
+  }
+
+  .ai-brand-logos-container-{{ ai_gen_id }} {
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-brand-logos-heading-{{ ai_gen_id }} {
+    text-align: center;
+    margin: 0 0 {{ block.settings.heading_spacing }}px;
+    color: {{ block.settings.heading_color }};
+    font-size: {{ block.settings.heading_size }}px;
+  }
+
+  .ai-brand-logos-track-wrapper-{{ ai_gen_id }} {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .ai-brand-logos-track-{{ ai_gen_id }} {
+    display: flex;
+    gap: {{ block.settings.logo_gap }}px;
+    {% if block.settings.enable_scroll %}
+      animation: ai-brand-logos-scroll-{{ ai_gen_id }} {{ block.settings.scroll_speed }}s linear infinite;
+    {% endif %}
+  }
+
+  {% if block.settings.enable_scroll %}
+    .ai-brand-logos-track-{{ ai_gen_id }}:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes ai-brand-logos-scroll-{{ ai_gen_id }} {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+  {% endif %}
+
+  .ai-brand-logos-item-{{ ai_gen_id }} {
+    flex: 0 0 auto;
+    width: calc((100% - ({{ block.settings.columns_desktop | minus: 1 }} * {{ block.settings.logo_gap }}px)) / {{ block.settings.columns_desktop }});
+    background-color: {{ block.settings.logo_background_color }};
+    border-radius: {{ block.settings.logo_border_radius }}px;
+    padding: {{ block.settings.logo_padding }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: {{ block.settings.logo_height }}px;
+  }
+
+  .ai-brand-logos-item-{{ ai_gen_id }} img {
+    max-width: 100%;
+    max-height: {{ block.settings.logo_height }}px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .ai-brand-logos-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 12px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-brand-logos-container-{{ ai_gen_id }} {
+      width: 100%;
+    }
+
+    .ai-brand-logos-item-{{ ai_gen_id }} {
+      width: calc((100% - ({{ block.settings.columns_mobile | minus: 1 }} * {{ block.settings.logo_gap }}px)) / {{ block.settings.columns_mobile }});
+    }
+
+    .ai-brand-logos-heading-{{ ai_gen_id }} {
+      font-size: calc({{ block.settings.heading_size }}px * 0.8);
+    }
+  }
+{% endstyle %}
+
+<brand-logos-{{ ai_gen_id }} class="ai-brand-logos-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-brand-logos-container-{{ ai_gen_id }}">
+    {% if block.settings.heading != blank %}
+      <h2 class="ai-brand-logos-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="ai-brand-logos-track-wrapper-{{ ai_gen_id }}">
+      <div class="ai-brand-logos-track-{{ ai_gen_id }}">
+        {% for i in (1..12) %}
+          {% liquid
+            assign logo_key = 'logo_' | append: i
+            assign logo = block.settings[logo_key]
+          %}
+          
+          {% if logo != blank %}
+            <div class="ai-brand-logos-item-{{ ai_gen_id }}">
+              <img
+                src="{{ logo | image_url: width: 400 }}"
+                alt="{{ logo.alt | escape }}"
+                loading="lazy"
+                width="{{ logo.width }}"
+                height="{{ logo.height }}"
+              >
+            </div>
+          {% endif %}
+        {% endfor %}
+
+        {% if block.settings.enable_scroll %}
+          {% for i in (1..12) %}
+            {% liquid
+              assign logo_key = 'logo_' | append: i
+              assign logo = block.settings[logo_key]
+            %}
+            
+            {% if logo != blank %}
+              <div class="ai-brand-logos-item-{{ ai_gen_id }}">
+                <img
+                  src="{{ logo | image_url: width: 400 }}"
+                  alt="{{ logo.alt | escape }}"
+                  loading="lazy"
+                  width="{{ logo.width }}"
+                  height="{{ logo.height }}"
+                >
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</brand-logos-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class BrandLogos{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.adjustScrollSpeed();
+      }
+
+      adjustScrollSpeed() {
+        const track = this.querySelector('.ai-brand-logos-track-{{ ai_gen_id }}');
+        if (!track) return;
+
+        const items = track.querySelectorAll('.ai-brand-logos-item-{{ ai_gen_id }}');
+        if (items.length === 0) return;
+      }
+    }
+
+    customElements.define('brand-logos-{{ ai_gen_id }}', BrandLogos{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Brand partner logos",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our trusted partners"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "label": "Spacing below heading",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Section style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 90
+    },
+    {
+      "type": "header",
+      "content": "Logo boxes"
+    },
+    {
+      "type": "color",
+      "id": "logo_background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "logo_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "logo_padding",
+      "label": "Padding",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "label": "Logo height",
+      "min": 40,
+      "max": 150,
+      "step": 10,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "logo_gap",
+      "label": "Gap between logos",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Columns on desktop",
+      "min": 3,
+      "max": 8,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        {
+          "value": "2",
+          "label": "2"
+        },
+        {
+          "value": "3",
+          "label": "3"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "header",
+      "content": "Scroll animation"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_scroll",
+      "label": "Enable scroll animation",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "scroll_speed",
+      "label": "Scroll speed",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "s",
+      "default": 30,
+      "info": "Lower value = faster scroll"
+    },
+    {
+      "type": "header",
+      "content": "Partner logos"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_1",
+      "label": "Logo 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_2",
+      "label": "Logo 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_3",
+      "label": "Logo 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_4",
+      "label": "Logo 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_5",
+      "label": "Logo 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_6",
+      "label": "Logo 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_7",
+      "label": "Logo 7"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_8",
+      "label": "Logo 8"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_9",
+      "label": "Logo 9"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_10",
+      "label": "Logo 10"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_11",
+      "label": "Logo 11"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_12",
+      "label": "Logo 12"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand partner logos"
+    }
+  ]
+}
+{% endschema %}

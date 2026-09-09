@@ -1,0 +1,655 @@
+{% doc %}
+  @prompt
+    Create a custom footer with a dark navy background (#1a2433). The layout should have 4 columns. Column 1: Include the PawUnder logo, followed by contact details (Address, Email, Phone/WhatsApp) in white/light gray text. Column 2 (Header: ABOUT US): Links for Our Story, Wholesale Program, Reseller Program. Column 3 (Header: HELP CENTER): Links for Contact Us, Size Charts, Track Order, FAQs. Column 4 (Header: LEGAL & POLICIES): Links for Replacement & Refund Policy, Shipping and Delivery, Terms of Service, Privacy Policy. Ensure all headers are uppercase and bold. Below the columns, add a thin horizontal divider line, followed by a centered copyright text '© 2026 PawUnder. All Rights Reserved.' Remove all payment method icons and ensure no extra vertical white space at the bottom.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-footer-{{ ai_gen_id }} {
+    display: block;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.padding_top }}px 0 0 0;
+    width: 100%;
+  }
+
+  .ai-footer-container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.container_width }}px;
+    margin: 0 auto;
+    padding: 0 {{ block.settings.horizontal_padding }}px;
+  }
+
+  .ai-footer-columns-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: {{ block.settings.column_gap }}px;
+    margin-bottom: {{ block.settings.divider_spacing }}px;
+  }
+
+  .ai-footer-column-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.item_spacing }}px;
+  }
+
+  .ai-footer-logo-{{ ai_gen_id }} {
+    margin-bottom: {{ block.settings.logo_spacing }}px;
+  }
+
+  .ai-footer-logo-{{ ai_gen_id }} img {
+    max-width: {{ block.settings.logo_width }}px;
+    height: auto;
+    display: block;
+  }
+
+  .ai-footer-contact-item-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.text_size }}px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .ai-footer-heading-{{ ai_gen_id }} {
+    color: {{ block.settings.heading_color }};
+    font-size: {{ block.settings.heading_size }}px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 {{ block.settings.heading_spacing }}px 0;
+  }
+
+  .ai-footer-link-{{ ai_gen_id }} {
+    color: {{ block.settings.link_color }};
+    font-size: {{ block.settings.text_size }}px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    line-height: 1.6;
+  }
+
+  .ai-footer-link-{{ ai_gen_id }}:hover {
+    color: {{ block.settings.link_hover_color }};
+  }
+
+  .ai-footer-divider-{{ ai_gen_id }} {
+    width: 100%;
+    height: {{ block.settings.divider_height }}px;
+    background-color: {{ block.settings.divider_color }};
+    margin: 0 0 {{ block.settings.divider_spacing }}px 0;
+  }
+
+  .ai-footer-copyright-{{ ai_gen_id }} {
+    text-align: center;
+    color: {{ block.settings.copyright_color }};
+    font-size: {{ block.settings.copyright_size }}px;
+    padding-bottom: {{ block.settings.padding_bottom }}px;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 989px) {
+    .ai-footer-columns-{{ ai_gen_id }} {
+      grid-template-columns: repeat(2, 1fr);
+      gap: {{ block.settings.column_gap_mobile }}px;
+    }
+
+    .ai-footer-column-{{ ai_gen_id }}:first-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-footer-columns-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+    }
+
+    .ai-footer-{{ ai_gen_id }} {
+      padding: {{ block.settings.padding_top_mobile }}px 0 0 0;
+    }
+
+    .ai-footer-copyright-{{ ai_gen_id }} {
+      padding-bottom: {{ block.settings.padding_bottom_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+<footer-block-{{ ai_gen_id }} class="ai-footer-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-footer-container-{{ ai_gen_id }}">
+    <div class="ai-footer-columns-{{ ai_gen_id }}">
+      <div class="ai-footer-column-{{ ai_gen_id }}">
+        {% if block.settings.logo != blank %}
+          <div class="ai-footer-logo-{{ ai_gen_id }}">
+            <img
+              src="{{ block.settings.logo | image_url: width: 400 }}"
+              alt="{{ shop.name }}"
+              width="{{ block.settings.logo_width }}"
+              height="auto"
+              loading="lazy"
+            >
+          </div>
+        {% endif %}
+
+        {% if block.settings.address != blank %}
+          <p class="ai-footer-contact-item-{{ ai_gen_id }}">{{ block.settings.address }}</p>
+        {% endif %}
+
+        {% if block.settings.email != blank %}
+          <p class="ai-footer-contact-item-{{ ai_gen_id }}">{{ block.settings.email }}</p>
+        {% endif %}
+
+        {% if block.settings.phone != blank %}
+          <p class="ai-footer-contact-item-{{ ai_gen_id }}">{{ block.settings.phone }}</p>
+        {% endif %}
+      </div>
+
+      <div class="ai-footer-column-{{ ai_gen_id }}">
+        <h3 class="ai-footer-heading-{{ ai_gen_id }}">{{ block.settings.column_2_heading }}</h3>
+        {% if block.settings.link_2_1_text != blank and block.settings.link_2_1_url != blank %}
+          <a href="{{ block.settings.link_2_1_url }}" class="ai-footer-link-{{ ai_gen_id }}">
+            {{ block.settings.link_2_1_text }}
+          </a>
+        {% endif %}
+        {% if block.settings.link_2_2_text != blank and block.settings.link_2_2_url != blank %}
+          <a href="{{ block.settings.link_2_2_url }}" class="ai-footer-link-{{ ai_gen_id }}">
+            {{ block.settings.link_2_2_text }}
+          </a>
+        {% endif %}
+        {% if block.settings.link_2_3_text != blank and block.settings.link_2_3_url != blank %}
+          <a href="{{ block.settings.link_2_3_url }}" class="ai-footer-link-{{ ai_gen_id }}">
+            {{ block.settings.link_2_3_text }}
+          </a>
+        {% endif %}
+      </div>
+
+      <div class="ai-footer-column-{{ ai_gen_id }}">
+        <h3 class="ai-footer-heading-{{ ai_gen_id }}">{{ block.settings.column_3_heading }}</h3>
+        {% if block.settings.link_3_1_text != blank and block.settings.link_3_1_url != blank %}
+          <a href="{{ block.settings.link_3_1_url }}" class="ai-footer-link-{{ ai_gen_id }}">
+            {{ block.settings.link_3_1_text }}
+          </a>
+        {% endif %}
+        {% if block.settings.link_3_2_text != blank and block.settings.link_3_2_url != blank %}
+          <a href="{{ block.settings.link_3_2_url }}" class="ai-footer-link-{{ ai_gen_id }}">
+            {{ block.settings.link_3_2_text }}
+          </a>
+        {% endif %}
+        {% if block.settings.link_3_3_text != blank and block.settings.link_3_3_url != blank %}
+          <a href="{{ block.settings.link_3_3_url }}" class="ai-footer-link-{{ ai_gen_id }}">
+            {{ block.settings.link_3_3_text }}
+          </a>
+        {% endif %}
+        {% if block.settings.link_3_4_text != blank and block.settings.link_3_4_url != blank %}
+          <a href="{{ block.settings.link_3_4_url }}" class="ai-footer-link-{{ ai_gen_id }}">
+            {{ block.settings.link_3_4_text }}
+          </a>
+        {% endif %}
+      </div>
+
+      <div class="ai-footer-column-{{ ai_gen_id }}">
+        <h3 class="ai-footer-heading-{{ ai_gen_id }}">{{ block.settings.column_4_heading }}</h3>
+        {% if block.settings.link_4_1_text != blank and block.settings.link_4_1_url != blank %}
+          <a href="{{ block.settings.link_4_1_url }}" class="ai-footer-link-{{ ai_gen_id }}">
+            {{ block.settings.link_4_1_text }}
+          </a>
+        {% endif %}
+        {% if block.settings.link_4_2_text != blank and block.settings.link_4_2_url != blank %}
+          <a href="{{ block.settings.link_4_2_url }}" class="ai-footer-link-{{ ai_gen_id }}">
+            {{ block.settings.link_4_2_text }}
+          </a>
+        {% endif %}
+        {% if block.settings.link_4_3_text != blank and block.settings.link_4_3_url != blank %}
+          <a href="{{ block.settings.link_4_3_url }}" class="ai-footer-link-{{ ai_gen_id }}">
+            {{ block.settings.link_4_3_text }}
+          </a>
+        {% endif %}
+        {% if block.settings.link_4_4_text != blank and block.settings.link_4_4_url != blank %}
+          <a href="{{ block.settings.link_4_4_url }}" class="ai-footer-link-{{ ai_gen_id }}">
+            {{ block.settings.link_4_4_text }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="ai-footer-divider-{{ ai_gen_id }}"></div>
+
+    <p class="ai-footer-copyright-{{ ai_gen_id }}">{{ block.settings.copyright_text }}</p>
+  </div>
+</footer-block-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class FooterBlock{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+      }
+    }
+
+    customElements.define('footer-block-{{ ai_gen_id }}', FooterBlock{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Custom footer",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Column 1 - Contact"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo width",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "default": 150
+    },
+    {
+      "type": "range",
+      "id": "logo_spacing",
+      "label": "Logo spacing",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "text",
+      "id": "address",
+      "label": "Address",
+      "default": "123 Main Street, City, State 12345"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email",
+      "default": "contact@pawunder.com"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone/WhatsApp",
+      "default": "+1 (555) 123-4567"
+    },
+    {
+      "type": "header",
+      "content": "Column 2"
+    },
+    {
+      "type": "text",
+      "id": "column_2_heading",
+      "label": "Heading",
+      "default": "ABOUT US"
+    },
+    {
+      "type": "text",
+      "id": "link_2_1_text",
+      "label": "Link 1 text",
+      "default": "Our Story"
+    },
+    {
+      "type": "url",
+      "id": "link_2_1_url",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_2_2_text",
+      "label": "Link 2 text",
+      "default": "Wholesale Program"
+    },
+    {
+      "type": "url",
+      "id": "link_2_2_url",
+      "label": "Link 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_2_3_text",
+      "label": "Link 3 text",
+      "default": "Reseller Program"
+    },
+    {
+      "type": "url",
+      "id": "link_2_3_url",
+      "label": "Link 3 URL"
+    },
+    {
+      "type": "header",
+      "content": "Column 3"
+    },
+    {
+      "type": "text",
+      "id": "column_3_heading",
+      "label": "Heading",
+      "default": "HELP CENTER"
+    },
+    {
+      "type": "text",
+      "id": "link_3_1_text",
+      "label": "Link 1 text",
+      "default": "Contact Us"
+    },
+    {
+      "type": "url",
+      "id": "link_3_1_url",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_3_2_text",
+      "label": "Link 2 text",
+      "default": "Size Charts"
+    },
+    {
+      "type": "url",
+      "id": "link_3_2_url",
+      "label": "Link 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_3_3_text",
+      "label": "Link 3 text",
+      "default": "Track Order"
+    },
+    {
+      "type": "url",
+      "id": "link_3_3_url",
+      "label": "Link 3 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_3_4_text",
+      "label": "Link 4 text",
+      "default": "FAQs"
+    },
+    {
+      "type": "url",
+      "id": "link_3_4_url",
+      "label": "Link 4 URL"
+    },
+    {
+      "type": "header",
+      "content": "Column 4"
+    },
+    {
+      "type": "text",
+      "id": "column_4_heading",
+      "label": "Heading",
+      "default": "LEGAL & POLICIES"
+    },
+    {
+      "type": "text",
+      "id": "link_4_1_text",
+      "label": "Link 1 text",
+      "default": "Replacement & Refund Policy"
+    },
+    {
+      "type": "url",
+      "id": "link_4_1_url",
+      "label": "Link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_4_2_text",
+      "label": "Link 2 text",
+      "default": "Shipping and Delivery"
+    },
+    {
+      "type": "url",
+      "id": "link_4_2_url",
+      "label": "Link 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_4_3_text",
+      "label": "Link 3 text",
+      "default": "Terms of Service"
+    },
+    {
+      "type": "url",
+      "id": "link_4_3_url",
+      "label": "Link 3 URL"
+    },
+    {
+      "type": "text",
+      "id": "link_4_4_text",
+      "label": "Link 4 text",
+      "default": "Privacy Policy"
+    },
+    {
+      "type": "url",
+      "id": "link_4_4_url",
+      "label": "Link 4 URL"
+    },
+    {
+      "type": "header",
+      "content": "Copyright"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright text",
+      "default": "© 2026 PawUnder. All Rights Reserved."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#1a2433"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Headings",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#b8c1cc"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Links",
+      "default": "#b8c1cc"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Links hover",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider",
+      "default": "#3a4a5c"
+    },
+    {
+      "type": "color",
+      "id": "copyright_color",
+      "label": "Copyright text",
+      "default": "#8a95a3"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "copyright_size",
+      "label": "Copyright size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container width",
+      "min": 1000,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "horizontal_padding",
+      "label": "Horizontal padding",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding (desktop)",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding (desktop)",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top padding (mobile)",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom padding (mobile)",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Column gap (desktop)",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "column_gap_mobile",
+      "label": "Column gap (mobile)",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "item_spacing",
+      "label": "Item spacing",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "label": "Heading spacing",
+      "min": 10,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "divider_height",
+      "label": "Divider height",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "divider_spacing",
+      "label": "Divider spacing",
+      "min": 20,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom footer"
+    }
+  ]
+}
+{% endschema %}

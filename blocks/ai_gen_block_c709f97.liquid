@@ -1,0 +1,350 @@
+{% doc %}
+  @prompt
+    <style>
+      .pet-collage-wrapper {
+        max-width: 2000px;
+        margin: 0 auto;
+        padding: 15px;
+        box-sizing: border-box;
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+      }
+    
+      /* Khối bên trái: Ảnh lớn hình chữ nhật ngang */
+      .pet-collage-main {
+        flex: 2; /* Chiếm diện tích lớn hơn */
+      }
+    
+      /* Khối bên phải: 2 ảnh nhỏ hình chữ nhật ngang */
+      .pet-collage-side {
+        flex: 1; /* Chiếm diện tích nhỏ hơn */
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+    
+      .pet-banner-link {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 12px;
+        line-height: 0; /* Loại bỏ khoảng trắng thừa dưới ảnh */
+      }
+    
+      .pet-banner-link img {
+        width: 100%;
+        height: auto; /* Giữ đúng tỷ lệ ảnh gốc, không bị cắt */
+        display: block;
+        transition: transform 0.3s ease;
+      }
+    
+      .pet-banner-link:hover img {
+        transform: scale(1.03);
+      }
+    
+      /* Giao diện Mobile: 3 ảnh xếp chồng dọc, giữ nguyên hình chữ nhật */
+      @media screen and (max-width: 768px) {
+        .pet-collage-wrapper {
+          flex-direction: column;
+        }
+        .pet-collage-main, .pet-collage-side {
+          flex: none;
+          width: 100%;
+        }
+      }
+    </style>
+    
+    <div class="pet-collage-wrapper">
+      <!-- ẢNH LỚN BÊN TRÁI -->
+      <div class="pet-collage-main">
+        <a href="LINK_SAN_PHAM_1" class="pet-banner-link">
+          <img src="URL_ANH_LON_NHU_TRONG_HINH" alt="Pet Cooling Mat Main">
+        </a>
+      </div>
+    
+      <!-- 2 ẢNH NHỎ BÊN PHẢI -->
+      <div class="pet-collage-side">
+        <a href="LINK_SAN_PHAM_2" class="pet-banner-link">
+          <img src="URL_ANH_NHO_1" alt="Sub Banner 1">
+        </a>
+        <a href="LINK_SAN_PHAM_3" class="pet-banner-link">
+          <img src="URL_ANH_NHO_2" alt="Sub Banner 2">
+        </a>
+      </div>
+    </div>
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-pet-collage-wrapper-{{ ai_gen_id }} {
+    display: block;
+    max-width: 2000px;
+    margin: 0 auto;
+    padding: {{ block.settings.spacing }}px;
+    box-sizing: border-box;
+    width: {{ block.settings.desktop_width_percent }}%;
+  }
+
+  .ai-pet-collage-container-{{ ai_gen_id }} {
+    display: flex;
+    gap: {{ block.settings.gap }}px;
+    align-items: flex-start;
+  }
+
+  .ai-pet-collage-main-{{ ai_gen_id }} {
+    flex: 2;
+  }
+
+  .ai-pet-collage-side-{{ ai_gen_id }} {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.gap }}px;
+  }
+
+  .ai-pet-banner-link-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    border-radius: {{ block.settings.border_radius }}px;
+    line-height: 0;
+  }
+
+  .ai-pet-banner-link-{{ ai_gen_id }} img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-pet-banner-link-{{ ai_gen_id }}:hover img {
+    transform: scale({{ block.settings.hover_scale }});
+  }
+
+  .ai-pet-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: {{ block.settings.border_radius }}px;
+    overflow: hidden;
+  }
+
+  .ai-pet-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media screen and (max-width: 768px) {
+    .ai-pet-collage-container-{{ ai_gen_id }} {
+      flex-direction: column;
+    }
+    .ai-pet-collage-main-{{ ai_gen_id }}, .ai-pet-collage-side-{{ ai_gen_id }} {
+      flex: none;
+      width: 100%;
+    }
+  }
+{% endstyle %}
+
+<ai-pet-collage-{{ ai_gen_id }} class="ai-pet-collage-wrapper-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-pet-collage-container-{{ ai_gen_id }}">
+    <div class="ai-pet-collage-main-{{ ai_gen_id }}">
+      {% if block.settings.main_image_link != blank %}
+        <a href="{{ block.settings.main_image_link }}" class="ai-pet-banner-link-{{ ai_gen_id }}">
+      {% else %}
+        <div class="ai-pet-banner-link-{{ ai_gen_id }}">
+      {% endif %}
+        {% if block.settings.main_image %}
+          <img
+            src="{{ block.settings.main_image | image_url: width: 1200 }}"
+            alt="{{ block.settings.main_image.alt | escape }}"
+            loading="lazy"
+            width="{{ block.settings.main_image.width }}"
+            height="{{ block.settings.main_image.height }}"
+          >
+        {% else %}
+          <div class="ai-pet-image-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+      {% if block.settings.main_image_link != blank %}
+        </a>
+      {% else %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="ai-pet-collage-side-{{ ai_gen_id }}">
+      {% if block.settings.side_image_1_link != blank %}
+        <a href="{{ block.settings.side_image_1_link }}" class="ai-pet-banner-link-{{ ai_gen_id }}">
+      {% else %}
+        <div class="ai-pet-banner-link-{{ ai_gen_id }}">
+      {% endif %}
+        {% if block.settings.side_image_1 %}
+          <img
+            src="{{ block.settings.side_image_1 | image_url: width: 600 }}"
+            alt="{{ block.settings.side_image_1.alt | escape }}"
+            loading="lazy"
+            width="{{ block.settings.side_image_1.width }}"
+            height="{{ block.settings.side_image_1.height }}"
+          >
+        {% else %}
+          <div class="ai-pet-image-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+      {% if block.settings.side_image_1_link != blank %}
+        </a>
+      {% else %}
+        </div>
+      {% endif %}
+
+      {% if block.settings.side_image_2_link != blank %}
+        <a href="{{ block.settings.side_image_2_link }}" class="ai-pet-banner-link-{{ ai_gen_id }}">
+      {% else %}
+        <div class="ai-pet-banner-link-{{ ai_gen_id }}">
+      {% endif %}
+        {% if block.settings.side_image_2 %}
+          <img
+            src="{{ block.settings.side_image_2 | image_url: width: 600 }}"
+            alt="{{ block.settings.side_image_2.alt | escape }}"
+            loading="lazy"
+            width="{{ block.settings.side_image_2.width }}"
+            height="{{ block.settings.side_image_2.height }}"
+          >
+        {% else %}
+          <div class="ai-pet-image-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+      {% if block.settings.side_image_2_link != blank %}
+        </a>
+      {% else %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</ai-pet-collage-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class AiPetCollage{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+    }
+    customElements.define('ai-pet-collage-{{ ai_gen_id }}', AiPetCollage{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Image collage",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Main image"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "main_image_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Side image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "side_image_1",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "side_image_1_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Side image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "side_image_2",
+      "label": "Image"
+    },
+    {
+      "type": "url",
+      "id": "side_image_2_link",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between images",
+      "min": 0,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "label": "Padding",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "hover_scale",
+      "label": "Hover zoom",
+      "min": 1,
+      "max": 1.5,
+      "step": 0.1,
+      "default": 1
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image collage"
+    }
+  ]
+}
+{% endschema %}

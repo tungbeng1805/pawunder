@@ -1,0 +1,610 @@
+{% doc %}
+  @prompt
+    Generate a product customization form interface designed for a 'Custom Pet Pillow' product, based on the layout and structure of image_14.png. The overall style should be clean, modern, and light, presented within a dashed-line container.
+    
+    Section 1: Pet Photo Upload
+    
+    Header (Left-aligned, darker font): Replace current text with: "1. Upload Pet Photos (Preferred pose for pillow)"
+    
+    Subtext (Below header): Modify to: "Please provide clear, high-quality, front-facing photos for the best pillow outline and print results. We recommend multiple angles if possible."
+    
+    Upload Button: Maintain the style of image_14.png. Change the button text and status text to English.
+    
+    Button Text (Change from 'Chọn tệp'): [Choose Photos]
+    
+    Status Text (Change from 'Không có tệp nào được chọn'): (0 / 5 photos selected - max 5)
+    
+    Self-Correction: Using a photo-count indicator is better than a simple 'none selected' message.
+    Section 2: Color & Extra Details
+    
+    Header: Replace current text with: "4. Pillow Back Color:"
+    
+    Input Field (Dropdown): Text options: [Classic White], [Soft Beige], [Deep Teal #194950], [Light Gray], [Pink].
+    
+    Section 3: Special Requests
+    
+    Header: Keep similar, slightly modify: "5. Special Requests / Design Notes:"
+    
+    Text Area (Same style as image_14.png): Update placeholder: Anything else we should know? (e.g., add a small heart icon, special cropping request).
+    
+    Final Detail:
+    
+    Color Theme: All headers, labels, borders, and text fields should adhere to a dark teal color scheme (example: #194950).
+    
+    Text Alignment: All headers must be left-aligned. Input fields and buttons should be neatly stacked and indented. The overall layout must be vertical and compact, just like image_14.png."
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-pet-customization-form-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    padding: {{ block.settings.container_padding }}px;
+    border: 2px dashed {{ block.settings.border_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-pet-customization-form__section-{{ ai_gen_id }} {
+    margin-bottom: {{ block.settings.section_spacing }}px;
+  }
+
+  .ai-pet-customization-form__section-{{ ai_gen_id }}:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-pet-customization-form__header-{{ ai_gen_id }} {
+    font-size: {{ block.settings.header_font_size }}px;
+    font-weight: 600;
+    color: {{ block.settings.header_color }};
+    margin: 0 0 {{ block.settings.header_margin_bottom }}px 0;
+    text-align: left;
+  }
+
+  .ai-pet-customization-form__subtext-{{ ai_gen_id }} {
+    font-size: {{ block.settings.subtext_font_size }}px;
+    color: {{ block.settings.subtext_color }};
+    margin: 0 0 {{ block.settings.subtext_margin_bottom }}px 0;
+    line-height: 1.5;
+  }
+
+  .ai-pet-customization-form__upload-wrapper-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ai-pet-customization-form__upload-button-{{ ai_gen_id }} {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    border: 1px solid {{ block.settings.button_border_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_font_size }}px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: fit-content;
+  }
+
+  .ai-pet-customization-form__upload-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+    border-color: {{ block.settings.button_hover_border }};
+  }
+
+  .ai-pet-customization-form__upload-input-{{ ai_gen_id }} {
+    display: none;
+  }
+
+  .ai-pet-customization-form__upload-status-{{ ai_gen_id }} {
+    font-size: {{ block.settings.status_font_size }}px;
+    color: {{ block.settings.status_color }};
+  }
+
+  .ai-pet-customization-form__select-{{ ai_gen_id }} {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: {{ block.settings.input_font_size }}px;
+    color: {{ block.settings.input_text_color }};
+    background-color: {{ block.settings.input_background }};
+    border: 1px solid {{ block.settings.input_border_color }};
+    border-radius: {{ block.settings.input_border_radius }}px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .ai-pet-customization-form__select-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.input_hover_background }};
+  }
+
+  .ai-pet-customization-form__select-{{ ai_gen_id }}:focus {
+    outline: 2px solid {{ block.settings.header_color }};
+    outline-offset: 2px;
+  }
+
+  .ai-pet-customization-form__textarea-{{ ai_gen_id }} {
+    width: 100%;
+    min-height: {{ block.settings.textarea_height }}px;
+    padding: 12px 16px;
+    font-size: {{ block.settings.input_font_size }}px;
+    color: {{ block.settings.input_text_color }};
+    background-color: {{ block.settings.input_background }};
+    border: 1px solid {{ block.settings.input_border_color }};
+    border-radius: {{ block.settings.input_border_radius }}px;
+    resize: vertical;
+    font-family: inherit;
+    transition: all 0.3s ease;
+  }
+
+  .ai-pet-customization-form__textarea-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.input_hover_background }};
+  }
+
+  .ai-pet-customization-form__textarea-{{ ai_gen_id }}:focus {
+    outline: 2px solid {{ block.settings.header_color }};
+    outline-offset: 2px;
+  }
+
+  .ai-pet-customization-form__textarea-{{ ai_gen_id }}::placeholder {
+    color: {{ block.settings.placeholder_color }};
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-pet-customization-form-{{ ai_gen_id }} {
+      width: 100%;
+    }
+  }
+{% endstyle %}
+
+<pet-customization-form-{{ ai_gen_id }}
+  class="ai-pet-customization-form-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-pet-customization-form__section-{{ ai_gen_id }}">
+    <h3 class="ai-pet-customization-form__header-{{ ai_gen_id }}">
+      {{ block.settings.upload_header }}
+    </h3>
+    <p class="ai-pet-customization-form__subtext-{{ ai_gen_id }}">
+      {{ block.settings.upload_subtext }}
+    </p>
+    <div class="ai-pet-customization-form__upload-wrapper-{{ ai_gen_id }}">
+      <label
+        for="ai-pet-photo-upload-{{ ai_gen_id }}"
+        class="ai-pet-customization-form__upload-button-{{ ai_gen_id }}"
+      >
+        {{ block.settings.upload_button_text }}
+      </label>
+      <input
+        type="file"
+        id="ai-pet-photo-upload-{{ ai_gen_id }}"
+        class="ai-pet-customization-form__upload-input-{{ ai_gen_id }}"
+        accept="image/*"
+        multiple
+        aria-label="Upload pet photos"
+      >
+      <span
+        class="ai-pet-customization-form__upload-status-{{ ai_gen_id }}"
+        data-status-text
+      >
+        {{ block.settings.upload_status_default }}
+      </span>
+    </div>
+  </div>
+
+  <div class="ai-pet-customization-form__section-{{ ai_gen_id }}">
+    <h3 class="ai-pet-customization-form__header-{{ ai_gen_id }}">
+      {{ block.settings.color_header }}
+    </h3>
+    <select
+      class="ai-pet-customization-form__select-{{ ai_gen_id }}"
+      aria-label="Select pillow back color"
+    >
+      <option value="classic-white">{{ block.settings.color_option_1 }}</option>
+      <option value="soft-beige">{{ block.settings.color_option_2 }}</option>
+      <option value="deep-teal">{{ block.settings.color_option_3 }}</option>
+      <option value="light-gray">{{ block.settings.color_option_4 }}</option>
+      <option value="pink">{{ block.settings.color_option_5 }}</option>
+    </select>
+  </div>
+
+  <div class="ai-pet-customization-form__section-{{ ai_gen_id }}">
+    <h3 class="ai-pet-customization-form__header-{{ ai_gen_id }}">
+      {{ block.settings.notes_header }}
+    </h3>
+    <textarea
+      class="ai-pet-customization-form__textarea-{{ ai_gen_id }}"
+      placeholder="{{ block.settings.notes_placeholder }}"
+      aria-label="Special requests or design notes"
+    ></textarea>
+  </div>
+</pet-customization-form-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class PetCustomizationForm{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.fileInput = this.querySelector('.ai-pet-customization-form__upload-input-{{ ai_gen_id }}');
+        this.statusText = this.querySelector('[data-status-text]');
+        this.maxFiles = 5;
+
+        if (this.fileInput && this.statusText) {
+          this.fileInput.addEventListener('change', this.handleFileChange.bind(this));
+        }
+      }
+
+      handleFileChange(event) {
+        const files = event.target.files;
+        const fileCount = files.length;
+
+        if (fileCount > this.maxFiles) {
+          this.statusText.textContent = `(${this.maxFiles} / ${this.maxFiles} photos selected - max ${this.maxFiles})`;
+          const dataTransfer = new DataTransfer();
+          for (let i = 0; i < this.maxFiles; i++) {
+            dataTransfer.items.add(files[i]);
+          }
+          this.fileInput.files = dataTransfer.files;
+        } else if (fileCount > 0) {
+          this.statusText.textContent = `(${fileCount} / ${this.maxFiles} photos selected - max ${this.maxFiles})`;
+        } else {
+          this.statusText.textContent = `(0 / ${this.maxFiles} photos selected - max ${this.maxFiles})`;
+        }
+      }
+    }
+
+    customElements.define('pet-customization-form-{{ ai_gen_id }}', PetCustomizationForm{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Pet customization form",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Container style"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Desktop width",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "container_padding",
+      "label": "Container padding",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border",
+      "default": "#194950"
+    },
+    {
+      "type": "range",
+      "id": "section_spacing",
+      "label": "Section spacing",
+      "min": 15,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "header",
+      "content": "Photo upload section"
+    },
+    {
+      "type": "text",
+      "id": "upload_header",
+      "label": "Header",
+      "default": "1. Upload Pet Photos (Preferred pose for pillow)"
+    },
+    {
+      "type": "textarea",
+      "id": "upload_subtext",
+      "label": "Subtext",
+      "default": "Please provide clear, high-quality, front-facing photos for the best pillow outline and print results. We recommend multiple angles if possible."
+    },
+    {
+      "type": "text",
+      "id": "upload_button_text",
+      "label": "Button text",
+      "default": "Choose Photos"
+    },
+    {
+      "type": "text",
+      "id": "upload_status_default",
+      "label": "Status text",
+      "default": "(0 / 5 photos selected - max 5)"
+    },
+    {
+      "type": "header",
+      "content": "Color selection section"
+    },
+    {
+      "type": "text",
+      "id": "color_header",
+      "label": "Header",
+      "default": "4. Pillow Back Color:"
+    },
+    {
+      "type": "text",
+      "id": "color_option_1",
+      "label": "Option 1",
+      "default": "Classic White"
+    },
+    {
+      "type": "text",
+      "id": "color_option_2",
+      "label": "Option 2",
+      "default": "Soft Beige"
+    },
+    {
+      "type": "text",
+      "id": "color_option_3",
+      "label": "Option 3",
+      "default": "Deep Teal #194950"
+    },
+    {
+      "type": "text",
+      "id": "color_option_4",
+      "label": "Option 4",
+      "default": "Light Gray"
+    },
+    {
+      "type": "text",
+      "id": "color_option_5",
+      "label": "Option 5",
+      "default": "Pink"
+    },
+    {
+      "type": "header",
+      "content": "Special requests section"
+    },
+    {
+      "type": "text",
+      "id": "notes_header",
+      "label": "Header",
+      "default": "5. Special Requests / Design Notes:"
+    },
+    {
+      "type": "textarea",
+      "id": "notes_placeholder",
+      "label": "Placeholder",
+      "default": "Anything else we should know? (e.g., add a small heart icon, special cropping request)."
+    },
+    {
+      "type": "range",
+      "id": "textarea_height",
+      "label": "Textarea height",
+      "min": 80,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "header_font_size",
+      "label": "Header size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "subtext_font_size",
+      "label": "Subtext size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "input_font_size",
+      "label": "Input size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "label": "Button size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "status_font_size",
+      "label": "Status size",
+      "min": 11,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "header_margin_bottom",
+      "label": "Header spacing",
+      "min": 5,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "subtext_margin_bottom",
+      "label": "Subtext spacing",
+      "min": 10,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "header_color",
+      "label": "Header",
+      "default": "#194950"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Subtext",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "status_color",
+      "label": "Status",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "placeholder_color",
+      "label": "Placeholder",
+      "default": "#999999"
+    },
+    {
+      "type": "header",
+      "content": "Button style"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Background",
+      "default": "#194950"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Border",
+      "default": "#194950"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Hover background",
+      "default": "#0f3338"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_border",
+      "label": "Hover border",
+      "default": "#0f3338"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Input style"
+    },
+    {
+      "type": "color",
+      "id": "input_background",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "input_text_color",
+      "label": "Text",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "input_border_color",
+      "label": "Border",
+      "default": "#194950"
+    },
+    {
+      "type": "color",
+      "id": "input_hover_background",
+      "label": "Hover background",
+      "default": "#f9f9f9"
+    },
+    {
+      "type": "range",
+      "id": "input_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Pet customization form"
+    }
+  ]
+}
+{% endschema %}
