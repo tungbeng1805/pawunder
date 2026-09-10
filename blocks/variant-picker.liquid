@@ -8,7 +8,11 @@
 -%}
 
 {% unless product_resource == blank %}
-  {% render 'variant-main-picker', product_resource: product_resource, section: section, product: product %}
+  {% if block.settings.variant_style == 'images' %}
+    {% render 'variant-image-picker', product_resource: product_resource, section: section, product: product %}
+  {% else %}
+    {% render 'variant-main-picker', product_resource: product_resource, section: section, product: product %}
+  {% endif %}
 {% endunless %}
 
 {% schema %}
@@ -36,6 +40,10 @@
         {
           "value": "buttons",
           "label": "t:options.buttons"
+        },
+        {
+          "value": "images",
+          "label": "Image cards"
         }
       ],
       "default": "buttons"
@@ -44,7 +52,82 @@
       "type": "checkbox",
       "id": "show_swatches",
       "label": "t:settings.swatches",
-      "default": true
+      "default": true,
+      "visible_if": "{{ block.settings.variant_style != 'images' }}"
+    },
+    {
+      "type": "header",
+      "content": "Image cards",
+      "visible_if": "{{ block.settings.variant_style == 'images' }}"
+    },
+    {
+      "type": "text",
+      "id": "image_option_names",
+      "label": "Options shown as images",
+      "info": "Comma-separated option names, e.g. Color. Leave blank to use the first option.",
+      "visible_if": "{{ block.settings.variant_style == 'images' }}"
+    },
+    {
+      "type": "textarea",
+      "id": "option_image_urls",
+      "label": "Option image URLs",
+      "info": "One per line. Format: Blue | https://cdn.shopify.com/...png",
+      "visible_if": "{{ block.settings.variant_style == 'images' }}"
+    },
+    {
+      "type": "text",
+      "id": "suggestion_image_url",
+      "label": "Bestseller image URL",
+      "visible_if": "{{ block.settings.variant_style == 'images' and block.settings.show_suggestion }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_suggestion",
+      "label": "Show bestseller suggestion",
+      "default": true,
+      "visible_if": "{{ block.settings.variant_style == 'images' }}"
+    },
+    {
+      "type": "text",
+      "id": "suggestion_badge",
+      "label": "Suggestion badge",
+      "default": "Bestseller",
+      "visible_if": "{{ block.settings.variant_style == 'images' and block.settings.show_suggestion }}"
+    },
+    {
+      "type": "textarea",
+      "id": "suggestion_hints",
+      "label": "Size descriptions",
+      "info": "One per line. Format: 50×40cm | Perfect for small dogs and cats (up to 10kg)",
+      "visible_if": "{{ block.settings.variant_style == 'images' and block.settings.show_suggestion }}"
+    },
+    {
+      "type": "text",
+      "id": "feature_1",
+      "label": "Feature 1",
+      "default": "Cooling Surface",
+      "visible_if": "{{ block.settings.variant_style == 'images' and block.settings.show_suggestion }}"
+    },
+    {
+      "type": "text",
+      "id": "feature_2",
+      "label": "Feature 2",
+      "default": "Lightweight & Foldable",
+      "visible_if": "{{ block.settings.variant_style == 'images' and block.settings.show_suggestion }}"
+    },
+    {
+      "type": "text",
+      "id": "feature_3",
+      "label": "Feature 3",
+      "default": "Machine Washable",
+      "visible_if": "{{ block.settings.variant_style == 'images' and block.settings.show_suggestion }}"
+    },
+    {
+      "type": "text",
+      "id": "feature_4",
+      "label": "Feature 4",
+      "default": "Great for Indoor & Travel",
+      "visible_if": "{{ block.settings.variant_style == 'images' and block.settings.show_suggestion }}"
     },
     {
       "type": "text_alignment",
