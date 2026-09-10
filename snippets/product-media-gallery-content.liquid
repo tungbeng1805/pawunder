@@ -430,7 +430,7 @@
 
     {% if render_slideshow_arrows %}
       {% capture slideshow_arrows %}
-        {% render 'slideshow-arrows', class: 'mobile:hidden', icon_style: block_settings.icons_style %}
+        {% render 'slideshow-arrows', class: 'mobile:hidden product-gallery-arrows', icon_style: 'arrow', icon_shape: 'circle' %}
       {% endcapture %}
     {% endif %}
 
@@ -1024,9 +1024,38 @@
     }
   }
 
-  .media-gallery--carousel slideshow-arrows .slideshow-control {
-    padding-inline: 0 var(--padding-md);
-    opacity: 1;
+  .media-gallery--carousel slideshow-arrows.product-gallery-arrows {
+    mix-blend-mode: normal;
+    padding-inline: 16px;
+  }
+
+  .media-gallery--carousel slideshow-arrows.product-gallery-arrows .slideshow-control {
+    padding: 0;
+    opacity: 0;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 50%;
+    background-color: #111;
+    color: #fff;
+    transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .media-gallery--carousel slideshow-arrows.product-gallery-arrows .slideshow-control .svg-wrapper,
+  .media-gallery--carousel slideshow-arrows.product-gallery-arrows .slideshow-control svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .media-gallery--carousel slideshow-arrows.product-gallery-arrows .slideshow-control:hover {
+    background-color: #000;
+  }
+
+  @media screen and (min-width: 750px) {
+    .media-gallery--carousel slideshow-component:is(:hover, :focus-within) slideshow-arrows.product-gallery-arrows .slideshow-control {
+      opacity: 1;
+    }
   }
 
   @media screen and (max-width: 749px) {

@@ -1,0 +1,680 @@
+{%- doc -%}
+  Image-card variant picker with an optional bestseller suggestion card.
+  Used when the variant picker style is set to "images".
+
+  @param {object} product_resource - The product object.
+  @param {object} section - The section object.
+  @param {object} product - The current product object (used to determine selected variant state).
+{%- enddoc -%}
+
+{% assign block_settings = block.settings %}
+
+{% unless product_resource.has_only_default_variant %}
+  {% liquid
+    assign selected_variant = product_resource.selected_or_first_available_variant
+    assign image_option_names = block_settings.image_option_names | downcase | strip
+    assign show_suggestion = block_settings.show_suggestion
+    assign suggestion_badge = block_settings.suggestion_badge | strip
+    assign suggestion_hint = ''
+    assign suggestion_title = selected_variant.title | replace: ' / ', ' • '
+
+    if block_settings.suggestion_hints != blank
+      assign hint_lines = block_settings.suggestion_hints | newline_to_br | split: '<br />'
+      for line in hint_lines
+        assign line_stripped = line | strip
+        if line_stripped == blank
+          continue
+        endif
+
+        assign line_parts = line_stripped | split: '|'
+        if line_parts.size < 2
+          assign line_parts = line_stripped | split: ':'
+        endif
+        if line_parts.size < 2
+          continue
+        endif
+
+        assign line_key = line_parts.first | strip | downcase | replace: '×', 'x' | replace: ' ', '' | replace: 'cm', ''
+        assign line_value = line_parts[1] | strip
+
+        for option_value in selected_variant.options
+          assign option_key = option_value | downcase | replace: '×', 'x' | replace: ' ', '' | replace: 'cm', ''
+          if option_key == line_key
+            assign suggestion_hint = line_value
+            break
+          endif
+        endfor
+
+        if suggestion_hint != blank
+          break
+        endif
+      endfor
+    endif
+
+    assign button_background_brightness = section.settings.color_scheme.settings.foreground | color_brightness
+    if button_background_brightness < 105
+      assign strikethrough_color_mix = '#000'
+    else
+      assign strikethrough_color_mix = '#fff'
+    endif
+  %}
+
+  <variant-picker
+    class="variant-picker variant-image-picker spacing-style variant-picker--{{ block_settings.alignment }}"
+    style="--color-strikethrough-mix: {{ strikethrough_color_mix }}; {% render 'spacing-style', settings: block_settings %}"
+    data-section-id="{{ section.id }}"
+    data-product-id="{{ product_resource.id }}"
+    data-block-id="{{ block.id }}"
+    data-product-url="{{ product_resource.url }}"
+    ref="mainVariantPicker"
+    {% if product.id == product_resource.id %}
+      data-template-product-match="true"
+    {% endif %}
+    {{ block.shopify_attributes }}
+    {% if request.visual_preview_mode %}
+      data-shopify-visual-preview
+    {% endif %}
+  >
+    <form class="variant-picker__form variant-image-picker__form">
+      {%- for product_option in product_resource.options_with_values -%}
+        {%- liquid
+          assign fieldset_index = forloop.index0
+          assign option_name_downcased = product_option.name | downcase | strip
+          assign use_images = false
+
+          if image_option_names != blank
+            assign configured_names = image_option_names | split: ','
+            for configured_name in configured_names
+              assign configured_name_trimmed = configured_name | strip
+              if configured_name_trimmed == option_name_downcased
+                assign use_images = true
+                break
+              endif
+            endfor
+          elsif forloop.first
+            assign use_images = true
+          endif
+        -%}
+
+        <fieldset
+          class="variant-image-picker__option{% if use_images %} variant-image-picker__option--images{% else %} variant-image-picker__option--pills{% endif %}"
+          data-fieldset-index="{{ fieldset_index }}"
+          ref="fieldsets[]"
+        >
+          <legend class="variant-image-picker__legend">{{ product_option.name | escape }}</legend>
+
+          <div class="variant-image-picker__values">
+            {%- for product_option_value in product_option.values -%}
+              {% liquid
+                assign option_image_url = ''
+                assign option_value_key = product_option_value.name | downcase | strip
+
+                if block_settings.option_image_urls != blank
+                  assign image_lines = block_settings.option_image_urls | newline_to_br | split: '<br />'
+                  for line in image_lines
+                    assign line_stripped = line | strip
+                    if line_stripped == blank
+                      continue
+                    endif
+
+                    assign line_key = ''
+                    assign line_url = ''
+
+                    if line_stripped contains '|'
+                      assign line_parts = line_stripped | split: '|'
+                      assign line_key = line_parts.first | strip | downcase
+                      assign line_url = line_parts.last | strip
+                    elsif line_stripped contains ': https://'
+                      assign line_parts = line_stripped | split: ': https://'
+                      assign line_key = line_parts.first | strip | downcase
+                      assign line_url = 'https://' | append: line_parts.last | strip
+                    elsif line_stripped contains ': http://'
+                      assign line_parts = line_stripped | split: ': http://'
+                      assign line_key = line_parts.first | strip | downcase
+                      assign line_url = 'http://' | append: line_parts.last | strip
+                    endif
+
+                    if line_key == option_value_key and line_url != blank
+                      assign option_image_url = line_url
+                      break
+                    endif
+                  endfor
+                endif
+              %}
+
+              <label
+                class="variant-image-picker__label{% if use_images %} variant-image-picker__label--image{% else %} variant-image-picker__label--pill{% endif %}{% if product_option_value.available == false %} variant-image-picker__label--unavailable{% endif %}"
+              >
+                <input
+                  type="radio"
+                  name="{{ product_option.name | escape }}-{{ block.id }}-{{ product_resource.id }}"
+                  value="{{ product_option_value | escape }}"
+                  aria-label="{{ product_option_value.name | escape }}{% if product_option_value.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}"
+                  {% if product_option_value.available == false %}
+                    aria-disabled="true"
+                  {% endif %}
+                  data-previous-checked="false"
+                  data-fieldset-index="{{ fieldset_index }}"
+                  data-input-index="{{ forloop.index0 }}"
+                  data-input-id="{{ product_option.position }}-{{ forloop.index0 }}"
+                  data-option-value-id="{{ product_option_value.id }}"
+                  data-option-available="{{ product_option_value.available }}"
+                  data-connected-product-url="{{ product_option_value.product_url }}"
+                  {% if product_option_value.variant.id %}
+                    data-variant-id="{{ product_option_value.variant.id }}"
+                  {% endif %}
+                  {% if product_option_value.selected %}
+                    data-current-checked="true"
+                    checked
+                  {% else %}
+                    data-current-checked="false"
+                  {% endif %}
+                >
+
+                {%- if use_images -%}
+                  <span class="variant-image-picker__image-wrap">
+                    {%- if option_image_url != blank -%}
+                      <img
+                        src="{{ option_image_url }}"
+                        alt="{{ product_option_value.name | escape }}"
+                        class="variant-image-picker__image"
+                        width="88"
+                        height="88"
+                        loading="lazy"
+                      >
+                    {%- endif -%}
+                    <span class="variant-image-picker__check" aria-hidden="true">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                      >
+                        <path
+                          d="M3.5 8.2 6.4 11.1 12.5 5"
+                          stroke="currentColor"
+                          stroke-width="1.8"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </span>
+                  <span class="variant-image-picker__name">{{ product_option_value | escape }}</span>
+                {%- else -%}
+                  <span class="variant-image-picker__pill-text">{{ product_option_value | escape }}</span>
+                {%- endif -%}
+              </label>
+            {%- endfor -%}
+          </div>
+        </fieldset>
+      {%- endfor -%}
+
+      {%- if show_suggestion -%}
+        {% liquid
+          assign suggestion_image_url = block_settings.suggestion_image_url | strip
+          assign feature_1 = block_settings.feature_1 | strip
+          assign feature_2 = block_settings.feature_2 | strip
+          assign feature_3 = block_settings.feature_3 | strip
+          assign feature_4 = block_settings.feature_4 | strip
+        %}
+
+        <div class="variant-image-picker__suggestion" data-testid="variant-bestseller-suggestion">
+          <div class="variant-image-picker__suggestion-media">
+            {%- if suggestion_badge != blank -%}
+              <span class="variant-image-picker__badge">{{ suggestion_badge | escape }}</span>
+            {%- endif -%}
+            {%- if suggestion_image_url != blank -%}
+              <img
+                src="{{ suggestion_image_url }}"
+                alt="{{ suggestion_title | escape }}"
+                class="variant-image-picker__suggestion-image"
+                width="88"
+                height="88"
+                loading="lazy"
+              >
+            {%- endif -%}
+          </div>
+
+          <div class="variant-image-picker__suggestion-content">
+            <p class="variant-image-picker__suggestion-title">{{ suggestion_title | escape }}</p>
+            {%- if suggestion_hint != blank -%}
+              <p class="variant-image-picker__suggestion-hint">{{ suggestion_hint | escape }}</p>
+            {%- endif -%}
+          </div>
+
+            {%- if feature_1 != blank or feature_2 != blank or feature_3 != blank or feature_4 != blank -%}
+              <ul class="variant-image-picker__features">
+                {%- if feature_1 != blank -%}
+                  <li class="variant-image-picker__feature">
+                    <span class="variant-image-picker__feature-icon" aria-hidden="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 3v3M12 18v3M4.9 6.5l2.1 2.1M17 15.4l2.1 2.1M3 12h3M18 12h3M4.9 17.5 7 15.4M17 8.6l2.1-2.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                        <circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.6"/>
+                      </svg>
+                    </span>
+                    <span>{{ feature_1 | escape }}</span>
+                  </li>
+                {%- endif -%}
+                {%- if feature_2 != blank -%}
+                  <li class="variant-image-picker__feature">
+                    <span class="variant-image-picker__feature-icon" aria-hidden="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 18c2.5-1 4-3.8 4-7 0-3.6-1.3-6.4-3-8 3.8.6 8 3.4 8 9 0 2.2-.6 4.1-1.6 5.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                        <path d="M8 11c1.8 0 3.5.7 4.8 2M14.2 8.2C15.7 9.4 16.8 11.2 17 13.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                      </svg>
+                    </span>
+                    <span>{{ feature_2 | escape }}</span>
+                  </li>
+                {%- endif -%}
+                {%- if feature_3 != blank -%}
+                  <li class="variant-image-picker__feature">
+                    <span class="variant-image-picker__feature-icon" aria-hidden="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                        <rect x="4" y="3.5" width="16" height="17" rx="2.5" stroke="currentColor" stroke-width="1.6"/>
+                        <path d="M4 8.5h16" stroke="currentColor" stroke-width="1.6"/>
+                        <circle cx="8" cy="6" r="0.8" fill="currentColor"/>
+                        <circle cx="11" cy="6" r="0.8" fill="currentColor"/>
+                        <circle cx="12" cy="14.2" r="3.1" stroke="currentColor" stroke-width="1.6"/>
+                      </svg>
+                    </span>
+                    <span>{{ feature_3 | escape }}</span>
+                  </li>
+                {%- endif -%}
+                {%- if feature_4 != blank -%}
+                  <li class="variant-image-picker__feature">
+                    <span class="variant-image-picker__feature-icon" aria-hidden="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                        <path d="M4 11.2 12 4.5l8 6.7V20a1 1 0 0 1-1 1h-5.2v-6.2H10.2V21H5a1 1 0 0 1-1-1v-8.8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                    <span>{{ feature_4 | escape }}</span>
+                  </li>
+                {%- endif -%}
+              </ul>
+            {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <script type="application/json">
+        {{ selected_variant | json }}
+      </script>
+    </form>
+  </variant-picker>
+{% endunless %}
+
+{% stylesheet %}
+  .variant-image-picker {
+    width: 100%;
+    --vip-accent: #2f6bff;
+    --vip-accent-soft: #eef3ff;
+    --vip-border: #e6eaf0;
+    --vip-text: #1f2937;
+    --vip-muted: #6b7280;
+    --vip-badge: #ff8a1f;
+    --vip-surface: #f7f9fc;
+  }
+
+  .variant-image-picker__form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .variant-image-picker__option {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+  }
+
+  .variant-image-picker__legend {
+    padding: 0;
+    margin: 0 0 5px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--vip-text);
+  }
+
+  .variant-image-picker__values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 16px;
+  }
+
+  .variant-image-picker__option--pills .variant-image-picker__values {
+    gap: 8px;
+  }
+
+  .variant-image-picker__label {
+    position: relative;
+    cursor: pointer;
+    margin: 0;
+  }
+
+  .variant-image-picker__label input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  .variant-image-picker__label--image,
+  .variant-image-picker__label--image:has(input[type='radio']) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 92px;
+  }
+
+  .variant-image-picker__image-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 88px;
+    height: 88px;
+    padding: 6px;
+    border: 1.5px solid transparent;
+    border-radius: 10px;
+    background: #fff;
+    box-sizing: border-box;
+  }
+
+  .variant-image-picker__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .variant-image-picker__check {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--vip-accent);
+    color: #fff;
+  }
+
+  .variant-image-picker__check svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .variant-image-picker__name {
+    font-size: 0.8125rem;
+    line-height: 1.2;
+    color: var(--vip-text);
+    text-align: center;
+  }
+
+  .variant-image-picker__label--image:has(:checked) .variant-image-picker__image-wrap {
+    border-color: var(--vip-accent);
+  }
+
+  .variant-image-picker__label--image:has(:checked) .variant-image-picker__check {
+    display: flex;
+  }
+
+  .variant-image-picker__label--image:has(:focus-visible) .variant-image-picker__image-wrap {
+    outline: 2px solid var(--vip-accent);
+    outline-offset: 2px;
+  }
+
+  .variant-image-picker__label--pill,
+  .variant-image-picker__label--pill:has(input[type='radio']) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 7px 16px;
+    border: 1px solid var(--vip-border);
+    border-radius: 999px;
+    background: #fff;
+    color: var(--vip-text);
+    font-size: 0.875rem;
+    line-height: 1.2;
+  }
+
+  .variant-image-picker__label--pill:has(input[type='radio']:checked),
+  .variant-image-picker__label--pill:has(input[data-current-checked='true']) {
+    border-color: #111;
+    background: #111;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .variant-image-picker__label--pill:has(:focus-visible) {
+    outline: 2px solid var(--vip-accent);
+    outline-offset: 2px;
+  }
+
+  .variant-image-picker__label--unavailable {
+    opacity: 0.45;
+  }
+
+  .variant-image-picker__suggestion {
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr);
+    grid-template-areas:
+      'media content'
+      'media features';
+    column-gap: 16px;
+    row-gap: 8px;
+    align-items: start;
+    padding: 16px;
+    border-radius: 14px;
+    background: linear-gradient(180deg, #fffaf4 0%, #fff1e3 100%);
+    border: 1.5px solid #ffc48a;
+    box-shadow: 0 10px 28px rgb(255 138 31 / 18%);
+  }
+
+  .variant-image-picker__suggestion-media {
+    grid-area: media;
+    position: relative;
+    width: 88px;
+    height: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .variant-image-picker__suggestion-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .variant-image-picker__badge {
+    position: absolute;
+    top: -6px;
+    left: -10px;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    max-width: 78px;
+    padding: 4px 7px;
+    border-radius: 999px;
+    background: var(--vip-badge);
+    color: #fff;
+    font-size: 0.625rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    box-shadow: 0 3px 8px rgb(255 138 31 / 40%);
+  }
+
+  .variant-image-picker__suggestion-content {
+    grid-area: content;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 2px;
+  }
+
+  .variant-image-picker__suggestion-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--vip-text);
+  }
+
+  .variant-image-picker__suggestion-hint {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: var(--vip-muted);
+  }
+
+  .variant-image-picker__features {
+    grid-area: features;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .variant-image-picker__feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-width: 64px;
+    flex: 1 1 64px;
+    text-align: center;
+    font-size: 0.6875rem;
+    line-height: 1.25;
+    color: var(--vip-text);
+  }
+
+  .variant-image-picker__feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    color: var(--vip-accent);
+  }
+
+  .variant-image-picker__feature-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media screen and (max-width: 575px) {
+    .variant-image-picker__form {
+      gap: 10px;
+    }
+
+    .variant-image-picker__option--images .variant-image-picker__values {
+      flex-wrap: nowrap;
+      gap: 6px;
+    }
+
+    .variant-image-picker__option--images .variant-image-picker__label--image,
+    .variant-image-picker__option--images .variant-image-picker__label--image:has(input[type='radio']) {
+      width: auto;
+      flex: 1 1 0;
+      min-width: 0;
+      gap: 4px;
+    }
+
+    .variant-image-picker__option--images .variant-image-picker__image-wrap {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1;
+      padding: 3px;
+      border-radius: 8px;
+    }
+
+    .variant-image-picker__option--images .variant-image-picker__check {
+      top: 3px;
+      right: 3px;
+      width: 14px;
+      height: 14px;
+    }
+
+    .variant-image-picker__option--images .variant-image-picker__check svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    .variant-image-picker__option--images .variant-image-picker__name {
+      font-size: 0.6875rem;
+    }
+
+    .variant-image-picker__suggestion {
+      grid-template-columns: 64px minmax(0, 1fr);
+      grid-template-areas:
+        'media content'
+        'features features';
+      column-gap: 12px;
+      row-gap: 12px;
+      padding: 14px 12px 16px;
+    }
+
+    .variant-image-picker__suggestion-media {
+      width: 64px;
+      height: 64px;
+    }
+
+    .variant-image-picker__badge {
+      top: -8px;
+      left: -4px;
+      max-width: 72px;
+      padding: 3px 6px;
+      font-size: 0.5625rem;
+    }
+
+    .variant-image-picker__suggestion-title {
+      font-size: 0.9375rem;
+      line-height: 1.3;
+    }
+
+    .variant-image-picker__suggestion-hint {
+      font-size: 0.8125rem;
+      line-height: 1.45;
+    }
+
+    .variant-image-picker__features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 8px;
+      padding-top: 12px;
+      border-top: 1px solid #ffd7b0;
+    }
+
+    .variant-image-picker__feature {
+      flex: none;
+      min-width: 0;
+      gap: 5px;
+      font-size: 0.6875rem;
+      line-height: 1.3;
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .variant-image-picker__values {
+      gap: 16px 20px;
+    }
+
+    .variant-image-picker__suggestion {
+      padding: 18px 20px;
+    }
+  }
+{% endstylesheet %}
