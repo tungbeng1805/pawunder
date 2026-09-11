@@ -1,1 +1,997 @@
-{"sections":{"blocks_PenAMC":{"type":"_blocks","blocks":{"ai_gen_block_c709f97_YhHTGt":{"type":"ai_gen_block_c709f97","settings":{"main_image":"shopify:\/\/shop_images\/pet-cooling-mat-pawunder-homepage-banner_6594a222-65ff-4456-8fa5-a27a45782d8b.png","main_image_link":"https:\/\/pawunder.com\/products\/pet-cooling-mat-summer-cooling-pad-for-dogs-cats","side_image_1":"shopify:\/\/shop_images\/dog-boots-pawunder-homepage-banner_6ef26fba-efaf-40db-b75b-5933b60f135e.png","side_image_1_link":"shopify:\/\/products\/waterproof-dog-boots","side_image_2":"shopify:\/\/shop_images\/pet-hair-removal-gloves-pawunder-homepage-banner_e97bd3d2-426f-401f-b1b7-3730bd51ac3c.png","side_image_2_link":"shopify:\/\/products\/reusable-pet-hair-remover-glove","desktop_width_percent":100,"gap":10,"spacing":0,"border_radius":6,"hover_scale":1.1},"blocks":{}}},"block_order":["ai_gen_block_c709f97_YhHTGt"],"name":"Image collage","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":0,"section_width":"page-width","section_height":"","section_height_custom":50,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":0,"padding-block-end":0}},"hero_jVaWmY":{"type":"hero","blocks":{"text_YLPk4p":{"type":"text","name":"t:names.heading","settings":{"text":"<p>Love Begins with a Paw<\/p>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"h2","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground-heading)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"button_H9gpTf":{"type":"button","name":"t:names.button","settings":{"label":"Shop all","link":"shopify:\/\/collections\/all","open_in_new_tab":false,"style_class":"button-secondary","width":"fit-content","custom_width":100,"width_mobile":"fit-content","custom_width_mobile":100},"blocks":{}}},"block_order":["text_YLPk4p","button_H9gpTf"],"disabled":true,"name":"t:names.hero","settings":{"media_type_1":"image","image_1":"shopify:\/\/shop_images\/banner-homepage-pawunder.webp","media_type_2":"image","stack_media_on_mobile":false,"custom_mobile_media":false,"media_type_1_mobile":"image","media_type_2_mobile":"image","link":"","open_in_new_tab":false,"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"space-between","vertical_alignment":"flex-end","align_baseline":true,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"flex-end","gap":24,"section_width":"page-width","section_height":"medium","section_height_custom":50,"color_scheme":"scheme-6","toggle_overlay":true,"overlay_color":"#12121266","overlay_style":"solid","gradient_direction":"to bottom","blurred_reflection":false,"reflection_opacity":75,"padding-block-start":100,"padding-block-end":72}},"product_list_qDkArV":{"type":"product-list","blocks":{"static-header":{"type":"_product-list-content","name":"t:names.header","static":true,"settings":{"content_direction":"row","vertical_on_mobile":false,"horizontal_alignment":"space-between","vertical_alignment":"flex-end","align_baseline":true,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"product_list_text_npieGY":{"type":"_product-list-text","name":"t:names.collection_title","settings":{"text":"<h3>Pet Care<\/h3>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"h4","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"product_list_button_jLUJ7e":{"type":"_product-list-button","name":"t:names.product_list_button","settings":{"label":"View all","open_in_new_tab":false,"style_class":"link","width":"fit-content","custom_width":100,"width_mobile":"fit-content","custom_width_mobile":100},"blocks":{}}},"block_order":["product_list_text_npieGY","product_list_button_jLUJ7e"]},"static-product-card":{"type":"_product-card","name":"t:names.product_card","static":true,"settings":{"product_card_gap":4,"inherit_color_scheme":true,"color_scheme":"","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"product_card_gallery_HYRWiY":{"type":"_product-card-gallery","name":"t:names.product_card_media","settings":{"image_ratio":"adapt","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"product_title_fXLDtb":{"type":"product-title","name":"t:names.product_title","settings":{"width":"fit-content","max_width":"normal","alignment":"left","type_preset":"paragraph","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":4,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"price_FwYcQq":{"type":"price","name":"t:names.product_price","settings":{"show_sale_price_first":true,"show_installments":false,"show_tax_info":false,"type_preset":"h6","width":"100%","alignment":"left","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","color":"var(--color-foreground)","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["product_card_gallery_HYRWiY","product_title_fXLDtb","price_FwYcQq"]}},"name":"t:names.products_carousel","settings":{"collection":"pet-essentials","layout_type":"carousel","carousel_on_mobile":false,"max_products":8,"columns":4,"mobile_columns":"2","mobile_card_size":"44cqw","columns_gap":10,"rows_gap":24,"icons_style":"chevron","icons_shape":"circle","section_width":"page-width","horizontal_alignment":"center","gap":20,"color_scheme":"scheme-1","padding-block-start":15,"padding-block-end":25}},"17755504502271813f":{"type":"_blocks","blocks":{"ai_gen_block_ae374cc_4apMPq":{"type":"ai_gen_block_ae374cc","name":"Image","settings":{"image":"shopify:\/\/shop_images\/pawunder-a1_251ba72e-788b-4522-9e9b-595eb2fa2499.webp","desktop_width_percent":100,"aspect_ratio":"auto","border_radius":0,"enable_link":false,"link":""},"blocks":{}}},"block_order":["ai_gen_block_ae374cc_4apMPq"],"settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"section_width":"page-width","section_height":"","section_height_custom":50,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":0,"padding-block-end":0}},"1780893143f6d1c745":{"type":"_blocks","blocks":{"custom_liquid_cHg7gP":{"type":"custom-liquid","name":"t:names.custom_liquid","settings":{"custom_liquid":"{% comment %}\n  ========================================================================\n  CUSTOM LIQUID SECTION: FORCE LARGE TEXT ON WEB\n  ========================================================================\n{% endcomment %}\n\n{% comment %} --- KHU VỰC CẤU HÌNH --- {% endcomment %}\n{% assign image_url = \"https:\/\/cdn.shopify.com\/s\/files\/1\/0659\/7217\/5054\/files\/custom-pet-pillow-personalized-dog-cat-pillow-005.webp?v=1780720138\" %}\n{% assign button_url = \"https:\/\/pawunder.com\/products\/custom-pet-pillow-personalized-dog-cat-pillow\" %}\n{% assign headline_color = \"#194950\" %}\n\n{% assign header_text = \"Custom Pet Pillow\" %}\n{% assign description_text = \"Capture the unforgettable moments of your furry friends!\" %}\n{% assign button_text = \"SHOP NOW\" %}\n{% comment %} ------------------------------------------------------ {% endcomment %}\n\n<style>\n  @import url('https:\/\/fonts.googleapis.com\/css2?family=Montserrat:wght@400;600;700&display=swap');\n\n  \/* ===================================================\n     MẶC ĐỊNH CHO WEB (CHỮ TO ĐẬM ĐỂ CÂN BẰNG VỚI ẢNH)\n     =================================================== *\/\n  #CustomPillowSection {\n    background-color: #ffffff;\n    padding: 60px 5%; \/* Khoảng đệm rộng rãi trên Web *\/\n    width: 100%;\n    box-sizing: border-box;\n    font-family: 'Montserrat', -apple-system, sans-serif;\n    -webkit-font-smoothing: antialiased;\n  }\n\n  #CustomPillowSection .section-grid {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    gap: 60px; \/* Khoảng cách rộng giữa ảnh và chữ trên Web *\/\n    max-width: 1200px; \n    width: 100%;\n    margin: 0 auto;\n  }\n\n  #CustomPillowSection .col-image {\n    flex: 1;\n    text-align: center;\n    width: 50%;\n  }\n\n  #CustomPillowSection .product-image {\n    width: 100%;\n    height: auto;\n    display: block;\n    object-fit: cover; \n    border-radius: 12px;\n  }\n\n  #CustomPillowSection .col-content {\n    flex: 1;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center; \n    text-align: center;    \n    width: 50%;\n    padding: 0 40px; \n    box-sizing: border-box;\n  }\n\n  \/* ĐỊNH DẠNG TEXT TRÊN WEB: ÉP TO *\/\n  #CustomPillowSection .section-header {\n    font-size: 42px !important;  \/* Ép cỡ chữ tiêu đề 42px siêu to *\/\n    font-weight: 700;\n    line-height: 1.2;\n    color: {{ headline_color }};\n    margin: 0 0 18px 0;\n  }\n\n  #CustomPillowSection .section-description {\n    font-size: 18px !important;  \/* Ép cỡ chữ mô tả 18px rõ ràng *\/\n    line-height: 1.6;\n    color: #4a4a4a;\n    margin: 0 0 30px 0;\n    max-width: 450px;\n  }\n\n  #CustomPillowSection .shop-now-button {\n    display: inline-block;\n    background-color: #1a1a1a;\n    color: #ffffff;\n    text-decoration: none;\n    font-size: 15px !important; \/* Nút lớn trên Web *\/\n    font-weight: 700;\n    text-transform: uppercase;\n    letter-spacing: 1.5px;\n    padding: 15px 45px;\n    border-radius: 6px;\n    border: none;\n    cursor: pointer;\n    transition: all 0.3s ease;\n    width: fit-content;\n    white-space: nowrap; \n  }\n\n  #CustomPillowSection .shop-now-button:hover {\n    background-color: {{ headline_color }};\n    transform: translateY(-2px);\n    box-shadow: 0 5px 15px rgba(0,0,0,0.1);\n  }\n\n  \/* ===================================================\n     CHỈ DÀNH RIÊNG CHO MOBILE (THU NHỎ LẠI ĐỂ KHÔNG BỊ LỖI)\n     Kích hoạt khi màn hình nhỏ hơn 767px\n     =================================================== *\/\n  @media screen and (max-width: 767px) {\n    #CustomPillowSection {\n      padding: 20px 10px; \n    }\n\n    #CustomPillowSection .section-grid {\n      gap: 12px; \n    }\n\n    #CustomPillowSection .col-content {\n      padding: 0 5px; \n    }\n\n    \/* Thu nhỏ chữ lại khi xem trên điện thoại *\/\n    #CustomPillowSection .section-header {\n      font-size: 18px !important; \n      margin-bottom: 6px;\n    }\n\n    #CustomPillowSection .section-description {\n      font-size: 14px !important; \n      line-height: 1.4;\n      margin-bottom: 14px;\n    }\n\n    #CustomPillowSection .shop-now-button {\n      font-size: 12px !important;\n      padding: 10px 18px;\n      border-radius: 4px;\n      letter-spacing: 0.5px;\n    }\n  }\n<\/style>\n\n<div id=\"CustomPillowSection\">\n  <div class=\"section-grid\">\n    \n    <div class=\"col-image\">\n      <img src=\"{{ image_url }}\" class=\"product-image\" alt=\"Custom Pet Pillow - Personalized Dog\/Cat Pillow\">\n    <\/div>\n\n    <div class=\"col-content\">\n      <h2 class=\"section-header\">{{ header_text }}<\/h2>\n      <p class=\"section-description\">{{ description_text }}<\/p>\n      \n      <a href=\"{{ button_url }}\" class=\"shop-now-button\">\n        {{ button_text }}\n      <\/a>\n    <\/div>\n\n  <\/div>\n<\/div>"},"blocks":{}}},"block_order":["custom_liquid_cHg7gP"],"settings":{"content_direction":"row","vertical_on_mobile":false,"horizontal_alignment":"center","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"section_width":"full-width","section_height":"","section_height_custom":50,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":0,"padding-block-end":0}},"1778135568437f79a8":{"type":"_blocks","blocks":{"ai_gen_block_87afee8_CkVA4b":{"type":"ai_gen_block_87afee8","settings":{"heading":"OUR TRUSTED PARTNERS","heading_color":"#ffa367","heading_size":32,"heading_size_mobile":20,"heading_spacing":0,"section_background_color":"#19484e","section_width":1200,"section_padding_top":25,"section_padding_bottom":25,"logo_background_color":"#19484e","logo_width":170,"logo_height":100,"logo_width_mobile":90,"logo_height_mobile":70,"logo_padding":18,"logo_border_radius":8,"logo_gap":20,"enable_scroll":true,"scroll_speed":20,"logo_1":"shopify:\/\/shop_images\/b2.webp","logo_2":"shopify:\/\/shop_images\/b5.webp","logo_3":"shopify:\/\/shop_images\/b4.webp","logo_4":"shopify:\/\/shop_images\/b3.webp","logo_5":"shopify:\/\/shop_images\/b6.webp","logo_6":"shopify:\/\/shop_images\/b1.webp"},"blocks":{}}},"block_order":["ai_gen_block_87afee8_CkVA4b"],"name":"Brands trusted","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":12,"section_width":"page-width","section_height":"","section_height_custom":50,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":0,"padding-block-end":0}},"product_list_DtaRxp":{"type":"product-list","blocks":{"static-header":{"type":"_product-list-content","name":"t:names.header","static":true,"settings":{"content_direction":"row","vertical_on_mobile":false,"horizontal_alignment":"space-between","vertical_alignment":"flex-end","align_baseline":true,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"product_list_text_hyj8Bz":{"type":"_product-list-text","name":"t:names.collection_title","settings":{"text":"<h3>New arrivals<\/h3>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"h4","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"product_list_button_dXCwAG":{"type":"_product-list-button","name":"t:names.product_list_button","settings":{"label":"View all","open_in_new_tab":false,"style_class":"link","width":"fit-content","custom_width":100,"width_mobile":"fit-content","custom_width_mobile":100},"blocks":{}}},"block_order":["product_list_text_hyj8Bz","product_list_button_dXCwAG"]},"static-product-card":{"type":"_product-card","name":"t:names.product_card","static":true,"settings":{"product_card_gap":4,"inherit_color_scheme":true,"color_scheme":"","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"product_card_gallery_X3tMy9":{"type":"_product-card-gallery","name":"t:names.product_card_media","settings":{"image_ratio":"adapt","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"product_title_yXXw7L":{"type":"product-title","name":"t:names.product_title","settings":{"width":"fit-content","max_width":"normal","alignment":"left","type_preset":"paragraph","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":4,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"price_QzqPgf":{"type":"price","name":"t:names.product_price","settings":{"show_sale_price_first":true,"show_installments":false,"show_tax_info":false,"type_preset":"h6","width":"100%","alignment":"left","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","color":"var(--color-foreground)","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["product_card_gallery_X3tMy9","product_title_yXXw7L","price_QzqPgf"]}},"name":"t:names.products_carousel","settings":{"collection":"new-arrivals","layout_type":"carousel","carousel_on_mobile":false,"max_products":8,"columns":4,"mobile_columns":"2","mobile_card_size":"44cqw","columns_gap":10,"rows_gap":24,"icons_style":"chevron","icons_shape":"circle","section_width":"page-width","horizontal_alignment":"flex-start","gap":20,"color_scheme":"scheme-1","padding-block-start":15,"padding-block-end":15}},"divider_4H6KGr":{"type":"divider","name":"t:names.divider_section","settings":{"color_scheme":"","section_width":"full-width","thickness":1,"corner_radius":"square","width_percent":100,"alignment_horizontal":"center","padding-block-start":16,"padding-block-end":16}},"product_list_H8J4tW":{"type":"product-list","blocks":{"static-header":{"type":"_product-list-content","name":"t:names.header","static":true,"settings":{"content_direction":"row","vertical_on_mobile":false,"horizontal_alignment":"space-between","vertical_alignment":"flex-end","align_baseline":true,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"product_list_text_hAC8ga":{"type":"_product-list-text","name":"t:names.collection_title","settings":{"text":"<h3>Pet toys<\/h3>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"h4","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"product_list_button_qqdyQn":{"type":"_product-list-button","name":"t:names.product_list_button","settings":{"label":"View all","open_in_new_tab":false,"style_class":"link","width":"fit-content","custom_width":100,"width_mobile":"fit-content","custom_width_mobile":100},"blocks":{}}},"block_order":["product_list_text_hAC8ga","product_list_button_qqdyQn"]},"static-product-card":{"type":"_product-card","name":"t:names.product_card","static":true,"settings":{"product_card_gap":4,"inherit_color_scheme":true,"color_scheme":"","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"product_card_gallery_r4TH9e":{"type":"_product-card-gallery","name":"t:names.product_card_media","settings":{"image_ratio":"adapt","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"product_title_JKUBdc":{"type":"product-title","name":"t:names.product_title","settings":{"width":"fit-content","max_width":"normal","alignment":"left","type_preset":"paragraph","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":4,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"price_z6tpkz":{"type":"price","name":"t:names.product_price","settings":{"show_sale_price_first":true,"show_installments":false,"show_tax_info":false,"type_preset":"h6","width":"100%","alignment":"left","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","color":"var(--color-foreground)","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["product_card_gallery_r4TH9e","product_title_JKUBdc","price_z6tpkz"]}},"name":"t:names.products_carousel","settings":{"collection":"pet-toys","layout_type":"carousel","carousel_on_mobile":false,"max_products":8,"columns":4,"mobile_columns":"2","mobile_card_size":"44cqw","columns_gap":10,"rows_gap":24,"icons_style":"chevron","icons_shape":"circle","section_width":"page-width","horizontal_alignment":"flex-start","gap":20,"color_scheme":"scheme-1","padding-block-start":15,"padding-block-end":25}},"1775614238904342e2":{"type":"_blocks","blocks":{"vitals_all_reviews_badge_GEDrQE":{"type":"shopify:\/\/apps\/vitals\/blocks\/all-reviews-badge\/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8","settings":{}}},"block_order":["vitals_all_reviews_badge_GEDrQE"],"settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"section_width":"page-width","section_height":"","section_height_custom":50,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":0,"padding-block-end":0}},"1775641822c3124369":{"type":"_blocks","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"section_width":"page-width","section_height":"","section_height_custom":50,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":0,"padding-block-end":0}},"custom_liquid_3P8y98":{"type":"custom-liquid","name":"Testimonial","settings":{"custom_liquid":"<div class=\"testimonial-section\">\n  <div class=\"tm-slider-container\" id=\"tmSliderContainer\">\n    <div class=\"tm-wrapper\">\n      <div class=\"testimonial-card is-selected\">\n        <div class=\"tm-stars\">★★★★★<\/div>\n        <p class=\"tm-content\">I ordered a custom canvas of my dog and it turned out even better than I imagined. The details were amazing and it looks perfect in my living room!<\/p>\n        <div class=\"tm-author-img\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0659\/7217\/5054\/files\/pet-parents-icon.png?v=1775709040\" alt=\"User\"><\/div>\n        <h4 class=\"tm-name\">Tracy<\/h4>\n        <p class=\"tm-date\">on Mar 3, 2026<\/p>\n      <\/div>\n      <div class=\"testimonial-card\">\n        <div class=\"tm-stars\">★★★★★<\/div>\n        <p class=\"tm-content\">My cat is obsessed with the toys from PawUnder. She usually gets bored quickly, but these keep her entertained for hours<\/p>\n        <div class=\"tm-author-img\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0659\/7217\/5054\/files\/pet-parents-icon.png?v=1775709040\" alt=\"User\"><\/div>\n        <h4 class=\"tm-name\">Cara<\/h4>\n        <p class=\"tm-date\">on Mar 8, 2026<\/p>\n      <\/div>\n      <div class=\"testimonial-card\">\n        <div class=\"tm-stars\">★★★★★<\/div>\n        <p class=\"tm-content\">The pet care products are great quality and arrived so quickly. I love finding everything my pup needs in one place.<\/p>\n        <div class=\"tm-author-img\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0659\/7217\/5054\/files\/pet-parents-icon.png?v=1775709040\" alt=\"User\"><\/div>\n        <h4 class=\"tm-name\">Anna & Mike<\/h4>\n        <p class=\"tm-date\">on Mar 10, 2026<\/p>\n      <\/div>\n      <div class=\"testimonial-card\">\n        <div class=\"tm-stars\">★★★★★<\/div>\n        <p class=\"tm-content\">I bought a personalized gift for my friend’s dog and she absolutely loved it. Such a thoughtful and unique idea for pet lovers!<\/p>\n        <div class=\"tm-author-img\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0659\/7217\/5054\/files\/pet-parents-icon.png?v=1775709040\" alt=\"User\"><\/div>\n        <h4 class=\"tm-name\">John D.<\/h4>\n        <p class=\"tm-date\">on Mar 12, 2026<\/p>\n      <\/div>\n      <div class=\"testimonial-card\">\n        <div class=\"tm-stars\">★★★★★<\/div>\n        <p class=\"tm-content\">Shipping was incredibly fast and the packaging was very secure. Highly recommend this shop!<\/p>\n        <div class=\"tm-author-img\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0659\/7217\/5054\/files\/pet-parents-icon.png?v=1775709040\" alt=\"User\"><\/div>\n        <h4 class=\"tm-name\">Sarah L.<\/h4>\n        <p class=\"tm-date\">on Mar 15, 2026<\/p>\n      <\/div>\n      <div class=\"testimonial-card\">\n        <div class=\"tm-stars\">★★★★★<\/div>\n        <p class=\"tm-content\">Shopping at this shop was so easy and fun. There are so many cute things for pets, and the customer service was amazing too.<\/p>\n        <div class=\"tm-author-img\"><img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0659\/7217\/5054\/files\/pet-parents-icon.png?v=1775709040\" alt=\"User\"><\/div>\n        <h4 class=\"tm-name\">David K.<\/h4>\n        <p class=\"tm-date\">on Mar 20, 2026<\/p>\n      <\/div>\n    <\/div>\n  <\/div>\n\n  <div class=\"tm-dots\">\n    <span class=\"dot active\" onclick=\"scrollToSlide(0)\"><\/span>\n    <span class=\"dot\" onclick=\"scrollToSlide(1)\"><\/span>\n    <span class=\"dot\" onclick=\"scrollToSlide(2)\"><\/span>\n    <span class=\"dot\" onclick=\"scrollToSlide(3)\"><\/span>\n    <span class=\"dot\" onclick=\"scrollToSlide(4)\"><\/span>\n    <span class=\"dot\" onclick=\"scrollToSlide(5)\"><\/span>\n  <\/div>\n<\/div>\n<style>\n  .testimonial-section { background: #f9f9f9; padding: 50px 0; overflow: hidden; }\n  \n  .tm-slider-container { \n    display: flex;\n    overflow-x: scroll; \/* Quan trọng: Cho phép cuộn ngang *\/\n    scroll-snap-type: x mandatory; \/* Quan trọng: Vuốt là tự nhảy vào giữa thẻ *\/\n    scroll-behavior: smooth;\n    -webkit-overflow-scrolling: touch; \/* Hỗ trợ vuốt mượt trên iOS *\/\n    scrollbar-width: none; \/* Ẩn thanh cuộn trên Firefox *\/\n    padding-bottom: 30px;\n  }\n  \n  .tm-slider-container::-webkit-scrollbar { display: none; } \/* Ẩn thanh cuộn trên Chrome\/Safari *\/\n\n  .tm-wrapper { \n    display: flex; \n    padding: 0 15%; \/* Tạo khoảng trống để thẻ đầu tiên nằm giữa *\/\n  }\n\n  .testimonial-card {\n    flex: 0 0 320px; \/* Cố định độ rộng thẻ *\/\n    margin: 0 15px;\n    scroll-snap-align: center; \/* Khi vuốt, thẻ này sẽ hít vào giữa màn hình *\/\n    background: #fff;\n    padding: 30px;\n    border-radius: 8px;\n    box-shadow: 0 10px 25px rgba(0,0,0,0.05);\n    opacity: 0.6;\n    transform: scale(0.9);\n    transition: all 0.3s ease;\n  }\n\n  \/* Thẻ đang nằm giữa sẽ sáng lên *\/\n  .testimonial-card.is-selected { opacity: 1; transform: scale(1); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }\n\n  .tm-stars { color: #000; font-size: 16px; margin-bottom: 15px; text-align: center; }\n  .tm-content { font-size: 14px; line-height: 1.6; color: #444; text-align: center; min-height: 80px; }\n  .tm-author-img { width: 60px; height: 60px; margin: 15px auto; border-radius: 50%; overflow: hidden; border: 2px solid #fff; }\n  .tm-author-img img { width: 100%; height: 100%; object-fit: cover; }\n  .tm-name { text-align: center; font-weight: bold; margin: 0; font-size: 15px; }\n  .tm-date { text-align: center; font-size: 12px; color: #999; }\n\n  .tm-dots { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }\n  .dot { width: 8px; height: 8px; background: #ccc; border-radius: 50%; cursor: pointer; transition: 0.3s; }\n  .dot.active { background: #ff7b31; transform: scale(1.3); }\n\n  @media (max-width: 768px) {\n    .testimonial-card { flex: 0 0 280px; }\n    .tm-wrapper { padding: 0 10%; }\n  }\n<\/style>\n<script>\n  const container = document.getElementById('tmSliderContainer');\n  const cards = document.querySelectorAll('.testimonial-card');\n  const dots = document.querySelectorAll('.dot');\n\n  \/\/ Hàm khi nhấn vào dấu chấm\n  function scrollToSlide(index) {\n    const cardWidth = cards[0].offsetWidth + 30; \/\/ 30 là gap (margin 15px * 2)\n    container.scrollTo({\n      left: index * cardWidth,\n      behavior: 'smooth'\n    });\n  }\n\n  \/\/ Cập nhật trạng thái khi vuốt tay hoặc nhấn nút\n  container.addEventListener('scroll', () => {\n    const cardWidth = cards[0].offsetWidth + 30;\n    const index = Math.round(container.scrollLeft \/ cardWidth);\n\n    dots.forEach((dot, i) => {\n      dot.classList.toggle('active', i === index);\n    });\n\n    cards.forEach((card, i) => {\n      card.classList.toggle('is-selected', i === index);\n    });\n  });\n<\/script>","color_scheme":"","section_width":"page-width","padding-block-start":0,"padding-block-end":0}}},"order":["blocks_PenAMC","hero_jVaWmY","product_list_qDkArV","17755504502271813f","1780893143f6d1c745","1778135568437f79a8","product_list_DtaRxp","divider_4H6KGr","product_list_H8J4tW","1775614238904342e2","1775641822c3124369","custom_liquid_3P8y98"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "blocks_PenAMC": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_c709f97_YhHTGt": {
+          "type": "ai_gen_block_c709f97",
+          "settings": {
+            "main_image": "shopify://shop_images/1789098187249_6205455399737755752_g1999108096142304712_e976d6a44657894668d01c18cb9140f4.jpg",
+            "main_image_link": "https://pawunder.com/products/pet-cooling-mat-summer-cooling-pad-for-dogs-cats",
+            "side_image_1": "shopify://shop_images/1789098187250_6205455399737755752_g1999108096142304712_62f2350686c555e3622a05e61b736c04.jpg",
+            "side_image_1_link": "shopify://products/waterproof-dog-boots",
+            "side_image_2": "shopify://shop_images/1789098187251_6205455399737755752_g1999108096142304712_fcc3cceb904a8b32a3809e402389c2ee.jpg",
+            "side_image_2_link": "shopify://products/reusable-pet-hair-remover-glove",
+            "desktop_width_percent": 100,
+            "gap": 10,
+            "spacing": 0,
+            "border_radius": 6,
+            "hover_scale": 1.1
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_c709f97_YhHTGt"
+      ],
+      "name": "Image collage",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "hero_jVaWmY": {
+      "type": "hero",
+      "blocks": {
+        "text_YLPk4p": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<p>Love Begins with a Paw</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground-heading)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "button_H9gpTf": {
+          "type": "button",
+          "name": "t:names.button",
+          "settings": {
+            "label": "Shop all",
+            "link": "shopify://collections/all",
+            "open_in_new_tab": false,
+            "style_class": "button-secondary",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_YLPk4p",
+        "button_H9gpTf"
+      ],
+      "disabled": true,
+      "name": "t:names.hero",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/banner-homepage-pawunder.webp",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "space-between",
+        "vertical_alignment": "flex-end",
+        "align_baseline": true,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "flex-end",
+        "gap": 24,
+        "section_width": "page-width",
+        "section_height": "medium",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-6",
+        "toggle_overlay": true,
+        "overlay_color": "#12121266",
+        "overlay_style": "solid",
+        "gradient_direction": "to bottom",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 100,
+        "padding-block-end": 72
+      }
+    },
+    "product_list_qDkArV": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_npieGY": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h3>Pet Care</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_list_button_jLUJ7e": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "View all",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_npieGY",
+            "product_list_button_jLUJ7e"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_HYRWiY": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_fXLDtb": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_FwYcQq": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_HYRWiY",
+            "product_title_fXLDtb",
+            "price_FwYcQq"
+          ]
+        }
+      },
+      "name": "t:names.products_carousel",
+      "settings": {
+        "collection": "pet-essentials",
+        "layout_type": "carousel",
+        "carousel_on_mobile": false,
+        "max_products": 8,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "44cqw",
+        "columns_gap": 10,
+        "rows_gap": 24,
+        "icons_style": "chevron",
+        "icons_shape": "circle",
+        "section_width": "page-width",
+        "horizontal_alignment": "center",
+        "gap": 20,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 15,
+        "padding-block-end": 25
+      }
+    },
+    "17755504502271813f": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_ae374cc_4apMPq": {
+          "type": "ai_gen_block_ae374cc",
+          "name": "Image",
+          "settings": {
+            "image": "shopify://shop_images/pawunder-a1_251ba72e-788b-4522-9e9b-595eb2fa2499.webp",
+            "desktop_width_percent": 100,
+            "aspect_ratio": "auto",
+            "border_radius": 0,
+            "enable_link": false,
+            "link": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_ae374cc_4apMPq"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "1780893143f6d1c745": {
+      "type": "_blocks",
+      "blocks": {
+        "custom_liquid_cHg7gP": {
+          "type": "custom-liquid",
+          "name": "t:names.custom_liquid",
+          "settings": {
+            "custom_liquid": "{% comment %}\n  ========================================================================\n  CUSTOM LIQUID SECTION: FORCE LARGE TEXT ON WEB\n  ========================================================================\n{% endcomment %}\n\n{% comment %} --- KHU VỰC CẤU HÌNH --- {% endcomment %}\n{% assign image_url = \"https://cdn.shopify.com/s/files/1/0659/7217/5054/files/custom-pet-pillow-personalized-dog-cat-pillow-005.webp?v=1780720138\" %}\n{% assign button_url = \"https://pawunder.com/products/custom-pet-pillow-personalized-dog-cat-pillow\" %}\n{% assign headline_color = \"#194950\" %}\n\n{% assign header_text = \"Custom Pet Pillow\" %}\n{% assign description_text = \"Capture the unforgettable moments of your furry friends!\" %}\n{% assign button_text = \"SHOP NOW\" %}\n{% comment %} ------------------------------------------------------ {% endcomment %}\n\n<style>\n  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');\n\n  /* ===================================================\n     MẶC ĐỊNH CHO WEB (CHỮ TO ĐẬM ĐỂ CÂN BẰNG VỚI ẢNH)\n     =================================================== */\n  #CustomPillowSection {\n    background-color: #ffffff;\n    padding: 60px 5%; /* Khoảng đệm rộng rãi trên Web */\n    width: 100%;\n    box-sizing: border-box;\n    font-family: 'Montserrat', -apple-system, sans-serif;\n    -webkit-font-smoothing: antialiased;\n  }\n\n  #CustomPillowSection .section-grid {\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    gap: 60px; /* Khoảng cách rộng giữa ảnh và chữ trên Web */\n    max-width: 1200px; \n    width: 100%;\n    margin: 0 auto;\n  }\n\n  #CustomPillowSection .col-image {\n    flex: 1;\n    text-align: center;\n    width: 50%;\n  }\n\n  #CustomPillowSection .product-image {\n    width: 100%;\n    height: auto;\n    display: block;\n    object-fit: cover; \n    border-radius: 12px;\n  }\n\n  #CustomPillowSection .col-content {\n    flex: 1;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center; \n    text-align: center;    \n    width: 50%;\n    padding: 0 40px; \n    box-sizing: border-box;\n  }\n\n  /* ĐỊNH DẠNG TEXT TRÊN WEB: ÉP TO */\n  #CustomPillowSection .section-header {\n    font-size: 42px !important;  /* Ép cỡ chữ tiêu đề 42px siêu to */\n    font-weight: 700;\n    line-height: 1.2;\n    color: {{ headline_color }};\n    margin: 0 0 18px 0;\n  }\n\n  #CustomPillowSection .section-description {\n    font-size: 18px !important;  /* Ép cỡ chữ mô tả 18px rõ ràng */\n    line-height: 1.6;\n    color: #4a4a4a;\n    margin: 0 0 30px 0;\n    max-width: 450px;\n  }\n\n  #CustomPillowSection .shop-now-button {\n    display: inline-block;\n    background-color: #1a1a1a;\n    color: #ffffff;\n    text-decoration: none;\n    font-size: 15px !important; /* Nút lớn trên Web */\n    font-weight: 700;\n    text-transform: uppercase;\n    letter-spacing: 1.5px;\n    padding: 15px 45px;\n    border-radius: 6px;\n    border: none;\n    cursor: pointer;\n    transition: all 0.3s ease;\n    width: fit-content;\n    white-space: nowrap; \n  }\n\n  #CustomPillowSection .shop-now-button:hover {\n    background-color: {{ headline_color }};\n    transform: translateY(-2px);\n    box-shadow: 0 5px 15px rgba(0,0,0,0.1);\n  }\n\n  /* ===================================================\n     CHỈ DÀNH RIÊNG CHO MOBILE (THU NHỎ LẠI ĐỂ KHÔNG BỊ LỖI)\n     Kích hoạt khi màn hình nhỏ hơn 767px\n     =================================================== */\n  @media screen and (max-width: 767px) {\n    #CustomPillowSection {\n      padding: 20px 10px; \n    }\n\n    #CustomPillowSection .section-grid {\n      gap: 12px; \n    }\n\n    #CustomPillowSection .col-content {\n      padding: 0 5px; \n    }\n\n    /* Thu nhỏ chữ lại khi xem trên điện thoại */\n    #CustomPillowSection .section-header {\n      font-size: 18px !important; \n      margin-bottom: 6px;\n    }\n\n    #CustomPillowSection .section-description {\n      font-size: 14px !important; \n      line-height: 1.4;\n      margin-bottom: 14px;\n    }\n\n    #CustomPillowSection .shop-now-button {\n      font-size: 12px !important;\n      padding: 10px 18px;\n      border-radius: 4px;\n      letter-spacing: 0.5px;\n    }\n  }\n</style>\n\n<div id=\"CustomPillowSection\">\n  <div class=\"section-grid\">\n    \n    <div class=\"col-image\">\n      <img src=\"{{ image_url }}\" class=\"product-image\" alt=\"Custom Pet Pillow - Personalized Dog/Cat Pillow\">\n    </div>\n\n    <div class=\"col-content\">\n      <h2 class=\"section-header\">{{ header_text }}</h2>\n      <p class=\"section-description\">{{ description_text }}</p>\n      \n      <a href=\"{{ button_url }}\" class=\"shop-now-button\">\n        {{ button_text }}\n      </a>\n    </div>\n\n  </div>\n</div>"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "custom_liquid_cHg7gP"
+      ],
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": false,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "1778135568437f79a8": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_87afee8_CkVA4b": {
+          "type": "ai_gen_block_87afee8",
+          "settings": {
+            "heading": "OUR TRUSTED PARTNERS",
+            "heading_color": "#ffa367",
+            "heading_size": 32,
+            "heading_size_mobile": 20,
+            "heading_spacing": 0,
+            "section_background_color": "#19484e",
+            "section_width": 1200,
+            "section_padding_top": 25,
+            "section_padding_bottom": 25,
+            "logo_background_color": "#19484e",
+            "logo_width": 170,
+            "logo_height": 100,
+            "logo_width_mobile": 90,
+            "logo_height_mobile": 70,
+            "logo_padding": 18,
+            "logo_border_radius": 8,
+            "logo_gap": 20,
+            "enable_scroll": true,
+            "scroll_speed": 20,
+            "logo_1": "shopify://shop_images/b2.webp",
+            "logo_2": "shopify://shop_images/b5.webp",
+            "logo_3": "shopify://shop_images/b4.webp",
+            "logo_4": "shopify://shop_images/b3.webp",
+            "logo_5": "shopify://shop_images/b6.webp",
+            "logo_6": "shopify://shop_images/b1.webp"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_87afee8_CkVA4b"
+      ],
+      "name": "Brands trusted",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "product_list_DtaRxp": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_hyj8Bz": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h3>New arrivals</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_list_button_dXCwAG": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "View all",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_hyj8Bz",
+            "product_list_button_dXCwAG"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_X3tMy9": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_yXXw7L": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_QzqPgf": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_X3tMy9",
+            "product_title_yXXw7L",
+            "price_QzqPgf"
+          ]
+        }
+      },
+      "name": "t:names.products_carousel",
+      "settings": {
+        "collection": "new-arrivals",
+        "layout_type": "carousel",
+        "carousel_on_mobile": false,
+        "max_products": 8,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "44cqw",
+        "columns_gap": 10,
+        "rows_gap": 24,
+        "icons_style": "chevron",
+        "icons_shape": "circle",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 20,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 15,
+        "padding-block-end": 15
+      }
+    },
+    "divider_4H6KGr": {
+      "type": "divider",
+      "name": "t:names.divider_section",
+      "settings": {
+        "color_scheme": "",
+        "section_width": "full-width",
+        "thickness": 1,
+        "corner_radius": "square",
+        "width_percent": 100,
+        "alignment_horizontal": "center",
+        "padding-block-start": 16,
+        "padding-block-end": 16
+      }
+    },
+    "product_list_H8J4tW": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_hAC8ga": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h3>Pet toys</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_list_button_qqdyQn": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "View all",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_hAC8ga",
+            "product_list_button_qqdyQn"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_r4TH9e": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_JKUBdc": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_z6tpkz": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_r4TH9e",
+            "product_title_JKUBdc",
+            "price_z6tpkz"
+          ]
+        }
+      },
+      "name": "t:names.products_carousel",
+      "settings": {
+        "collection": "pet-toys",
+        "layout_type": "carousel",
+        "carousel_on_mobile": false,
+        "max_products": 8,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "44cqw",
+        "columns_gap": 10,
+        "rows_gap": 24,
+        "icons_style": "chevron",
+        "icons_shape": "circle",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 20,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 15,
+        "padding-block-end": 25
+      }
+    },
+    "1775614238904342e2": {
+      "type": "_blocks",
+      "blocks": {
+        "vitals_all_reviews_badge_GEDrQE": {
+          "type": "shopify://apps/vitals/blocks/all-reviews-badge/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vitals_all_reviews_badge_GEDrQE"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "1775641822c3124369": {
+      "type": "_blocks",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "custom_liquid_3P8y98": {
+      "type": "custom-liquid",
+      "name": "Testimonial",
+      "settings": {
+        "custom_liquid": "<div class=\"testimonial-section\">\n  <div class=\"tm-slider-container\" id=\"tmSliderContainer\">\n    <div class=\"tm-wrapper\">\n      <div class=\"testimonial-card is-selected\">\n        <div class=\"tm-stars\">★★★★★</div>\n        <p class=\"tm-content\">I ordered a custom canvas of my dog and it turned out even better than I imagined. The details were amazing and it looks perfect in my living room!</p>\n        <div class=\"tm-author-img\"><img src=\"https://cdn.shopify.com/s/files/1/0659/7217/5054/files/pet-parents-icon.png?v=1775709040\" alt=\"User\"></div>\n        <h4 class=\"tm-name\">Tracy</h4>\n        <p class=\"tm-date\">on Mar 3, 2026</p>\n      </div>\n      <div class=\"testimonial-card\">\n        <div class=\"tm-stars\">★★★★★</div>\n        <p class=\"tm-content\">My cat is obsessed with the toys from PawUnder. She usually gets bored quickly, but these keep her entertained for hours</p>\n        <div class=\"tm-author-img\"><img src=\"https://cdn.shopify.com/s/files/1/0659/7217/5054/files/pet-parents-icon.png?v=1775709040\" alt=\"User\"></div>\n        <h4 class=\"tm-name\">Cara</h4>\n        <p class=\"tm-date\">on Mar 8, 2026</p>\n      </div>\n      <div class=\"testimonial-card\">\n        <div class=\"tm-stars\">★★★★★</div>\n        <p class=\"tm-content\">The pet care products are great quality and arrived so quickly. I love finding everything my pup needs in one place.</p>\n        <div class=\"tm-author-img\"><img src=\"https://cdn.shopify.com/s/files/1/0659/7217/5054/files/pet-parents-icon.png?v=1775709040\" alt=\"User\"></div>\n        <h4 class=\"tm-name\">Anna & Mike</h4>\n        <p class=\"tm-date\">on Mar 10, 2026</p>\n      </div>\n      <div class=\"testimonial-card\">\n        <div class=\"tm-stars\">★★★★★</div>\n        <p class=\"tm-content\">I bought a personalized gift for my friend’s dog and she absolutely loved it. Such a thoughtful and unique idea for pet lovers!</p>\n        <div class=\"tm-author-img\"><img src=\"https://cdn.shopify.com/s/files/1/0659/7217/5054/files/pet-parents-icon.png?v=1775709040\" alt=\"User\"></div>\n        <h4 class=\"tm-name\">John D.</h4>\n        <p class=\"tm-date\">on Mar 12, 2026</p>\n      </div>\n      <div class=\"testimonial-card\">\n        <div class=\"tm-stars\">★★★★★</div>\n        <p class=\"tm-content\">Shipping was incredibly fast and the packaging was very secure. Highly recommend this shop!</p>\n        <div class=\"tm-author-img\"><img src=\"https://cdn.shopify.com/s/files/1/0659/7217/5054/files/pet-parents-icon.png?v=1775709040\" alt=\"User\"></div>\n        <h4 class=\"tm-name\">Sarah L.</h4>\n        <p class=\"tm-date\">on Mar 15, 2026</p>\n      </div>\n      <div class=\"testimonial-card\">\n        <div class=\"tm-stars\">★★★★★</div>\n        <p class=\"tm-content\">Shopping at this shop was so easy and fun. There are so many cute things for pets, and the customer service was amazing too.</p>\n        <div class=\"tm-author-img\"><img src=\"https://cdn.shopify.com/s/files/1/0659/7217/5054/files/pet-parents-icon.png?v=1775709040\" alt=\"User\"></div>\n        <h4 class=\"tm-name\">David K.</h4>\n        <p class=\"tm-date\">on Mar 20, 2026</p>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"tm-dots\">\n    <span class=\"dot active\" onclick=\"scrollToSlide(0)\"></span>\n    <span class=\"dot\" onclick=\"scrollToSlide(1)\"></span>\n    <span class=\"dot\" onclick=\"scrollToSlide(2)\"></span>\n    <span class=\"dot\" onclick=\"scrollToSlide(3)\"></span>\n    <span class=\"dot\" onclick=\"scrollToSlide(4)\"></span>\n    <span class=\"dot\" onclick=\"scrollToSlide(5)\"></span>\n  </div>\n</div>\n<style>\n  .testimonial-section { background: #f9f9f9; padding: 50px 0; overflow: hidden; }\n  \n  .tm-slider-container { \n    display: flex;\n    overflow-x: scroll; /* Quan trọng: Cho phép cuộn ngang */\n    scroll-snap-type: x mandatory; /* Quan trọng: Vuốt là tự nhảy vào giữa thẻ */\n    scroll-behavior: smooth;\n    -webkit-overflow-scrolling: touch; /* Hỗ trợ vuốt mượt trên iOS */\n    scrollbar-width: none; /* Ẩn thanh cuộn trên Firefox */\n    padding-bottom: 30px;\n  }\n  \n  .tm-slider-container::-webkit-scrollbar { display: none; } /* Ẩn thanh cuộn trên Chrome/Safari */\n\n  .tm-wrapper { \n    display: flex; \n    padding: 0 15%; /* Tạo khoảng trống để thẻ đầu tiên nằm giữa */\n  }\n\n  .testimonial-card {\n    flex: 0 0 320px; /* Cố định độ rộng thẻ */\n    margin: 0 15px;\n    scroll-snap-align: center; /* Khi vuốt, thẻ này sẽ hít vào giữa màn hình */\n    background: #fff;\n    padding: 30px;\n    border-radius: 8px;\n    box-shadow: 0 10px 25px rgba(0,0,0,0.05);\n    opacity: 0.6;\n    transform: scale(0.9);\n    transition: all 0.3s ease;\n  }\n\n  /* Thẻ đang nằm giữa sẽ sáng lên */\n  .testimonial-card.is-selected { opacity: 1; transform: scale(1); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }\n\n  .tm-stars { color: #000; font-size: 16px; margin-bottom: 15px; text-align: center; }\n  .tm-content { font-size: 14px; line-height: 1.6; color: #444; text-align: center; min-height: 80px; }\n  .tm-author-img { width: 60px; height: 60px; margin: 15px auto; border-radius: 50%; overflow: hidden; border: 2px solid #fff; }\n  .tm-author-img img { width: 100%; height: 100%; object-fit: cover; }\n  .tm-name { text-align: center; font-weight: bold; margin: 0; font-size: 15px; }\n  .tm-date { text-align: center; font-size: 12px; color: #999; }\n\n  .tm-dots { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }\n  .dot { width: 8px; height: 8px; background: #ccc; border-radius: 50%; cursor: pointer; transition: 0.3s; }\n  .dot.active { background: #ff7b31; transform: scale(1.3); }\n\n  @media (max-width: 768px) {\n    .testimonial-card { flex: 0 0 280px; }\n    .tm-wrapper { padding: 0 10%; }\n  }\n</style>\n<script>\n  const container = document.getElementById('tmSliderContainer');\n  const cards = document.querySelectorAll('.testimonial-card');\n  const dots = document.querySelectorAll('.dot');\n\n  // Hàm khi nhấn vào dấu chấm\n  function scrollToSlide(index) {\n    const cardWidth = cards[0].offsetWidth + 30; // 30 là gap (margin 15px * 2)\n    container.scrollTo({\n      left: index * cardWidth,\n      behavior: 'smooth'\n    });\n  }\n\n  // Cập nhật trạng thái khi vuốt tay hoặc nhấn nút\n  container.addEventListener('scroll', () => {\n    const cardWidth = cards[0].offsetWidth + 30;\n    const index = Math.round(container.scrollLeft / cardWidth);\n\n    dots.forEach((dot, i) => {\n      dot.classList.toggle('active', i === index);\n    });\n\n    cards.forEach((card, i) => {\n      card.classList.toggle('is-selected', i === index);\n    });\n  });\n</script>",
+        "color_scheme": "",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    }
+  },
+  "order": [
+    "blocks_PenAMC",
+    "hero_jVaWmY",
+    "product_list_qDkArV",
+    "17755504502271813f",
+    "1780893143f6d1c745",
+    "1778135568437f79a8",
+    "product_list_DtaRxp",
+    "divider_4H6KGr",
+    "product_list_H8J4tW",
+    "1775614238904342e2",
+    "1775641822c3124369",
+    "custom_liquid_3P8y98"
+  ]
+}
