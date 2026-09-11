@@ -214,6 +214,20 @@
               },
               "blocks": {}
             },
+            "spacer_W9hqnC": {
+              "type": "spacer",
+              "name": "t:names.spacer",
+              "settings": {
+                "size": "pixel",
+                "percent_size": 100,
+                "pixel_size": 12,
+                "custom_mobile_size": false,
+                "size_mobile": "percent",
+                "percent_size_mobile": 100,
+                "pixel_size_mobile": 120
+              },
+              "blocks": {}
+            },
             "custom_liquid_c3Vwpn": {
               "type": "custom-liquid",
               "name": "Size chart",
@@ -238,7 +252,7 @@
                 "feature_3": "Machine Washable",
                 "feature_4": "Great for Indoor & Travel",
                 "alignment": "left",
-                "padding-block-start": 10,
+                "padding-block-start": 5,
                 "padding-block-end": 10,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
@@ -455,6 +469,7 @@
           "block_order": [
             "group_icgrde",
             "divider_jhLrXn",
+            "spacer_W9hqnC",
             "custom_liquid_c3Vwpn",
             "variant_picker_R3rGDr",
             "divider_dEA3HV",
