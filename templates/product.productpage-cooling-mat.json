@@ -265,14 +265,6 @@
               },
               "blocks": {}
             },
-            "custom_liquid_tXyULh": {
-              "type": "custom-liquid",
-              "name": "Free shipping bar",
-              "settings": {
-                "custom_liquid": "<div style=\"text-align: center; background-color: #f0fdf4; color: #166534; padding: 8px; border-radius: 4px; font-weight: bold; margin: 10px 0; border: 1px solid #bbf7d0; font-size: 14px;\">\n  🚚 Your order qualifies for FREE SHIPPING!\n</div>"
-              },
-              "blocks": {}
-            },
             "custom_liquid_bogo": {
               "type": "custom-liquid",
               "name": "Buy 1 Get 1",
@@ -344,6 +336,14 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "custom_liquid_tXyULh": {
+              "type": "custom-liquid",
+              "name": "Free shipping bar",
+              "settings": {
+                "custom_liquid": "<div style=\"text-align: center; background-color: #f0fdf4; color: #166534; padding: 8px; border-radius: 4px; font-weight: bold; margin: 10px 0; border: 1px solid #bbf7d0; font-size: 14px;\">\n  🚚 Your order qualifies for FREE SHIPPING!\n</div>"
               },
               "blocks": {}
             },
@@ -458,11 +458,11 @@
             "variant_picker_R3rGDr",
             "divider_dEA3HV",
             "custom_liquid_cW4dFN",
-            "custom_liquid_tXyULh",
             "custom_liquid_bogo",
             "vitals_ub_product_bundles_E96Y4E",
             "buy_buttons_eYQEYi",
             "text_aEtTtq",
+            "custom_liquid_tXyULh",
             "accordion_tanykP"
           ]
         }
