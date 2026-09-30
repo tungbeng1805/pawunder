@@ -1,0 +1,176 @@
+/* =========================================================
+   PawUnder header — match design mockup exactly
+   ========================================================= */
+
+:root {
+  --paw-orange: #f39233;
+  --paw-header-ink: #111111;
+}
+
+/* --- Announcement bar --- */
+#header-group .announcement-bar,
+#header-group .shopify-section-group-header-group:has(.announcement-bar) .section-background {
+  background: var(--paw-orange) !important;
+  color: #fff !important;
+  border-bottom: 0 !important;
+}
+
+#header-group .announcement-bar {
+  --color-background: var(--paw-orange) !important;
+  --color-foreground: #ffffff !important;
+  --border-bottom-width: 0 !important;
+  padding-block: 10px !important;
+}
+
+#header-group .announcement-bar__text,
+#header-group .announcement-bar__text * {
+  color: #fff !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  font-size: 0.8125rem !important;
+  text-align: center !important;
+}
+
+/* --- Header shell --- */
+#header-component {
+  --header-padding: 10px;
+  background: transparent !important;
+}
+
+#header-component .header__underlay,
+#header-component .header__underlay-closed,
+#header-component .header__underlay-open {
+  background: linear-gradient(
+    #ffffff 0 var(--top-row-height, 72px),
+    var(--paw-orange) var(--top-row-height, 72px) 100%
+  ) !important;
+}
+
+/* Top row: white logo + utilities */
+#header-component .header__row--top {
+  background: #ffffff !important;
+  color: var(--paw-header-ink) !important;
+  --color-background: #ffffff !important;
+  --color-foreground: var(--paw-header-ink) !important;
+  --color-foreground-rgb: 17, 17, 17 !important;
+  --border-bottom-width: 0 !important;
+  border-bottom: 0 !important;
+}
+
+#header-component .header__row--top .header__columns {
+  min-height: 64px;
+  align-items: center;
+}
+
+#header-component .header__row--top .header__column--right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+}
+
+#header-component .header__row--top .dropdown-localization__button,
+#header-component .header__row--top .header-actions__action,
+#header-component .header__row--top .search-action .header-actions__action,
+#header-component .header__row--top .account-button,
+#header-component .header__row--top .svg-wrapper,
+#header-component .header__row--top svg {
+  color: var(--paw-header-ink) !important;
+}
+
+#header-component .header__row--top .dropdown-localization__button {
+  font-weight: 600;
+  font-size: 0.875rem;
+  gap: 4px;
+}
+
+/* Hide desktop menu if it ever leaks into the white top row */
+@media screen and (min-width: 750px) {
+  #header-component .header__row--top .header-menu {
+    display: none !important;
+  }
+}
+
+/* Bottom row / nav: solid orange + white links */
+#header-component .header__row--bottom,
+#header-component .header__navigation-bar-row {
+  background: var(--paw-orange) !important;
+  color: #ffffff !important;
+  --color-background: var(--paw-orange) !important;
+  --color-foreground: #ffffff !important;
+  --color-foreground-rgb: 255, 255, 255 !important;
+  --menu-top-level-font-color: #ffffff !important;
+  --menu-top-level-font-color-rgb: 255, 255, 255 !important;
+  --header-padding: 14px;
+  --border-bottom-width: 0 !important;
+  border-bottom: 0 !important;
+  min-height: 48px;
+}
+
+#header-component .header__row--bottom .header__columns {
+  justify-content: flex-start !important;
+}
+
+#header-component .header__row--bottom .header__column--left {
+  flex: 1 1 auto;
+  justify-content: flex-start !important;
+  width: 100%;
+}
+
+#header-component .header__row--bottom .menu-list,
+#header-component .header__row--bottom .menu-list__list,
+#header-component .header__navigation-bar-row .menu-list,
+#header-component .header__navigation-bar-row .menu-list__list {
+  justify-content: flex-start !important;
+  width: 100%;
+  gap: 0;
+}
+
+#header-component .header__row--bottom .menu-list__link,
+#header-component .header__row--bottom .menu-list__link-title,
+#header-component .header__navigation-bar-row a,
+#header-component .header__navigation-bar-row .menu-list__item {
+  color: #ffffff !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  font-size: 0.875rem !important;
+}
+
+#header-component .header__row--bottom .menu-list__link-title {
+  padding-inline: 16px;
+}
+
+#header-component .header__row--bottom .menu-list__list-item:first-child .menu-list__link-title {
+  padding-inline-start: 0;
+}
+
+/* Mobile nav bar also orange */
+#header-component .header__navigation-bar-row .menu-list--mobile {
+  background: transparent !important;
+}
+
+#header-component .header__navigation-bar-row .menu-list--mobile a {
+  color: #fff !important;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* Desktop: only the bottom orange menu row (hide duplicate mobile nav bar) */
+@media screen and (min-width: 750px) {
+  #header-component:has(.header__row--bottom) .header__navigation-bar-row {
+    display: none !important;
+  }
+
+  #header-component .header__row--bottom {
+    display: block !important;
+  }
+}
+
+/* Mobile: hide desktop bottom menu row, keep scrollable orange nav */
+@media screen and (max-width: 749px) {
+  #header-component .header__navigation-bar-row {
+    display: block !important;
+  }
+}

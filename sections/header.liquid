@@ -361,6 +361,11 @@
 
       if row == 'top'
         assign style = style | append: '--border-bottom-width-mobile: [width]px; ' | replace: '[width]', section.settings.border_width
+        assign style = style | append: ' background-color: #ffffff;'
+      endif
+
+      if row == 'bottom'
+        assign style = style | append: ' background-color: #f39233;'
       endif
     %}
 
@@ -396,7 +401,10 @@
   {% endfor %}
 
   {% if navigation_bar != blank %}
-    <div class="header__row header__navigation-bar-row color-{{ section.settings.color_scheme_bottom }}">
+    <div
+      class="header__row header__navigation-bar-row color-{{ section.settings.color_scheme_bottom }}"
+      style="background-color: #f39233;"
+    >
       {{ navigation_bar }}
     </div>
   {% endif %}
@@ -668,6 +676,25 @@
       /* Only elevate the row when the submenu is open to avoid overlapping other elevated content */
       z-index: var(--layer-heightened);
     }
+  }
+
+  /* PawUnder header mockup */
+  .header__row--top {
+    background-color: #ffffff;
+  }
+
+  .header__row--bottom,
+  .header__navigation-bar-row {
+    background-color: #f39233;
+  }
+
+  .header__row--bottom .menu-list__link,
+  .header__row--bottom .menu-list__link-title,
+  .header__navigation-bar-row a {
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.04em;
   }
 
   .header__row--top:not(.divider--page-width),

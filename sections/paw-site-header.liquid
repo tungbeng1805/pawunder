@@ -1,0 +1,460 @@
+{{ 'custom-header.css' | asset_url | stylesheet_tag }}
+{% render 'predictive-search-styles' %}
+<script src="{{ 'custom-header.js' | asset_url }}" defer></script>
+
+{%- liquid
+  assign menu = section.settings.menu
+  assign logo = section.settings.logo
+  if logo == blank
+    assign logo = settings.logo
+  endif
+  assign logo_width = section.settings.logo_width | default: 128
+  assign show_search = section.settings.show_search
+  assign show_account = section.settings.show_account
+  assign show_locale = section.settings.show_localization
+  assign sticky = section.settings.enable_sticky_header
+  assign search_placeholder = section.settings.search_placeholder | default: 'Search...'
+  assign announce_text = section.settings.announcement_text
+  assign logo_alt = shop.name
+  if logo != blank and logo.alt != blank
+    assign logo_alt = logo.alt
+  endif
+  assign logo_sizes = logo_width | append: 'px'
+  assign show_locale_ui = false
+  if show_locale
+    if localization.available_countries.size > 1 or localization.available_languages.size > 1
+      assign show_locale_ui = true
+    endif
+  endif
+-%}
+
+<header
+  class="paw-site-header{% if sticky %} is-sticky{% endif %}"
+  data-paw-site-header
+  style="
+    --paw-announce-bg: {{ section.settings.announcement_bg }};
+    --paw-announce-text: {{ section.settings.announcement_text_color }};
+    --paw-header-bg: {{ section.settings.header_bg }};
+    --paw-nav-bg: {{ section.settings.nav_bg }};
+    --paw-search-border: {{ section.settings.search_border_color }};
+    --paw-logo-width: {{ logo_width }}px;
+  "
+>
+  <div class="paw-site-header__inner">
+    <div class="paw-site-header__pill">
+    {%- if announce_text != blank -%}
+      <div class="paw-site-header__announce">
+        <p class="paw-site-header__announce-text">{{ announce_text | escape }}</p>
+      </div>
+    {%- endif -%}
+
+    <div class="paw-site-header__shell">
+      <div class="paw-site-header__main">
+        {%- comment -%} Mobile left: hamburger {%- endcomment -%}
+        <div class="paw-site-header__mobile-left">
+          <button
+            type="button"
+            class="paw-site-header__icon-btn paw-site-header__hamburger"
+            data-paw-drawer-open
+            aria-expanded="false"
+            aria-controls="PawHeaderDrawer-{{ section.id }}"
+            aria-label="Open menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+
+        <a class="paw-site-header__logo-link" href="{{ routes.root_url }}">
+          {%- if logo != blank -%}
+            {{
+              logo
+              | image_url: width: 400
+              | image_tag:
+                class: 'paw-site-header__logo-img',
+                widths: '120, 160, 200, 240, 320, 400',
+                sizes: logo_sizes,
+                alt: logo_alt,
+                loading: 'eager'
+            }}
+          {%- else -%}
+            <span class="paw-site-header__logo-text">{{ shop.name }}</span>
+          {%- endif -%}
+        </a>
+
+        {%- comment -%} Desktop actions {%- endcomment -%}
+        <div class="paw-site-header__actions paw-site-header__desktop-only">
+          <div class="paw-site-header__utils paw-site-header__utils--desktop">
+            {%- if show_locale_ui -%}
+              <div class="paw-site-header__locale" data-paw-locale>
+                <button
+                  type="button"
+                  class="paw-site-header__locale-btn"
+                  data-paw-locale-toggle
+                  aria-expanded="false"
+                  aria-controls="PawLocalePanel-{{ section.id }}"
+                  aria-label="Currency and language"
+                >
+                  <span>
+                    {{- localization.country.currency.iso_code -}}
+                    {%- if localization.available_languages.size > 1 -%}
+                      / {{ localization.language.iso_code | upcase }}
+                    {%- endif -%}
+                  </span>
+                  <svg viewBox="0 0 12 8" aria-hidden="true" focusable="false">
+                    <path d="M1 1.5 L6 6.5 L11 1.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <div
+                  id="PawLocalePanel-{{ section.id }}"
+                  class="paw-site-header__locale-panel"
+                  data-paw-locale-panel
+                  hidden
+                >
+                  {% form 'localization', class: 'localization-form' %}
+                    {%- if localization.available_countries.size > 1 -%}
+                      <label class="visually-hidden" for="PawCountry-{{ section.id }}">Country/region</label>
+                      <select
+                        id="PawCountry-{{ section.id }}"
+                        name="country_code"
+                        class="localization-form__select"
+                        onchange="this.form.submit()"
+                      >
+                        {%- for country in localization.available_countries -%}
+                          <option
+                            value="{{ country.iso_code }}"
+                            {% if country.iso_code == localization.country.iso_code %}selected{% endif %}
+                          >
+                            {{ country.name }} ({{ country.currency.iso_code }})
+                          </option>
+                        {%- endfor -%}
+                      </select>
+                    {%- endif -%}
+                    {%- if localization.available_languages.size > 1 -%}
+                      <label class="visually-hidden" for="PawLang-{{ section.id }}">Language</label>
+                      <select
+                        id="PawLang-{{ section.id }}"
+                        name="language_code"
+                        class="localization-form__select"
+                        onchange="this.form.submit()"
+                      >
+                        {%- for language in localization.available_languages -%}
+                          <option
+                            value="{{ language.iso_code }}"
+                            {% if language.iso_code == localization.language.iso_code %}selected{% endif %}
+                          >
+                            {{ language.endonym_name | capitalize }}
+                          </option>
+                        {%- endfor -%}
+                      </select>
+                    {%- endif -%}
+                  {% endform %}
+                </div>
+              </div>
+            {%- endif -%}
+
+            {%- if show_account -%}
+              <a
+                class="paw-site-header__icon-link"
+                href="{{ routes.account_url }}"
+                aria-label="Account"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <circle cx="12" cy="8" r="3.5" stroke-width="1.7"/>
+                  <path d="M5 19.5c1.8-3.2 4.2-4.8 7-4.8s5.2 1.6 7 4.8" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+              </a>
+            {%- endif -%}
+
+            <a
+              class="paw-site-header__icon-link paw-site-header__cart"
+              href="{{ routes.cart_url }}"
+              aria-label="Cart, {{ cart.item_count }} items"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M6.5 8.5h11l-1 11h-9l-1-11z" stroke-width="1.7" stroke-linejoin="round"/>
+                <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+              <span
+                class="paw-site-header__cart-count"
+                {% if cart.item_count == 0 %}hidden{% endif %}
+              >
+                {{- cart.item_count -}}
+              </span>
+            </a>
+          </div>
+
+          {%- if show_search -%}
+            <div class="paw-site-header__search paw-site-header__search--desktop">
+              <button
+                type="button"
+                class="paw-site-header__search-trigger"
+                data-paw-open-search
+                on:click="#search-modal/showDialog"
+                aria-haspopup="dialog"
+                aria-label="{{ 'content.search_input_label' | t | default: 'Search' }}"
+              >
+                <span class="paw-site-header__search-placeholder">{{ search_placeholder | escape }}</span>
+                <span class="paw-site-header__search-submit" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <circle cx="11" cy="11" r="6.5" stroke-width="1.7" stroke="currentColor" fill="none"/>
+                    <path d="M16 16l4.5 4.5" stroke-width="1.7" stroke-linecap="round" stroke="currentColor" fill="none"/>
+                  </svg>
+                </span>
+              </button>
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- comment -%} Mobile right: account + cart {%- endcomment -%}
+        <div class="paw-site-header__mobile-right">
+          {%- if show_account -%}
+            <a
+              class="paw-site-header__icon-link"
+              href="{{ routes.account_url }}"
+              aria-label="Account"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="12" cy="8" r="3.5" stroke-width="1.7"/>
+                <path d="M5 19.5c1.8-3.2 4.2-4.8 7-4.8s5.2 1.6 7 4.8" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+            </a>
+          {%- endif -%}
+
+          <a
+            class="paw-site-header__icon-link paw-site-header__cart"
+            href="{{ routes.cart_url }}"
+            aria-label="Cart, {{ cart.item_count }} items"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M6.5 8.5h11l-1 11h-9l-1-11z" stroke-width="1.7" stroke-linejoin="round"/>
+              <path d="M9 8.5V7a3 3 0 0 1 6 0v1.5" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+            <span
+              class="paw-site-header__cart-count"
+              {% if cart.item_count == 0 %}hidden{% endif %}
+            >
+              {{- cart.item_count -}}
+            </span>
+          </a>
+        </div>
+      </div>
+
+      {%- if show_search -%}
+        <div class="paw-site-header__mobile-search" id="PawMobileSearch-{{ section.id }}">
+          <div class="paw-site-header__search">
+            <button
+              type="button"
+              class="paw-site-header__search-trigger"
+              data-paw-open-search
+              on:click="#search-modal/showDialog"
+              aria-haspopup="dialog"
+              aria-label="{{ 'content.search_input_label' | t | default: 'Search' }}"
+            >
+              <span class="paw-site-header__search-placeholder">{{ search_placeholder | escape }}</span>
+              <span class="paw-site-header__search-submit" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <circle cx="11" cy="11" r="6.5" stroke-width="1.7" stroke="currentColor" fill="none"/>
+                  <path d="M16 16l4.5 4.5" stroke-width="1.7" stroke-linecap="round" stroke="currentColor" fill="none"/>
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+    </div>
+  </div>
+
+  {%- if menu != blank -%}
+    <nav class="paw-site-header__nav paw-site-header__nav--desktop" aria-label="Main menu">
+      <ul class="paw-site-header__nav-list">
+        {%- for link in menu.links -%}
+          <li>
+            <a
+              class="paw-site-header__nav-link"
+              href="{{ link.url }}"
+              {% if link.current %}aria-current="page"{% endif %}
+            >
+              {{- link.title | escape -}}
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+  {%- endif -%}
+
+  {%- comment -%} Mobile drawer {%- endcomment -%}
+  <div
+    id="PawHeaderDrawer-{{ section.id }}"
+    class="paw-site-header__drawer"
+    data-paw-drawer
+    aria-hidden="true"
+  >
+    <button
+      type="button"
+      class="paw-site-header__drawer-overlay"
+      data-paw-drawer-close
+      aria-label="Close menu"
+    ></button>
+    <div class="paw-site-header__drawer-panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="paw-site-header__drawer-head">
+        <p class="paw-site-header__drawer-title">Menu</p>
+        <button
+          type="button"
+          class="paw-site-header__drawer-close"
+          data-paw-drawer-close
+          aria-label="Close menu"
+        >
+          <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <nav class="paw-site-header__drawer-nav" aria-label="Mobile menu">
+        <ul class="paw-site-header__drawer-list">
+          {%- if menu != blank -%}
+            {%- for link in menu.links -%}
+              <li>
+                <a class="paw-site-header__drawer-link" href="{{ link.url }}">{{ link.title | escape }}</a>
+                {%- if link.links != blank -%}
+                  <ul class="paw-site-header__drawer-sub">
+                    {%- for child in link.links -%}
+                      <li>
+                        <a class="paw-site-header__drawer-link" href="{{ child.url }}">{{ child.title | escape }}</a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          {%- endif -%}
+          {%- if show_account -%}
+            <li>
+              <a class="paw-site-header__drawer-link" href="{{ routes.account_url }}">Account</a>
+            </li>
+          {%- endif -%}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Paw Site Header",
+  "class": "paw-site-header-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo",
+      "info": "Falls back to theme logo if empty."
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo width",
+      "min": 80,
+      "max": 260,
+      "step": 4,
+      "unit": "px",
+      "default": 128
+    },
+    {
+      "type": "header",
+      "content": "Announcement"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "HOT SALE 12% OFF CODE: PAW12 + FREE SHIPPING"
+    },
+    {
+      "type": "color",
+      "id": "announcement_bg",
+      "label": "Announcement background",
+      "default": "#F3C08C"
+    },
+    {
+      "type": "color",
+      "id": "announcement_text_color",
+      "label": "Announcement text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Header"
+    },
+    {
+      "type": "color",
+      "id": "header_bg",
+      "label": "Header background",
+      "default": "#F3C08C"
+    },
+    {
+      "type": "color",
+      "id": "nav_bg",
+      "label": "Navigation background",
+      "default": "#F49A35"
+    },
+    {
+      "type": "color",
+      "id": "search_border_color",
+      "label": "Search border color",
+      "default": "#45B9B1"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Main menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "header",
+      "content": "Features"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_header",
+      "label": "Enable sticky header",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Show account",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_localization",
+      "label": "Show currency/country selector",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show search",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "search_placeholder",
+      "label": "Search placeholder",
+      "default": "Search..."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Paw Site Header"
+    }
+  ]
+}
+{% endschema %}

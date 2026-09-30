@@ -1,0 +1,91 @@
+{%- liquid
+  assign hero_image = section.settings.image
+  assign hero_link = section.settings.link
+  assign hero_alt = shop.name
+  if hero_image != blank and hero_image.alt != blank
+    assign hero_alt = hero_image.alt
+  endif
+-%}
+
+<div class="paw-home-hero" id="paw-home-hero-{{ section.id }}">
+  {%- if hero_link != blank -%}
+    <a href="{{ hero_link }}" class="paw-home-hero__link"{% if section.settings.open_in_new_tab %} target="_blank" rel="noopener"{% endif %}>
+  {%- endif -%}
+
+  {%- if hero_image != blank -%}
+    {{
+      hero_image
+      | image_url: width: 2400
+      | image_tag:
+        class: 'paw-home-hero__image',
+        widths: '750, 1100, 1500, 2000, 2400',
+        sizes: '100vw',
+        loading: 'eager',
+        alt: hero_alt
+    }}
+  {%- else -%}
+    <img
+      class="paw-home-hero__image"
+      src="{{ 'paw-home-hero.jpg' | asset_url }}"
+      alt="{{ hero_alt | escape }}"
+      width="1920"
+      height="1080"
+      loading="eager"
+    >
+  {%- endif -%}
+
+  {%- if hero_link != blank -%}
+    </a>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .paw-home-hero {
+    width: 100%;
+    line-height: 0;
+    background: #f39233;
+  }
+
+  .paw-home-hero__link {
+    display: block;
+  }
+
+  .paw-home-hero__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Paw Home Hero",
+  "tag": "section",
+  "class": "paw-home-hero-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero image",
+      "info": "Upload your final hero banner from admin. Placeholder is used until then."
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_in_new_tab",
+      "label": "Open link in new tab",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Paw Home Hero"
+    }
+  ]
+}
+{% endschema %}

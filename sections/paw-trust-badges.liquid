@@ -1,0 +1,202 @@
+<div
+  class="paw-trust"
+  id="paw-trust-{{ section.id }}"
+  style="background-color: {{ section.settings.background }}; color: {{ section.settings.text_color }};"
+>
+  <div class="paw-trust__inner">
+    {%- for block in section.blocks -%}
+      <div class="paw-trust__item" {{ block.shopify_attributes }}>
+        <span class="paw-trust__icon" aria-hidden="true">
+          {%- case block.settings.icon -%}
+            {%- when 'shipping' -%}
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="6" y="20" width="34" height="22" rx="2"/><path d="M40 28h10l8 10v10H40V28z"/><circle cx="18" cy="46" r="5"/><circle cx="48" cy="46" r="5"/><path d="M12 20V14h16"/></svg>
+            {%- when 'quality' -%}
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M32 8l6.5 13.2L53 23.2 43 33.5l2.4 14.3L32 40.8 18.6 47.8 21 33.5 11 23.2l14.5-2z"/></svg>
+            {%- when 'refund' -%}
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M14 28a18 18 0 1 1-2 10"/><path d="M14 18v10h10"/><circle cx="32" cy="34" r="4"/><path d="M26 42c2 3 10 3 12 0"/></svg>
+            {%- when 'payment' -%}
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="18" y="14" width="28" height="36" rx="4"/><path d="M28 40h8"/><circle cx="32" cy="28" r="5"/></svg>
+            {%- else -%}
+              <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="32" cy="32" r="18"/><path d="M22 34c3 6 17 6 20 0"/></svg>
+          {%- endcase -%}
+        </span>
+        <div class="paw-trust__copy">
+          {%- if block.settings.title != blank -%}
+            <h3 class="paw-trust__title">{{ block.settings.title }}</h3>
+          {%- endif -%}
+          {%- if block.settings.text != blank -%}
+            <p class="paw-trust__text">{{ block.settings.text }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .paw-trust {
+    width: 100%;
+    padding: 36px 20px;
+  }
+
+  .paw-trust__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 28px 24px;
+  }
+
+  .paw-trust__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .paw-trust__icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+  }
+
+  .paw-trust__icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .paw-trust__title {
+    margin: 0 0 6px;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: inherit;
+  }
+
+  .paw-trust__text {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.45;
+    opacity: 0.95;
+    max-width: 220px;
+  }
+
+  @media screen and (max-width: 989px) {
+    .paw-trust__inner {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px 16px;
+    }
+  }
+
+  @media screen and (max-width: 549px) {
+    .paw-trust {
+      padding: 28px 16px;
+    }
+
+    .paw-trust__inner {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+
+    .paw-trust__text {
+      max-width: 280px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Paw Trust Badges",
+  "tag": "section",
+  "class": "paw-trust-badges-section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#F39233"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "shipping", "label": "Shipping" },
+            { "value": "quality", "label": "Quality" },
+            { "value": "refund", "label": "Refund" },
+            { "value": "payment", "label": "Payment" },
+            { "value": "paw", "label": "Paw" }
+          ],
+          "default": "shipping"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "FREE SHIPPING"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Free 7 days express shipping for all orders"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Paw Trust Badges",
+      "blocks": [
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "shipping",
+            "title": "FREE SHIPPING",
+            "text": "Free 7 days express shipping for all orders"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "quality",
+            "title": "HIGH QUALITY",
+            "text": "Made with high-quality materials for long lasting durability"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "refund",
+            "title": "FREE 30-DAY REFUND",
+            "text": "Unused items can be refunded free of charge within 30 days of delivery"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "icon": "payment",
+            "title": "SECURED PAYMENT",
+            "text": "We accept all major credit card"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,170 @@
+{%- liquid
+  assign placeholders = 'paw-hot-sale-cooling-mat.jpg,paw-hot-sale-hair-gloves.jpg,paw-hot-sale-dog-boots.jpg' | split: ','
+-%}
+
+<div class="paw-promo" id="paw-promo-{{ section.id }}">
+  <div class="paw-promo__inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="paw-promo__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    <div class="paw-promo__grid">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign placeholder = placeholders[forloop.index0] | default: placeholders.first
+          assign card_tag = 'div'
+          if block.settings.link != blank
+            assign card_tag = 'a'
+          endif
+        -%}
+        <{{ card_tag }}
+          class="paw-promo__card"
+          {% if block.settings.link != blank %}href="{{ block.settings.link }}"{% endif %}
+          {{ block.shopify_attributes }}
+        >
+          {%- if block.settings.image != blank -%}
+            {{
+              block.settings.image
+              | image_url: width: 1200
+              | image_tag:
+                class: 'paw-promo__image',
+                widths: '400, 600, 800, 1200',
+                sizes: '(max-width: 749px) 100vw, 33vw',
+                loading: 'lazy',
+                alt: block.settings.alt | default: section.settings.heading
+            }}
+          {%- else -%}
+            <img
+              class="paw-promo__image"
+              src="{{ placeholder | asset_url }}"
+              alt="{{ block.settings.alt | escape }}"
+              width="800"
+              height="450"
+              loading="lazy"
+            >
+          {%- endif -%}
+        </{{ card_tag }}>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .paw-promo {
+    width: 100%;
+    padding: 24px 16px 8px;
+    background: #fff;
+  }
+
+  .paw-promo__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .paw-promo__heading {
+    margin: 0 0 18px;
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #111;
+    letter-spacing: -0.02em;
+  }
+
+  .paw-promo__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .paw-promo__card {
+    display: block;
+    border-radius: 10px;
+    overflow: hidden;
+    line-height: 0;
+    text-decoration: none;
+  }
+
+  .paw-promo__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .paw-promo__card:hover .paw-promo__image {
+    transform: scale(1.03);
+  }
+
+  @media screen and (max-width: 749px) {
+    .paw-promo {
+      padding: 16px 12px 4px;
+    }
+
+    .paw-promo__heading {
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    .paw-promo__grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .paw-promo__card {
+      border-radius: 8px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Paw Promo Banners",
+  "tag": "section",
+  "class": "paw-promo-banners-section",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Hot sale"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "banner",
+      "name": "Banner",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Banner image",
+          "info": "Upload final banner from admin. AI placeholder is used until then."
+        },
+        {
+          "type": "text",
+          "id": "alt",
+          "label": "Image alt text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Paw Promo Banners",
+      "blocks": [
+        { "type": "banner", "settings": { "alt": "Buy 1 Get 1 Free Pet Cooling Mat" } },
+        { "type": "banner", "settings": { "alt": "Pet Hair Removal Gloves" } },
+        { "type": "banner", "settings": { "alt": "Dog Boots Adventure" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
