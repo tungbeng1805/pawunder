@@ -36,11 +36,12 @@
 {% stylesheet %}
   .paw-trust {
     width: 100%;
-    padding: 36px 20px;
+    padding: 36px var(--page-margin);
   }
 
   .paw-trust__inner {
-    max-width: 1200px;
+    width: 100%;
+    max-width: var(--page-content-width);
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -53,6 +54,9 @@
     align-items: center;
     text-align: center;
     gap: 12px;
+    padding: 16px;
+    border: 1px solid rgba(26, 36, 51, 0.12);
+    border-radius: 12px;
   }
 
   .paw-trust__icon {
@@ -92,7 +96,7 @@
 
   @media screen and (max-width: 549px) {
     .paw-trust {
-      padding: 28px 16px;
+      padding: 28px var(--page-margin);
     }
 
     .paw-trust__inner {

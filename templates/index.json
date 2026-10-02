@@ -12,6 +12,10 @@
     "paw_home_hero": {
       "type": "paw-home-hero",
       "settings": {
+        "eyebrow": "PawUnder essentials",
+        "heading": "Everything for happier paws",
+        "text": "Thoughtful pet essentials for every walk, nap and adventure.",
+        "button_label": "Shop best sellers",
         "link": "shopify://collections/all",
         "open_in_new_tab": false
       }
@@ -77,6 +81,8 @@
         "cat_house"
       ],
       "settings": {
+        "heading": "Find their next favourite",
+        "subheading": "Explore essentials picked for every kind of pet.",
         "icon_bg": "#F5E6D3",
         "icon_color": "#1A1A1A"
       }
@@ -112,7 +118,7 @@
         "banner_boots"
       ],
       "settings": {
-        "heading": "Hot sale"
+        "heading": "Featured offers"
       }
     },
     "product_list_new_arrivals": {
@@ -156,7 +162,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>New arrivals</h3>",
+                "text": "<h3>Trending now</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -288,7 +294,7 @@
           ]
         }
       },
-      "name": "New arrivals",
+      "name": "Trending now",
       "settings": {
         "collection": "new-arrivals",
         "layout_type": "grid",
@@ -307,6 +313,48 @@
         "color_scheme": "scheme-1",
         "padding-block-start": 20,
         "padding-block-end": 28
+      }
+    },
+    "paw_everyday_essentials": {
+      "type": "paw-home-collection-rail",
+      "settings": {
+        "collection": "new-arrivals",
+        "eyebrow": "Fresh picks for your pet",
+        "heading": "Everyday essentials",
+        "description": "Comfortable, practical favourites for walks, naps, playtime and everything in between.",
+        "button_label": "Shop new arrivals",
+        "button_link": "shopify://collections/new-arrivals",
+        "products_to_show": 6,
+        "background": "#F7E8D8",
+        "accent": "#B95B26"
+      }
+    },
+    "paw_playtime_picks": {
+      "type": "paw-home-collection-rail",
+      "settings": {
+        "collection": "pet-toys",
+        "eyebrow": "Made for tails and trails",
+        "heading": "Playtime picks",
+        "description": "Bring more fun to every day with toys and accessories made for curious companions.",
+        "button_label": "Explore pet toys",
+        "button_link": "shopify://collections/pet-toys",
+        "products_to_show": 6,
+        "background": "#E5F0E5",
+        "accent": "#3E7048"
+      }
+    },
+    "paw_pet_favourites": {
+      "type": "paw-home-collection-rail",
+      "settings": {
+        "collection": "all",
+        "eyebrow": "PawUnder favourites",
+        "heading": "Find their next favourite",
+        "description": "Discover well-loved pieces selected to make life with your pet simpler, safer and more joyful.",
+        "button_label": "Shop all products",
+        "button_link": "shopify://collections/all",
+        "products_to_show": 6,
+        "background": "#E7EDF5",
+        "accent": "#41637E"
       }
     },
     "paw_trust_badges": {
@@ -352,8 +400,8 @@
         "badge_payment"
       ],
       "settings": {
-        "background": "#F39233",
-        "text_color": "#FFFFFF"
+        "background": "#F4EEE6",
+        "text_color": "#1A2433"
       }
     }
   },
@@ -362,6 +410,9 @@
     "paw_category_icons",
     "paw_hot_sale",
     "product_list_new_arrivals",
+    "paw_everyday_essentials",
+    "paw_playtime_picks",
+    "paw_pet_favourites",
     "paw_trust_badges"
   ]
 }

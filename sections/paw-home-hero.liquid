@@ -34,6 +34,13 @@
     >
   {%- endif -%}
 
+  <div class="paw-home-hero__content">
+    {%- if section.settings.eyebrow != blank -%}<p>{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+    {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading | escape }}</h2>{%- endif -%}
+    {%- if section.settings.text != blank -%}<div class="paw-home-hero__text">{{ section.settings.text | escape }}</div>{%- endif -%}
+    {%- if section.settings.button_label != blank -%}<span class="paw-home-hero__button">{{ section.settings.button_label | escape }}</span>{%- endif -%}
+  </div>
+
   {%- if hero_link != blank -%}
     </a>
   {%- endif -%}
@@ -44,6 +51,8 @@
     width: 100%;
     line-height: 0;
     background: #f39233;
+    overflow: hidden;
+    position: relative;
   }
 
   .paw-home-hero__link {
@@ -52,9 +61,63 @@
 
   .paw-home-hero__image {
     width: 100%;
-    height: auto;
+    height: clamp(320px, 31vw, 480px);
     display: block;
     object-fit: cover;
+    object-position: center;
+  }
+
+  .paw-home-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(80, 37, 8, 0.57), rgba(80, 37, 8, 0.05) 62%);
+    pointer-events: none;
+  }
+
+  .paw-home-hero__content {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: max(var(--page-margin), calc((100% - var(--page-content-width)) / 2));
+    width: min(390px, 42vw);
+    color: #fff;
+    transform: translateY(-50%);
+  }
+
+  .paw-home-hero__content p {
+    margin: 0 0 7px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
+
+  .paw-home-hero__content h2 {
+    margin: 0;
+    font-size: clamp(34px, 4vw, 61px);
+    line-height: 0.96;
+    letter-spacing: -0.045em;
+  }
+
+  .paw-home-hero__text { margin-top: 13px; font-size: 16px; line-height: 1.45; }
+
+  .paw-home-hero__button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 11px 17px;
+    border-radius: 999px;
+    color: #fff;
+    background: #f39233;
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  @media screen and (max-width: 749px) {
+    .paw-home-hero__image { height: 430px; object-position: 58% center; }
+    .paw-home-hero__content { left: var(--page-margin); width: min(285px, 70vw); }
+    .paw-home-hero__content h2 { font-size: 37px; }
+    .paw-home-hero__text { font-size: 14px; }
   }
 {% endstylesheet %}
 
@@ -70,6 +133,10 @@
       "label": "Hero image",
       "info": "Upload your final hero banner from admin. Placeholder is used until then."
     },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "PawUnder picks" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Everything for happier paws" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Discover thoughtful essentials for every walk, nap and adventure." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop best sellers" },
     {
       "type": "url",
       "id": "link",

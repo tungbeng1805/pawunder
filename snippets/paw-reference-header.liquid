@@ -1,0 +1,340 @@
+<header class="paw-reference-header" aria-label="Main navigation">
+  <div class="paw-reference-header__main">
+    <a class="paw-reference-header__brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+      {%- if settings.logo != blank -%}
+        {{ settings.logo | image_url: width: 260 | image_tag: widths: '120, 180, 260', alt: shop.name }}
+      {%- else -%}
+        <span>{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+
+    <form class="paw-reference-header__search" action="{{ routes.search_url }}" method="get" role="search" data-paw-search-form>
+      <label class="visually-hidden" for="PawHeaderSearch">Search PawUnder</label>
+      <input type="hidden" name="type" value="product">
+      <input id="PawHeaderSearch" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Find the perfect pick for your pet" autocomplete="off" enterkeyhint="search" data-paw-search-input>
+      <button type="button" class="paw-reference-header__search-clear" aria-label="Clear search" data-paw-search-clear hidden>
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <button type="submit" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+      </button>
+      <div class="paw-reference-header__search-panel" data-paw-search-panel hidden>
+        <p class="paw-reference-header__search-title" data-paw-search-title>Popular picks</p>
+        <div class="paw-reference-header__search-results" data-paw-search-results>
+          {%- for product in collections.all.products limit: 4 -%}
+            <a class="paw-reference-header__search-card" href="{{ product.url }}">
+              {%- if product.featured_image != blank -%}
+                {{ product.featured_image | image_url: width: 240 | image_tag: widths: '120, 180, 240', loading: 'lazy', alt: product.title }}
+              {%- endif -%}
+              <span>{{ product.title }}</span>
+            </a>
+          {%- endfor -%}
+        </div>
+      </div>
+    </form>
+
+    <nav class="paw-reference-header__utilities" aria-label="Utility navigation">
+      <a href="{{ routes.account_login_url }}">Sign in</a>
+      <a href="/pages/track-order">Track order</a>
+      <a href="{{ routes.cart_url }}" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 4h2l2.1 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L20 8H6"/><circle cx="10" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>
+      </a>
+    </nav>
+  </div>
+
+  <nav class="paw-reference-header__nav" aria-label="Primary navigation">
+    <ul>
+      {%- for link in linklists['main-menu'].links -%}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+</header>
+
+{% stylesheet %}
+  .paw-reference-header {
+    position: relative;
+    z-index: 30;
+    background: #fff;
+    border-bottom: 1px solid #eceae7;
+    color: #282828;
+    font-family: var(--font-body--family);
+  }
+
+  .paw-reference-header__main,
+  .paw-reference-header__nav ul {
+    /* Macorner's desktop header uses a 1440px content maximum. */
+    width: min(100% - 64px, 1440px);
+    margin: 0 auto;
+  }
+
+  .paw-reference-header__main {
+    display: grid;
+    grid-template-columns: 180px minmax(260px, 1fr) auto;
+    align-items: center;
+    gap: 28px;
+    min-height: 72px;
+  }
+
+  .paw-reference-header__brand img {
+    display: block;
+    width: auto;
+    max-width: 160px;
+    height: 44px;
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  .paw-reference-header__brand {
+    color: #1a1a1a;
+    font-size: 22px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .paw-reference-header__search {
+    display: flex;
+    min-width: 0;
+    height: 48px;
+    position: relative;
+  }
+
+  .paw-reference-header__search input {
+    width: 100%;
+    min-width: 0;
+    padding: 0 100px 0 16px;
+    border: 0;
+    color: #252525;
+    font: inherit;
+    font-size: 16px;
+    outline: 0;
+    border-radius: 50px;
+    border: 1px solid #e6e2de;
+  }
+
+  .paw-reference-header__search button {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    padding: 9px;
+    border: 0;
+    border-radius: 50%;
+    place-items: center;
+    color: #fff;
+    background: #f39233;
+    cursor: pointer;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    z-index: 2;
+  }
+
+  .paw-reference-header__search button[type="submit"] { 
+    top: 50%;
+    transform: translateY(-50%);
+   }
+
+  .paw-reference-header__search-clear {
+    display: grid;
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    border-radius: 50%;
+    place-items: center;
+    color: #4b4641 !important;
+    background: transparent !important;
+    font-size: 25px;
+    font-weight: 300;
+    line-height: 1;
+    right: 43px !important;
+    top: 6px !important;
+  }
+
+  .paw-reference-header__search-panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    z-index: 20;
+    width: 100%;
+    padding: 18px;
+    box-sizing: border-box;
+    border-radius: 0 0 8px 8px;
+    background: #fff;
+    box-shadow: 0 12px 26px rgb(27 22 18 / 18%);
+  }
+
+  .paw-reference-header__search-title {
+    margin: 0 0 12px;
+    color: #6c6661;
+    font-size: 14px;
+    font-weight: 650;
+  }
+
+  .paw-reference-header__search-results {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .paw-reference-header__search-card {
+    min-width: 0;
+    color: #282828;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.3;
+    text-decoration: none;
+  }
+
+  .paw-reference-header__search-card img,
+  .paw-reference-header__search-card .paw-reference-header__search-image-placeholder {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / .72;
+    margin-bottom: 7px;
+    border-radius: 7px;
+    object-fit: cover;
+    background: #f4f1ee;
+  }
+
+  .paw-reference-header__search-card:hover span { color: #e76f18; }
+
+  .paw-reference-header__search-empty {
+    grid-column: 1 / -1;
+    margin: 4px 0;
+    color: #6c6661;
+    font-size: 14px;
+  }
+
+  .paw-reference-header__search svg,
+  .paw-reference-header__utilities svg { width: 100%; height: 100%; }
+
+  .paw-reference-header__utilities {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    white-space: nowrap;
+  }
+
+  .paw-reference-header__utilities a {
+    display: inline-flex;
+    width: 17px;
+    height: 17px;
+    align-items: center;
+    color: inherit;
+    font-size: 14px;
+    font-weight: 550;
+    text-decoration: none;
+  }
+
+  .paw-reference-header__utilities a:not(:last-child) { width: auto; height: auto; }
+
+  .paw-reference-header__nav { border-top: 1px solid #f1efec; }
+
+  .paw-reference-header__nav ul {
+    display: flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(20px, 3vw, 46px);
+    margin-block: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .paw-reference-header__nav a {
+    color: #272727;
+    font-size: 14px;
+    font-weight: 650;
+    text-decoration: none;
+  }
+
+  .paw-reference-header__nav a:hover { color: #e76f18; }
+
+  @media screen and (min-width: 750px) {
+    #header-component,
+    #header-group .announcement-bar { display: none; }
+  }
+
+  @media screen and (max-width: 749px) {
+    .paw-reference-header { display: none; }
+  }
+{% endstylesheet %}
+
+<script>
+  (() => {
+    const form = document.querySelector('[data-paw-search-form]');
+    if (!form || form.dataset.pawSearchReady) return;
+    form.dataset.pawSearchReady = 'true';
+
+    const input = form.querySelector('[data-paw-search-input]');
+    const clear = form.querySelector('[data-paw-search-clear]');
+    const panel = form.querySelector('[data-paw-search-panel]');
+    const title = form.querySelector('[data-paw-search-title]');
+    const results = form.querySelector('[data-paw-search-results]');
+    const defaultResults = results.innerHTML;
+    let requestId = 0;
+
+    const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, (character) => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+    })[character]);
+
+    const showPanel = () => { panel.hidden = false; };
+    const hidePanel = () => { panel.hidden = true; };
+    const setClearVisibility = () => { clear.hidden = !input.value.trim(); };
+
+    const renderProducts = (products) => {
+      if (!products.length) {
+        results.innerHTML = '<p class="paw-reference-header__search-empty">No matching products. Press Enter to search all products.</p>';
+        return;
+      }
+
+      results.innerHTML = products.map((product) => {
+        const image = product.image
+          ? `<img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.title)}">`
+          : '<span class="paw-reference-header__search-image-placeholder" aria-hidden="true"></span>';
+        return `<a class="paw-reference-header__search-card" href="${escapeHtml(product.url)}">${image}<span>${escapeHtml(product.title)}</span></a>`;
+      }).join('');
+    };
+
+    const updateSuggestions = async () => {
+      const term = input.value.trim();
+      const currentRequest = ++requestId;
+      setClearVisibility();
+      showPanel();
+
+      if (!term) {
+        title.textContent = 'Popular picks';
+        results.innerHTML = defaultResults;
+        return;
+      }
+
+      title.textContent = 'Suggested products';
+      try {
+        const url = new URL('{{ routes.root_url }}search/suggest.json', window.location.origin);
+        url.searchParams.set('q', term);
+        url.searchParams.set('resources[type]', 'product');
+        url.searchParams.set('resources[limit]', '4');
+        const response = await fetch(url, { headers: { Accept: 'application/json' } });
+        if (!response.ok) throw new Error('Search suggestions unavailable');
+        const data = await response.json();
+        if (currentRequest !== requestId) return;
+        renderProducts(data.resources?.results?.products || []);
+      } catch (error) {
+        if (currentRequest === requestId) {
+          results.innerHTML = '<p class="paw-reference-header__search-empty">Press Enter to search for this product.</p>';
+        }
+      }
+    };
+
+    input.addEventListener('focus', updateSuggestions);
+    input.addEventListener('input', updateSuggestions);
+    clear.addEventListener('click', () => {
+      input.value = '';
+      input.focus();
+      updateSuggestions();
+    });
+    document.addEventListener('click', (event) => {
+      if (!form.contains(event.target)) hidePanel();
+    });
+  })();
+</script>

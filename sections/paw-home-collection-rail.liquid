@@ -1,0 +1,232 @@
+{%- liquid
+  assign featured_collection = section.settings.collection
+  if featured_collection == blank
+    assign featured_collection = collections.all
+  endif
+-%}
+
+<section
+  class="paw-home-rail"
+  id="paw-home-rail-{{ section.id }}"
+  style="--paw-rail-background: {{ section.settings.background }}; --paw-rail-accent: {{ section.settings.accent }};"
+>
+  <div class="paw-home-rail__inner">
+    <div class="paw-home-rail__intro">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="paw-home-rail__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      <h2 class="paw-home-rail__heading">{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.description != blank -%}
+        <p class="paw-home-rail__description">{{ section.settings.description | escape }}</p>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a class="paw-home-rail__button" href="{{ section.settings.button_link | default: featured_collection.url }}">
+          {{ section.settings.button_label | escape }}
+          <span aria-hidden="true">→</span>
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="paw-home-rail__products" role="list">
+      {%- for product in featured_collection.products limit: section.settings.products_to_show -%}
+        <a class="paw-home-rail__card" href="{{ product.url }}" role="listitem">
+          <span class="paw-home-rail__media">
+            {%- if product.featured_media -%}
+              {{
+                product.featured_media
+                | image_url: width: 600
+                | image_tag:
+                  widths: '180, 260, 360, 480, 600',
+                  sizes: '(max-width: 749px) 45vw, (max-width: 1100px) 28vw, 16vw',
+                  loading: 'lazy',
+                  alt: product.featured_media.alt | default: product.title
+              }}
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: 'paw-home-rail__placeholder' }}
+            {%- endif -%}
+          </span>
+          <span class="paw-home-rail__card-copy">
+            <span class="paw-home-rail__product-title">{{ product.title }}</span>
+            <span class="paw-home-rail__price">{{ product.price | money }}</span>
+          </span>
+        </a>
+      {%- else -%}
+        {%- for i in (1..section.settings.products_to_show) -%}
+          <div class="paw-home-rail__card paw-home-rail__card--placeholder" role="listitem">
+            <span class="paw-home-rail__media">{{ 'product-1' | placeholder_svg_tag: 'paw-home-rail__placeholder' }}</span>
+          </div>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .paw-home-rail {
+    padding: 18px var(--page-margin);
+    background: #fff;
+  }
+
+  .paw-home-rail__inner {
+    width: 100%;
+    max-width: var(--page-content-width);
+    margin: 0 auto;
+  }
+
+  .paw-home-rail__intro {
+    display: flex;
+    min-height: 154px;
+    padding: 28px 36px;
+    border-radius: 14px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--paw-rail-background);
+    color: #1f2933;
+  }
+
+  .paw-home-rail__eyebrow {
+    margin: 0 0 5px;
+    color: var(--paw-rail-accent);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .paw-home-rail__heading {
+    margin: 0;
+    font-size: clamp(28px, 3vw, 42px);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+  }
+
+  .paw-home-rail__description {
+    max-width: 540px;
+    margin: 9px 0 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .paw-home-rail__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 8px 15px;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    color: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .paw-home-rail__button:hover {
+    background: #1f2933;
+    color: #fff;
+  }
+
+  .paw-home-rail__products {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 14px;
+  }
+
+  .paw-home-rail__card {
+    min-width: 0;
+    color: #1a1a1a;
+    text-decoration: none;
+  }
+
+  .paw-home-rail__media {
+    display: block;
+    overflow: hidden;
+    border-radius: 10px;
+    aspect-ratio: 1 / 1;
+    background: #f6f4f0;
+  }
+
+  .paw-home-rail__media img,
+  .paw-home-rail__placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.25s ease;
+  }
+
+  .paw-home-rail__card:hover .paw-home-rail__media img {
+    transform: scale(1.04);
+  }
+
+  .paw-home-rail__card-copy {
+    display: grid;
+    gap: 3px;
+    padding: 8px 2px 0;
+  }
+
+  .paw-home-rail__product-title {
+    overflow: hidden;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.35;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .paw-home-rail__price {
+    color: var(--paw-rail-accent);
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  @media screen and (max-width: 989px) {
+    .paw-home-rail__products {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .paw-home-rail {
+      padding-block: 12px;
+    }
+
+    .paw-home-rail__intro {
+      min-height: 0;
+      padding: 24px 18px;
+      border-radius: 10px;
+    }
+
+    .paw-home-rail__products {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Paw Home Collection Rail",
+  "tag": "section",
+  "class": "paw-home-collection-rail-section",
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Shop by collection" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Made for every kind of pet" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Thoughtful essentials designed for happier days with your best friend." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop collection" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 4, "max": 8, "step": 1, "default": 6 },
+    { "type": "color", "id": "background", "label": "Background", "default": "#F7E8D8" },
+    { "type": "color", "id": "accent", "label": "Accent", "default": "#B95B26" }
+  ],
+  "presets": [
+    { "name": "Paw Home Collection Rail" }
+  ]
+}
+{% endschema %}
