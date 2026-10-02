@@ -12,10 +12,11 @@
     "paw_home_hero": {
       "type": "paw-home-hero",
       "settings": {
-        "eyebrow": "PawUnder essentials",
-        "heading": "Everything for happier paws",
-        "text": "Thoughtful pet essentials for every walk, nap and adventure.",
-        "button_label": "Shop best sellers",
+        "image": "shopify://shop_images/Untitled-12.png",
+        "eyebrow": "",
+        "heading": "",
+        "text": "",
+        "button_label": "",
         "link": "shopify://collections/all",
         "open_in_new_tab": false
       }
@@ -83,8 +84,8 @@
       "settings": {
         "heading": "Find their next favourite",
         "subheading": "Explore essentials picked for every kind of pet.",
-        "icon_bg": "#F5E6D3",
-        "icon_color": "#1A1A1A"
+        "icon_bg": "#f5e6d3",
+        "icon_color": "#1a1a1a"
       }
     },
     "paw_hot_sale": {
@@ -325,8 +326,8 @@
         "button_label": "Shop new arrivals",
         "button_link": "shopify://collections/new-arrivals",
         "products_to_show": 6,
-        "background": "#F7E8D8",
-        "accent": "#B95B26"
+        "background": "#f7e8d8",
+        "accent": "#b95b26"
       }
     },
     "paw_playtime_picks": {
@@ -339,8 +340,8 @@
         "button_label": "Explore pet toys",
         "button_link": "shopify://collections/pet-toys",
         "products_to_show": 6,
-        "background": "#E5F0E5",
-        "accent": "#3E7048"
+        "background": "#e5f0e5",
+        "accent": "#3e7048"
       }
     },
     "paw_pet_favourites": {
@@ -353,8 +354,8 @@
         "button_label": "Shop all products",
         "button_link": "shopify://collections/all",
         "products_to_show": 6,
-        "background": "#E7EDF5",
-        "accent": "#41637E"
+        "background": "#e7edf5",
+        "accent": "#41637e"
       }
     },
     "paw_trust_badges": {
@@ -400,8 +401,8 @@
         "badge_payment"
       ],
       "settings": {
-        "background": "#F4EEE6",
-        "text_color": "#1A2433"
+        "background": "#f4eee6",
+        "text_color": "#1a2433"
       }
     }
   },
