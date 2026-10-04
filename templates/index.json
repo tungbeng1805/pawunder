@@ -300,7 +300,7 @@
         "collection": "new-arrivals",
         "layout_type": "grid",
         "carousel_on_mobile": false,
-        "max_products": 8,
+        "max_products": 4,
         "columns": 4,
         "mobile_columns": "2",
         "mobile_card_size": "44cqw",
@@ -325,7 +325,7 @@
         "description": "Comfortable, practical favourites for walks, naps, playtime and everything in between.",
         "button_label": "Shop new arrivals",
         "button_link": "shopify://collections/new-arrivals",
-        "products_to_show": 6,
+        "products_to_show": 4,
         "background": "#f7e8d8",
         "accent": "#b95b26"
       }
@@ -339,7 +339,7 @@
         "description": "Bring more fun to every day with toys and accessories made for curious companions.",
         "button_label": "Explore pet toys",
         "button_link": "shopify://collections/pet-toys",
-        "products_to_show": 6,
+        "products_to_show": 4,
         "background": "#e5f0e5",
         "accent": "#3e7048"
       }
@@ -353,7 +353,7 @@
         "description": "Discover well-loved pieces selected to make life with your pet simpler, safer and more joyful.",
         "button_label": "Shop all products",
         "button_link": "shopify://collections/all",
-        "products_to_show": 6,
+        "products_to_show": 4,
         "background": "#e7edf5",
         "accent": "#41637e"
       }

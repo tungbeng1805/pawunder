@@ -37,7 +37,7 @@
                 | image_url: width: 600
                 | image_tag:
                   widths: '180, 260, 360, 480, 600',
-                  sizes: '(max-width: 749px) 45vw, (max-width: 1100px) 28vw, 16vw',
+                  sizes: '(max-width: 749px) 45vw, 22vw',
                   loading: 'lazy',
                   alt: product.featured_media.alt | default: product.title
               }}
@@ -47,7 +47,12 @@
           </span>
           <span class="paw-home-rail__card-copy">
             <span class="paw-home-rail__product-title">{{ product.title }}</span>
-            <span class="paw-home-rail__price">{{ product.price | money }}</span>
+            <span class="paw-home-rail__prices">
+              <span class="paw-home-rail__price">{{ product.price | money }}</span>
+              {%- if product.compare_at_price > product.price -%}
+                <s class="paw-home-rail__compare">{{ product.compare_at_price | money }}</s>
+              {%- endif -%}
+            </span>
           </span>
         </a>
       {%- else -%}
@@ -131,7 +136,7 @@
 
   .paw-home-rail__products {
     display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 12px;
     margin-top: 14px;
   }
@@ -170,24 +175,41 @@
   }
 
   .paw-home-rail__product-title {
+    display: -webkit-box;
     overflow: hidden;
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 1.35;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    min-height: calc(var(--font-paragraph--line-height) * 2em);
+    color: var(--color-foreground);
+    font-family: var(--font-paragraph--family);
+    font-size: var(--font-paragraph--size);
+    font-weight: 400;
+    line-height: var(--font-paragraph--line-height);
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .paw-home-rail__prices {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .paw-home-rail__price,
+  .paw-home-rail__compare {
+    font-family: var(--font-h6--family);
+    font-size: var(--font-h6--size);
+    font-weight: var(--font-h6--weight);
+    line-height: var(--font-h6--line-height);
+    letter-spacing: var(--font-h6--letter-spacing);
   }
 
   .paw-home-rail__price {
-    color: var(--paw-rail-accent);
-    font-size: 13px;
-    font-weight: 800;
+    color: #111;
   }
 
-  @media screen and (max-width: 989px) {
-    .paw-home-rail__products {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+  .paw-home-rail__compare {
+    color: #e10600;
+    text-decoration: line-through;
   }
 
   @media screen and (max-width: 749px) {
@@ -221,7 +243,7 @@
     { "type": "textarea", "id": "description", "label": "Description", "default": "Thoughtful essentials designed for happier days with your best friend." },
     { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop collection" },
     { "type": "url", "id": "button_link", "label": "Button link" },
-    { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 4, "max": 8, "step": 1, "default": 6 },
+    { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 4, "max": 8, "step": 1, "default": 4 },
     { "type": "color", "id": "background", "label": "Background", "default": "#F7E8D8" },
     { "type": "color", "id": "accent", "label": "Accent", "default": "#B95B26" }
   ],

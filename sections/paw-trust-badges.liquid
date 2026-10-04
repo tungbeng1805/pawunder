@@ -1,7 +1,7 @@
 <div
   class="paw-trust"
   id="paw-trust-{{ section.id }}"
-  style="background-color: {{ section.settings.background }}; color: {{ section.settings.text_color }};"
+  style="--paw-trust-bg: {{ section.settings.background }}; color: {{ section.settings.text_color }};"
 >
   <div class="paw-trust__inner">
     {%- for block in section.blocks -%}
@@ -36,13 +36,15 @@
 {% stylesheet %}
   .paw-trust {
     width: 100%;
-    padding: 36px var(--page-margin);
+    padding-inline: var(--page-margin);
+    background: transparent;
   }
 
   .paw-trust__inner {
     width: 100%;
     max-width: var(--page-content-width);
     margin: 0 auto;
+    padding-block: 36px;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 28px 24px;
@@ -55,6 +57,7 @@
     text-align: center;
     gap: 12px;
     padding: 16px;
+    background-color: var(--paw-trust-bg);
     border: 1px solid rgba(26, 36, 51, 0.12);
     border-radius: 12px;
   }
@@ -95,11 +98,8 @@
   }
 
   @media screen and (max-width: 549px) {
-    .paw-trust {
-      padding: 28px var(--page-margin);
-    }
-
     .paw-trust__inner {
+      padding-block: 28px;
       grid-template-columns: 1fr;
       gap: 22px;
     }

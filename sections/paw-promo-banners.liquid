@@ -52,12 +52,13 @@
 {% stylesheet %}
   .paw-promo {
     width: 100%;
-    padding: 24px 16px 8px;
+    padding: 24px var(--page-margin) 8px;
     background: #fff;
   }
 
   .paw-promo__inner {
-    max-width: 1200px;
+    width: 100%;
+    max-width: var(--page-content-width);
     margin: 0 auto;
   }
 
@@ -99,7 +100,7 @@
 
   @media screen and (max-width: 749px) {
     .paw-promo {
-      padding: 16px 12px 4px;
+      padding: 16px var(--page-margin) 4px;
     }
 
     .paw-promo__heading {

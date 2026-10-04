@@ -119,6 +119,25 @@
     --cursor: pointer;
   }
 
+  .product-card .text-block.paragraph > * {
+    display: -webkit-box;
+    overflow: hidden;
+    min-height: calc(var(--font-paragraph--line-height) * 2em);
+    font-weight: 400;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .product-card .price,
+  .product-card .price-item--sale {
+    color: #111;
+  }
+
+  .product-card .compare-at-price {
+    color: #e10600;
+    opacity: 1;
+  }
+
   @media screen and (max-width: 749px) {
     .product-card slideshow-arrows .slideshow-control {
       display: none;
