@@ -260,6 +260,20 @@
         "icon_color": "#1a1a1a"
       }
     },
+    "paw_everyday_essentials": {
+      "type": "paw-home-collection-rail",
+      "settings": {
+        "collection": "new-arrivals",
+        "eyebrow": "Fresh picks for your pet",
+        "heading": "Everyday essentials",
+        "description": "Comfortable, practical favourites for walks, naps, playtime and everything in between.",
+        "button_label": "Shop new arrivals",
+        "button_link": "shopify://collections/new-arrivals",
+        "products_to_show": 4,
+        "background": "#f7e8d8",
+        "accent": "#b95b26"
+      }
+    },
     "paw_hot_sale": {
       "type": "paw-promo-banners",
       "blocks": {
@@ -492,20 +506,6 @@
         "padding-block-end": 28
       }
     },
-    "paw_everyday_essentials": {
-      "type": "paw-home-collection-rail",
-      "settings": {
-        "collection": "new-arrivals",
-        "eyebrow": "Fresh picks for your pet",
-        "heading": "Everyday essentials",
-        "description": "Comfortable, practical favourites for walks, naps, playtime and everything in between.",
-        "button_label": "Shop new arrivals",
-        "button_link": "shopify://collections/new-arrivals",
-        "products_to_show": 4,
-        "background": "#f7e8d8",
-        "accent": "#b95b26"
-      }
-    },
     "paw_playtime_picks": {
       "type": "paw-home-collection-rail",
       "settings": {
@@ -585,9 +585,9 @@
   "order": [
     "slideshow_zeFdTB",
     "paw_category_icons",
+    "paw_everyday_essentials",
     "paw_hot_sale",
     "product_list_new_arrivals",
-    "paw_everyday_essentials",
     "paw_playtime_picks",
     "paw_pet_favourites",
     "paw_trust_badges"
