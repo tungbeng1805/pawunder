@@ -59,6 +59,7 @@
     "button_border_radius_secondary": 14,
     "cart_type": "drawer",
     "cart_price_font": "secondary",
+    "auto_open_cart_drawer": true,
     "show_cart_note": false,
     "show_add_discount_code": true,
     "drawer_drop_shadow": true,
@@ -390,9 +391,9 @@
       },
       "scheme-78952d83-f965-4f7d-88c3-bb5c4ab2058e": {
         "settings": {
-          "background": "#E82B2B",
+          "background": "#e82b2b",
           "foreground_heading": "#000000",
-          "foreground": "#FFFFFF",
+          "foreground": "#ffffff",
           "primary": "#000000cf",
           "primary_hover": "#000000",
           "border": "#0000000f",
