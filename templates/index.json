@@ -470,6 +470,7 @@
           ]
         }
       },
+      "disabled": true,
       "name": "Trending now",
       "settings": {
         "collection": "new-arrivals",
