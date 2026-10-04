@@ -231,7 +231,7 @@
                 <div
                   class="cart-drawer__summary"
                 >
-                  {% render 'cart-summary', section_id: section.id %}
+                  {% render 'cart-summary', section_id: section.id, show_accelerated_checkout_buttons: false %}
                 </div>
               </scroll-hint>
             {%- endif -%}

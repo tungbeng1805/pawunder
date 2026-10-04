@@ -118,6 +118,14 @@
 
       <button
         type="button"
+        class="sticky-add-to-cart__scroll"
+        on:click="/scrollToVariantPicker"
+      >
+        {{- 'products.product.add_to_cart' | t -}}
+      </button>
+
+      <button
+        type="button"
         class="sticky-add-to-cart__button add-to-cart-button button"
         ref="addToCartButton"
         on:click="/handleAddToCartClick"
@@ -357,6 +365,39 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+  }
+
+  .sticky-add-to-cart__scroll {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .sticky-add-to-cart__image,
+    .sticky-add-to-cart__info,
+    .sticky-add-to-cart__price,
+    .sticky-add-to-cart__button {
+      display: none;
+    }
+
+    .sticky-add-to-cart__bar {
+      padding: 12px 16px;
+    }
+
+    .sticky-add-to-cart__scroll {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 48px;
+      border: 0;
+      border-radius: 8px;
+      background: #111;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
     }
   }
 {% endstylesheet %}

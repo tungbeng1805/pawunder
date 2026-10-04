@@ -160,6 +160,23 @@ class StickyAddToCartComponent extends Component {
 
   // Public action handlers
   /**
+   * On mobile, the sticky bar is only a shortcut back to the variant picker.
+   */
+  scrollToVariantPicker = () => {
+    const productId = this.dataset.productId;
+    const section = this.closest('.shopify-section');
+    const target =
+      section?.querySelector(`variant-picker[data-product-id="${productId}"]`) ??
+      document.querySelector(`variant-picker[data-product-id="${productId}"]`);
+
+    if (!(target instanceof HTMLElement)) return;
+
+    const headerOffset = parseFloat(getComputedStyle(document.body).getPropertyValue('--header-height')) || 0;
+    target.style.scrollMarginTop = `${headerOffset + 12}px`;
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  /**
    * Handles the add to cart button click in the sticky bar
    */
   handleAddToCartClick = async () => {

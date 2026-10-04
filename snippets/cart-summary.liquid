@@ -2,6 +2,7 @@
   Renders the cart summary totals.
 
   @param {string} [accelerated_checkout_buttons_layout] - { 'vertical' } Forced layout of the additional checkout buttons, instead of relying on platform's layout.
+  @param {boolean} [show_accelerated_checkout_buttons] - Show Shop Pay, PayPal, and other wallet buttons. Defaults to the theme setting.
   @param {string} [section_id] - The section ID for cart discount component.
 {%- enddoc -%}
 
@@ -273,7 +274,12 @@
     </span>
   </button>
 
-  {% if additional_checkout_buttons and settings.show_accelerated_checkout_buttons %}
+  {% liquid
+    if show_accelerated_checkout_buttons == nil
+      assign show_accelerated_checkout_buttons = settings.show_accelerated_checkout_buttons
+    endif
+  %}
+  {% if additional_checkout_buttons and show_accelerated_checkout_buttons %}
     <div
       class="
         additional-checkout-buttons

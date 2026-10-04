@@ -12,11 +12,12 @@
 {% unless product_resource.has_only_default_variant %}
   {% liquid
     assign selected_variant = product_resource.selected_or_first_available_variant
+    assign suggestion_variant = product_resource.variants.first
     assign image_option_names = block_settings.image_option_names | downcase | strip
     assign show_suggestion = block_settings.show_suggestion
     assign suggestion_badge = block_settings.suggestion_badge | strip
     assign suggestion_hint = ''
-    assign suggestion_title = selected_variant.title | replace: ' / ', ' • '
+    assign suggestion_title = suggestion_variant.title | replace: ' / ', ' • '
 
     if block_settings.suggestion_hints != blank
       assign hint_lines = block_settings.suggestion_hints | newline_to_br | split: '<br />'
@@ -37,7 +38,7 @@
         assign line_key = line_parts.first | strip | downcase | replace: '×', 'x' | replace: ' ', '' | replace: 'cm', ''
         assign line_value = line_parts[1] | strip
 
-        for option_value in selected_variant.options
+        for option_value in suggestion_variant.options
           assign option_key = option_value | downcase | replace: '×', 'x' | replace: ' ', '' | replace: 'cm', ''
           if option_key == line_key
             assign suggestion_hint = line_value
@@ -675,6 +676,17 @@
 
     .variant-image-picker__suggestion {
       padding: 18px 20px;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .variant-image-picker__features {
+      display: none;
+    }
+
+    .variant-image-picker__suggestion {
+      grid-template-areas: 'media content';
+      row-gap: 0;
     }
   }
 {% endstylesheet %}

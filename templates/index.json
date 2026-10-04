@@ -260,12 +260,27 @@
         "icon_color": "#1a1a1a"
       }
     },
+    "paw_everyday_essentials": {
+      "type": "paw-home-collection-rail",
+      "settings": {
+        "collection": "new-arrivals",
+        "eyebrow": "Fresh picks for your pet",
+        "heading": "Everyday essentials",
+        "description": "Comfortable, practical favourites for walks, naps, playtime and everything in between.",
+        "button_label": "Shop new arrivals",
+        "button_link": "shopify://collections/new-arrivals",
+        "products_to_show": 4,
+        "background": "#f7e8d8",
+        "accent": "#b95b26"
+      }
+    },
     "paw_hot_sale": {
       "type": "paw-promo-banners",
       "blocks": {
         "banner_cooling": {
           "type": "banner",
           "settings": {
+            "image": "shopify://shop_images/1789098187250_6205455399737755752_g1999108096142304712_62f2350686c555e3622a05e61b736c04.jpg",
             "alt": "Buy 1 Get 1 Free Pet Cooling Mat",
             "link": "shopify://products/pet-cooling-mat-dogs-cats"
           }
@@ -273,6 +288,7 @@
         "banner_gloves": {
           "type": "banner",
           "settings": {
+            "image": "shopify://shop_images/1789098187251_6205455399737755752_g1999108096142304712_fcc3cceb904a8b32a3809e402389c2ee.jpg",
             "alt": "Pet Hair Removal Gloves",
             "link": "shopify://products/reusable-pet-hair-remover-glove"
           }
@@ -280,6 +296,7 @@
         "banner_boots": {
           "type": "banner",
           "settings": {
+            "image": "shopify://shop_images/1789098187249_6205455399737755752_g1999108096142304712_e976d6a44657894668d01c18cb9140f4.jpg",
             "alt": "Where every paw under-takes adventure",
             "link": "shopify://products/waterproof-dog-boots"
           }
@@ -467,6 +484,7 @@
           ]
         }
       },
+      "disabled": true,
       "name": "Trending now",
       "settings": {
         "collection": "new-arrivals",
@@ -486,20 +504,6 @@
         "color_scheme": "scheme-1",
         "padding-block-start": 20,
         "padding-block-end": 28
-      }
-    },
-    "paw_everyday_essentials": {
-      "type": "paw-home-collection-rail",
-      "settings": {
-        "collection": "new-arrivals",
-        "eyebrow": "Fresh picks for your pet",
-        "heading": "Everyday essentials",
-        "description": "Comfortable, practical favourites for walks, naps, playtime and everything in between.",
-        "button_label": "Shop new arrivals",
-        "button_link": "shopify://collections/new-arrivals",
-        "products_to_show": 4,
-        "background": "#f7e8d8",
-        "accent": "#b95b26"
       }
     },
     "paw_playtime_picks": {
@@ -581,9 +585,9 @@
   "order": [
     "slideshow_zeFdTB",
     "paw_category_icons",
+    "paw_everyday_essentials",
     "paw_hot_sale",
     "product_list_new_arrivals",
-    "paw_everyday_essentials",
     "paw_playtime_picks",
     "paw_pet_favourites",
     "paw_trust_badges"
