@@ -24,6 +24,9 @@
 
 {% capture style %}
   --ratio: {{ ratio }};
+  {% if block_settings.image_mobile != blank and block_settings.image_ratio == 'adapt' %}
+    --mobile-ratio: {{ block_settings.image_mobile.aspect_ratio }};
+  {% endif %}
   {% render 'size-style', settings: block_settings %}
   {% render 'spacing-style', settings: block_settings %}
 {% endcapture %}
@@ -42,17 +45,42 @@
 
 {% capture image %}
   {%- if block_settings.image -%}
-    {{
-      block_settings.image
-      | image_url: width: 3840
-      | image_tag:
-        width: block_settings.image.width,
-        widths: widths,
-        height: block_settings.image.height,
-        class: 'image-block__image border-style',
-        style: image_border_style,
-        sizes: sizes
-    }}
+    {% if block_settings.image_mobile != blank %}
+      <picture>
+        <source
+          media="(max-width: 749px)"
+          srcset="{{ block_settings.image_mobile | image_url: width: 240 }} 240w,
+            {{ block_settings.image_mobile | image_url: width: 352 }} 352w,
+            {{ block_settings.image_mobile | image_url: width: 832 }} 832w,
+            {{ block_settings.image_mobile | image_url: width: 1200 }} 1200w,
+            {{ block_settings.image_mobile | image_url: width: 1600 }} 1600w"
+          sizes="{{ sizes }}"
+        >
+        {{
+          block_settings.image
+          | image_url: width: 3840
+          | image_tag:
+            width: block_settings.image.width,
+            widths: widths,
+            height: block_settings.image.height,
+            class: 'image-block__image border-style',
+            style: image_border_style,
+            sizes: sizes
+        }}
+      </picture>
+    {% else %}
+      {{
+        block_settings.image
+        | image_url: width: 3840
+        | image_tag:
+          width: block_settings.image.width,
+          widths: widths,
+          height: block_settings.image.height,
+          class: 'image-block__image border-style',
+          style: image_border_style,
+          sizes: sizes
+      }}
+    {% endif %}
   {%- else -%}
     <div class="placeholder-image border-style size-style" style="{{ image_border_style }}">
       {{ 'detailed-apparel-1' | placeholder_svg_tag: 'image-block__placeholder' }}
@@ -106,9 +134,22 @@
     height: 100%;
   }
 
+  .image-block > picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
   .image-block__image {
+    width: 100%;
     object-fit: cover;
     aspect-ratio: var(--ratio);
+  }
+
+  @media screen and (max-width: 749px) {
+    .image-block__image {
+      aspect-ratio: var(--mobile-ratio, var(--ratio));
+    }
   }
 {% endstylesheet %}
 
@@ -121,6 +162,12 @@
       "type": "image_picker",
       "id": "image",
       "label": "t:settings.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile image (optional)",
+      "info": "Displayed below 750px. Uses the main image when left empty."
     },
     {
       "type": "url",
