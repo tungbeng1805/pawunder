@@ -180,7 +180,7 @@
       "name": "t:names.slideshow_full_frame",
       "settings": {
         "display_mode": "full_frame",
-        "section_width": "page-width",
+        "section_width": "full-width",
         "full_frame_on_mobile": false,
         "slideshow_gap": 12,
         "corner_radius": 0,
