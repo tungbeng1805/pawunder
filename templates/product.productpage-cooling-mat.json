@@ -327,6 +327,10 @@
               },
               "block_order": []
             },
+            "koala_upsells_gifts_product_page_banner_iwB7RJ": {
+              "type": "shopify://apps/koala-upsells-gifts/blocks/product-page-banner/baf92dc5-8ffa-40c0-967e-57b74cddc9e3",
+              "settings": {}
+            },
             "text_aEtTtq": {
               "type": "text",
               "name": "Product description",
@@ -477,6 +481,7 @@
             "custom_liquid_cW4dFN",
             "vitals_ub_product_bundles_E96Y4E",
             "buy_buttons_eYQEYi",
+            "koala_upsells_gifts_product_page_banner_iwB7RJ",
             "text_aEtTtq",
             "custom_liquid_tXyULh",
             "accordion_tanykP"
