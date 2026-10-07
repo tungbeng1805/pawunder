@@ -74,13 +74,27 @@
     <div class="t4s-cartPage__items t4s_ratioadapt t4s-product" data-cart-items>
 
        {%- if ccount > 0 -%}
+         {%- if se_stts.enable_koloa_gift_ui != false -%}
+           {%- capture koloa_gift_keys -%}{%- render 'cart-koloa-gift-keys' -%}{%- endcapture -%}
+           {%- assign koloa_gift_keys = koloa_gift_keys | strip -%}
+         {%- else -%}
+           {%- assign koloa_gift_keys = '' -%}
+         {%- endif -%}
+
          {%- for item in cart.items -%}
-         {%- render 'cart-item-page', item: item , gift_pr_id: gift_pr_id, min_qty: min_qty, compare_tt_price: compare_tt_price, cart_change_url: cart_change_url, edit_item: edit_item, cur_code_enabled: cur_code_enabled, atc_ajax_enable: atc_ajax_enable -%}
-        {%-liquid
-            assign item_compare_price = item.variant.compare_at_price  | default: item.original_price | times: item.quantity
-            assign compare_tt_price   = compare_tt_price | plus: item_compare_price
-        -%}
-        {%- endfor -%}
+           {%- assign koloa_key_needle = item.key | append: ',' -%}
+           {%- assign is_koloa_gift_item = false -%}
+           {%- if koloa_gift_keys contains koloa_key_needle -%}
+             {%- assign is_koloa_gift_item = true -%}
+           {%- endif -%}
+           {%- render 'cart-item-page', item: item , gift_pr_id: gift_pr_id, min_qty: min_qty, compare_tt_price: compare_tt_price, cart_change_url: cart_change_url, edit_item: edit_item, cur_code_enabled: cur_code_enabled, atc_ajax_enable: atc_ajax_enable, is_koloa_gift: is_koloa_gift_item -%}
+           {%- liquid
+             assign item_compare_price = item.variant.compare_at_price | default: item.original_price | times: item.quantity
+             assign compare_tt_price = compare_tt_price | plus: item_compare_price
+           -%}
+         {%- endfor -%}
+
+         {%- render 'cart-free-gifts-ready', gift_keys: koloa_gift_keys, heading: se_stts.koloa_gift_heading -%}
 
        {%- else -%}
              <div class="t4s-mini_cart__emty t4s-text-center">
@@ -394,6 +408,23 @@
         "id": "enable_gift_wrap",
         "label": "Enable gift wrap",
         "default": true
+      },
+      {
+        "type": "header",
+        "content": "+ Koloa free gifts"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_koloa_gift_ui",
+        "label": "Group free gifts in promo box",
+        "info": "Hide items with discount title COMBO FREE GIFT and show them in a special layout.",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "koloa_gift_heading",
+        "label": "Free gifts heading",
+        "default": "🎁 Your Free Gift Is Ready!"
       },
       {
         "type": "header",

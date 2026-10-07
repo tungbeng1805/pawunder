@@ -1,0 +1,165 @@
+{%- comment -%}
+  Renders Koloa free-gift items in a grouped promo layout.
+  Accepts: gift_keys (comma-separated line item keys), heading (optional)
+{%- endcomment -%}
+{%- if gift_keys != blank -%}
+  {%- assign cfg_heading = heading | default: '🎁 Your Free Gift Is Ready!' -%}
+  {%- style -%}
+    .t4s-mini_cart__item.is--koloa-gift,
+    .t4s-page_cart__item.is--koloa-gift {
+      display: none !important;
+    }
+    .cfg {
+      margin: 12px 16px 16px;
+      color: #111;
+    }
+    .cfg__heading {
+      margin: 0 0 10px;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #111;
+    }
+    .cfg__box {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 10px;
+      padding: 12px;
+      border: 1px solid #2f5d3a;
+      border-radius: 10px;
+      background: #fff;
+    }
+    .cfg-gift {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      min-width: 0;
+    }
+    .cfg-gift__media {
+      position: relative;
+      flex: 0 0 52px;
+      width: 52px;
+      height: 52px;
+    }
+    .cfg-gift__qty {
+      position: absolute;
+      z-index: 1;
+      top: -4px;
+      left: -4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 4px;
+      border-radius: 3px;
+      background: #6b7c3a;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .cfg-gift__img,
+    .cfg-gift__media svg {
+      display: block;
+      width: 52px;
+      height: 52px;
+      object-fit: cover;
+      border-radius: 6px;
+      background: #f4f4f4;
+    }
+    .cfg-gift__info {
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+    .cfg-gift__title {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.35;
+      color: #111;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .cfg-gift__price {
+      margin: 4px 0 0;
+      font-size: 12px;
+      line-height: 1.3;
+    }
+    .cfg-gift__price-free {
+      color: #2f8f3a;
+      font-weight: 700;
+    }
+    .cfg-gift__price-was {
+      margin-inline-start: 6px;
+      color: #d32f2f;
+      text-decoration: line-through;
+      font-weight: 500;
+    }
+    .t4s-cartPage__items .cfg {
+      margin: 20px 0 10px;
+    }
+    @media (max-width: 420px) {
+      .cfg__box {
+        grid-template-columns: 1fr;
+      }
+    }
+  {%- endstyle -%}
+  <div class="cfg" data-cart-free-gifts>
+    <p class="cfg__heading">{{ cfg_heading | escape }}</p>
+    <div class="cfg__box">
+      {%- for item in cart.items -%}
+        {%- assign key_needle = item.key | append: ',' -%}
+        {%- if gift_keys contains key_needle -%}
+          {%- liquid
+            assign gift_image = item.image
+            assign gift_qty = item.quantity
+            assign gift_title = item.product.title
+            assign original_price = item.original_price
+            if item.variant.compare_at_price > original_price
+              assign original_price = item.variant.compare_at_price
+            endif
+            if settings.currency_code_enabled
+              assign money_zero = 0 | money_with_currency
+              assign money_original = original_price | money_with_currency
+            else
+              assign money_zero = 0 | money
+              assign money_original = original_price | money
+            endif
+          -%}
+          <div class="cfg-gift">
+            <div class="cfg-gift__media">
+              <span class="cfg-gift__qty" aria-hidden="true">{{ gift_qty }}</span>
+              {%- if gift_image != blank -%}
+                <img
+                  class="cfg-gift__img"
+                  src="{{ gift_image | image_url: width: 160 }}"
+                  srcset="{{ gift_image | image_url: width: 80 }} 80w, {{ gift_image | image_url: width: 160 }} 160w"
+                  sizes="52px"
+                  width="52"
+                  height="52"
+                  loading="lazy"
+                  alt="{{ gift_image.alt | default: gift_title | escape }}"
+                >
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'cfg-gift__img cfg-gift__img--placeholder' }}
+              {%- endif -%}
+            </div>
+            <div class="cfg-gift__info">
+              <p class="cfg-gift__title">{{ gift_title | escape }}</p>
+              <p class="cfg-gift__price">
+                <span class="cfg-gift__price-free">{{ money_zero }}</span>
+                {%- if original_price > 0 -%}
+                  <span class="cfg-gift__price-was">{{ money_original }}</span>
+                {%- endif -%}
+              </p>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}

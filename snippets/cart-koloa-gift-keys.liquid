@@ -1,0 +1,20 @@
+{%- comment -%}
+  Outputs comma-separated line-item keys for Koloa free gifts.
+  Matches discount title containing "COMBO FREE GIFT" (price text like (-$15.00)
+  is theme-rendered separately and is NOT part of discount_application.title).
+{%- endcomment -%}
+{%- for item in cart.items -%}
+  {%- liquid
+    assign is_koloa_gift = false
+    if item.line_level_discount_allocations != blank
+      for discount_allocation in item.line_level_discount_allocations
+        assign disc_title = discount_allocation.discount_application.title | upcase
+        if disc_title contains 'COMBO FREE GIFT'
+          assign is_koloa_gift = true
+          break
+        endif
+      endfor
+    endif
+  -%}
+  {%- if is_koloa_gift -%}{{ item.key }},{%- endif -%}
+{%- endfor -%}
