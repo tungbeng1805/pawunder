@@ -91,15 +91,12 @@
             "show_product_current": true,
             "qty_val": "0",
             "advance_label": "Choose style",
-            "advance_pr_list": [
-              "mens-long-sleeve-rash-guard",
-              "combat-hoodie",
-              "combat-long-sleeve-rashguard"
-            ]
+            "advance_pr_list": []
           }
         },
         "23551ebc-3be1-40d6-81b2-30f03478cccb": {
           "type": "img",
+          "disabled": true,
           "settings": {
             "al": "start",
             "mess": "",
