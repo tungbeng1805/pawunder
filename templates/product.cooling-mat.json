@@ -94,6 +94,39 @@
             "advance_pr_list": []
           }
         },
+        "free_gifts_eNQmKn": {
+          "type": "free_gifts",
+          "settings": {
+            "show_heading": true,
+            "heading": "Current Offer! FREE Gifts With Your Order",
+            "heading_size": 18,
+            "heading_weight": "700",
+            "free_text": "FREE",
+            "card_gap": 8,
+            "border_radius": 8,
+            "dash_color": "#f0a030",
+            "title_size": 13,
+            "title_color": "#222222",
+            "background": "#ffffff",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "image_1": "shopify://shop_images/image_2.jpg",
+            "title_1": "Free Gifts With Offer",
+            "price_1": "",
+            "show_badge_1": false,
+            "show_border_1": false,
+            "image_2": "shopify://shop_images/1791269588908_6205455399737755752_g1999108096142304712_6f018977eac0af251769c31d35802efb.jpg",
+            "title_2": "Dog hair cat grooming",
+            "price_2": "$15.00",
+            "show_badge_2": true,
+            "show_border_2": true,
+            "image_3": "shopify://shop_images/1791269589439_6205455399737755752_g1999108096142304712_eea4d68130f408f4565ba19b808fb3da.jpg",
+            "title_3": "Polyester New Fashion Pet",
+            "price_3": "$15.00",
+            "show_badge_3": true,
+            "show_border_3": true
+          }
+        },
         "23551ebc-3be1-40d6-81b2-30f03478cccb": {
           "type": "img",
           "disabled": true,
@@ -113,6 +146,7 @@
         "price_review",
         "description",
         "form",
+        "free_gifts_eNQmKn",
         "23551ebc-3be1-40d6-81b2-30f03478cccb"
       ],
       "settings": {
