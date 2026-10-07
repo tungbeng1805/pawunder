@@ -375,7 +375,7 @@
           "height": 45,
           "fontsize": 12,
           "cl": "#ffffff",
-          "bg": "#F06724",
+          "bg": "#f06724",
           "bg_op": 100,
           "close": "0",
           "cl_btn": "#ffffff",
@@ -1498,12 +1498,12 @@
         "settings": {
           "style": "1",
           "pos": "2",
-          "enable_pr": true,
-          "enable_calc_ship": true,
-          "enable_note": true,
-          "enable_rates": true,
-          "enable_discount": true,
-          "enable_gift_wrap": true,
+          "enable_pr": false,
+          "enable_calc_ship": false,
+          "enable_note": false,
+          "enable_rates": false,
+          "enable_discount": false,
+          "enable_gift_wrap": false,
           "ship_df_country": "United States"
         }
       },
