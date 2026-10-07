@@ -195,6 +195,36 @@
             "text": "Pairs well with",
             "show_complimentary": true
           }
+        },
+        "free_gifts_offer": {
+          "type": "free_gifts",
+          "settings": {
+            "show_heading": true,
+            "heading": "Current Offer! FREE Gifts With Your Order",
+            "heading_size": 18,
+            "heading_weight": "700",
+            "free_text": "FREE",
+            "card_gap": 8,
+            "border_radius": 8,
+            "dash_color": "#F0A030",
+            "title_size": 13,
+            "title_color": "#222222",
+            "background": "#ffffff",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "title_1": "Free Gifts With Offer",
+            "price_1": "",
+            "show_badge_1": false,
+            "show_border_1": false,
+            "title_2": "2 Premium Neck Pillows",
+            "price_2": "$69.99",
+            "show_badge_2": true,
+            "show_border_2": true,
+            "title_3": "Free Steering Wheel Covers",
+            "price_3": "$39.99",
+            "show_badge_3": true,
+            "show_border_3": true
+          }
         }
       },
       "block_order": [
@@ -202,6 +232,7 @@
         "price_review",
         "description",
         "form",
+        "free_gifts_offer",
         "23551ebc-3be1-40d6-81b2-30f03478cccb",
         "size_delivery_ask",
         "meta",

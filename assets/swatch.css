@@ -209,8 +209,8 @@ t4s-selector-mode__circle  */
     --sold-out-height: 2px;
 }
 .t4s-swatch.t4s-color-size__exlarge {
-    --sw-width: 48px;
-    --sw-height: 48px;
+    --sw-width: 80px;
+    --sw-height: 80px;
     --sold-out-height: 3px;
 }
 .t4s-swatch__item.is-sw__color {
