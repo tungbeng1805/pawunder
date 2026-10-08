@@ -287,7 +287,7 @@
         "image_item_mpXRWk": {
           "type": "image_item",
           "settings": {
-            "image": "shopify://shop_images/pet-cooling-mat-10_3376864a-6f11-4542-b396-fb5ec7f59062.webp",
+            "image": "shopify://shop_images/dog-boots-productpage-a1.webp",
             "link": "",
             "col_dk": "12",
             "col_tb": "12",
@@ -297,7 +297,7 @@
         "image_item_8bX4xC": {
           "type": "image_item",
           "settings": {
-            "image": "shopify://shop_images/pet-cooling-mat-09_eb689503-9b53-4638-953f-bdef7b6b32bd.webp",
+            "image": "shopify://shop_images/how_to_measure_the_paww.webp",
             "link": "",
             "col_dk": "12",
             "col_tb": "12",
@@ -307,7 +307,7 @@
         "image_item_JymnVz": {
           "type": "image_item",
           "settings": {
-            "image": "shopify://shop_images/pet-cooling-mat-08_acde69bd-8f86-414c-8be2-c9c81317acd4.webp",
+            "image": "shopify://shop_images/how_to_use.webp",
             "link": "",
             "col_dk": "12",
             "col_tb": "12",
@@ -317,7 +317,7 @@
         "image_item_ziMwcn": {
           "type": "image_item",
           "settings": {
-            "image": "shopify://shop_images/pet-cooling-mat-pawunder-homepage-banner_848abe79-640f-4b2f-90cd-30270488c05b.png",
+            "image": "shopify://shop_images/pawunder-a2.webp",
             "link": "",
             "col_dk": "12",
             "col_tb": "12",
@@ -365,6 +365,7 @@
     },
     "product-recommendations": {
       "type": "product-recommendations",
+      "disabled": true,
       "settings": {
         "show": true,
         "design_heading": "1",
@@ -419,6 +420,7 @@
     },
     "recently-viewed-products": {
       "type": "recently_viewed",
+      "disabled": true,
       "settings": {
         "show": true,
         "design_heading": "1",
