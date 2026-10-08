@@ -136,9 +136,6 @@
             <button data-quantity-selector data-increase-qty type="button" class="t4s-quantity-selector is--plus"><svg focusable="false" class="icon icon--plus" viewBox="0 0 10 10" role="presentation"><path d="M6 4h4v2H6v4H4V6H0V4h4V0h2v4z" fill="currentColor" fill-rule="evenodd"></path></svg></button>
           </div>
           {%- endif -%}
-          {%- if item_pr.has_only_default_variant == false and atc_ajax_enable -%}
-          <a href="{{ item_url }}" rel="nofollow" class="t4s-mini_cart__edit" data-action-quickshop data-edit="{{ edit_item }}" data-id="{{ qv_key }}" data-key="{{ item_key }}" data-no-instant data-id="{{ qv_key }}" data-tooltip="top-start" data-t4s-tooltip='{{ 'cart.general.edit_item' | t | escape }}'><svg viewBox="0 0 24 24" width="20" height="20"><use href="#icon-cart-edit"/></svg></a>
-          {%- endif -%}
           <a href="{{ cart_change_url }}?quantity=0&amp;id={{ item_key }}" rel="nofollow" class="t4s-mini_cart__remove" data-no-instant data-cart-remove data-id="{{ item_key }}" data-tooltip="top-start" data-t4s-tooltip='{{ 'cart.general.remove_item' | t | escape }}'><svg viewBox="0 0 24 24" width="17"><use href="#icon-cart-remove"/></svg></a>
        </div>
     </div>

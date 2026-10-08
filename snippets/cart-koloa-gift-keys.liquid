@@ -9,7 +9,7 @@
     if item.line_level_discount_allocations != blank
       for discount_allocation in item.line_level_discount_allocations
         assign disc_title = discount_allocation.discount_application.title | upcase
-        if disc_title contains 'COMBO FREE GIFT'
+        if disc_title contains 'FREE GIFT COOLING'
           assign is_koloa_gift = true
           break
         endif
