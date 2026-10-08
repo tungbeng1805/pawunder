@@ -37,8 +37,9 @@
       "block_order": [
         "8a07976b-2d4e-4066-ad3b-2d7a9e79fae0"
       ],
+      "disabled": true,
       "settings": {
-        "image": "shopify:\/\/shop_images\/bg-heading.jpg",
+        "heading_fullwidth": false,
         "use_specify_image": true,
         "parallax": false,
         "color": "#000000",
@@ -61,49 +62,44 @@
         "8b8e32c0-23d6-4b50-9356-1f707380d72f": {
           "type": "collection",
           "settings": {
-            "collection": "women",
-            "image": "shopify:\/\/shop_images\/cat-01.jpg",
-            "collection_title": "Women"
+            "collection": "best-sale",
+            "collection_title": ""
           }
         },
         "2363b965-b170-4eef-beda-9fcbd426bb8a": {
           "type": "collection",
           "settings": {
-            "collection": "frontpage",
-            "image": "shopify:\/\/shop_images\/cat-02.jpg",
-            "collection_title": "Men"
+            "collection": "birthday-pet-gifts",
+            "collection_title": ""
           }
         },
         "3cf3b5de-76cf-4462-96cd-12be5d86bd88": {
           "type": "collection",
           "settings": {
-            "collection": "accessories",
-            "image": "shopify:\/\/shop_images\/cat-03.jpg",
-            "collection_title": "Accessories"
+            "collection": "cat-mom-cat-dad-gifts",
+            "collection_title": ""
           }
         },
         "23753dbb-bdea-49f5-9599-1356f824405e": {
           "type": "collection",
           "settings": {
-            "collection": "shoes",
-            "image": "shopify:\/\/shop_images\/cat-04.jpg",
-            "collection_title": "Footwear"
+            "collection": "pet-toys",
+            "collection_title": ""
           }
         },
         "0c6c4144-65af-4492-9e04-c54bb9533523": {
           "type": "collection",
           "settings": {
-            "collection": "default",
-            "image": "shopify:\/\/shop_images\/cat-05.jpg",
-            "collection_title": "Tops"
+            "collection": "travel-outdoor",
+            "collection_title": ""
           }
         },
         "3819762b-01e1-42a2-9ff2-3a58b005b4a6": {
           "type": "collection",
           "settings": {
-            "collection": "sale",
-            "image": "shopify:\/\/shop_images\/cl13_400x_fe793a6a-c1b2-46bc-9753-c1c760ebaf52.jpg",
-            "collection_title": "Sale"
+            "collection": "pet-memorial-signs",
+            "image": "shopify://shop_images/Copy_of_382026.1.png",
+            "collection_title": ""
           }
         }
       },
@@ -116,7 +112,7 @@
         "3819762b-01e1-42a2-9ff2-3a58b005b4a6"
       ],
       "settings": {
-        "cat_design": "1",
+        "cat_design": "4",
         "title_cl": "#ffffff",
         "title_cl_hover": "#222222",
         "subtitle_cl": "#222222",
@@ -139,7 +135,7 @@
         "item_rd": 0,
         "img_effect": "zoom",
         "b_effect": "none",
-        "image_ratio": "t4s_rationt",
+        "image_ratio": "t4s_ratio1_1",
         "image_size": "t4s_cover",
         "image_position": "t4s_position_8",
         "use_pagination": "load-more",
@@ -156,6 +152,8 @@
         "cl_bg_gradient": "",
         "mg": ",,80px,",
         "pd": "",
+        "mg_tb": "",
+        "pd_tb": "",
         "mg_mb": ",,50px,",
         "pd_mb": ""
       }
