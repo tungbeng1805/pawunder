@@ -533,7 +533,7 @@
           "hover_icon": "2",
           "show_search": true,
           "show_acc": true,
-          "show_wis": true,
+          "show_wis": false,
           "cart_des": "1",
           "bg_hc": "#000000",
           "cl_hc": "#ffffff",
@@ -1937,6 +1937,7 @@
         "blocks": {
           "17949ee7-753e-4a7f-a418-7cdd4a162f89": {
             "type": "exit2",
+            "disabled": true,
             "settings": {
               "top_heading": "Wait! before you leave...",
               "sub_heading": "Get 15% off for your first order",
