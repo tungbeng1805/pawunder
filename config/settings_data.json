@@ -1441,23 +1441,6 @@
             "type": "price",
             "settings": {}
           },
-          "mini_cart-1": {
-            "type": "tax",
-            "settings": {}
-          },
-          "mini_cart-2": {
-            "type": "agree",
-            "settings": {}
-          },
-          "mini_cart-3": {
-            "type": "btnc",
-            "settings": {
-              "btn_icon": false,
-              "button_style": "default",
-              "btn_cl": "custom2",
-              "button_effect": "default"
-            }
-          },
           "mini_cart-4": {
             "type": "btnck",
             "settings": {
@@ -1465,13 +1448,6 @@
               "button_style": "default",
               "btn_cl": "primary",
               "button_effect": "default"
-            }
-          },
-          "mini_cart-5": {
-            "type": "img",
-            "settings": {
-              "svg": "amazon_payments,master,paypal,sofort,visa",
-              "height": 30
             }
           },
           "mini_cart-6": {
@@ -1488,11 +1464,7 @@
         },
         "block_order": [
           "mini_cart-0",
-          "mini_cart-1",
-          "mini_cart-2",
-          "mini_cart-3",
           "mini_cart-4",
-          "mini_cart-5",
           "mini_cart-6"
         ],
         "settings": {
@@ -1504,6 +1476,8 @@
           "enable_rates": false,
           "enable_discount": false,
           "enable_gift_wrap": false,
+          "enable_koloa_gift_ui": true,
+          "koloa_gift_heading": "🎁 Your Free Gift Is Ready!",
           "ship_df_country": "United States"
         }
       },
