@@ -768,7 +768,7 @@
           "space_elements": 0,
           "swatch_color_size": 16,
           "swatch_color_size_mb": 20,
-          "pr_btn_round": 40,
+          "pr_btn_round": 10,
           "pr_title_color": "#222222",
           "pr_title_color_hover": "#56cfe1",
           "price_color": "#696969",
@@ -1441,23 +1441,6 @@
             "type": "price",
             "settings": {}
           },
-          "mini_cart-1": {
-            "type": "tax",
-            "settings": {}
-          },
-          "mini_cart-2": {
-            "type": "agree",
-            "settings": {}
-          },
-          "mini_cart-3": {
-            "type": "btnc",
-            "settings": {
-              "btn_icon": false,
-              "button_style": "default",
-              "btn_cl": "custom2",
-              "button_effect": "default"
-            }
-          },
           "mini_cart-4": {
             "type": "btnck",
             "settings": {
@@ -1465,13 +1448,6 @@
               "button_style": "default",
               "btn_cl": "primary",
               "button_effect": "default"
-            }
-          },
-          "mini_cart-5": {
-            "type": "img",
-            "settings": {
-              "svg": "amazon_payments,master,paypal,sofort,visa",
-              "height": 30
             }
           },
           "mini_cart-6": {
@@ -1488,11 +1464,7 @@
         },
         "block_order": [
           "mini_cart-0",
-          "mini_cart-1",
-          "mini_cart-2",
-          "mini_cart-3",
           "mini_cart-4",
-          "mini_cart-5",
           "mini_cart-6"
         ],
         "settings": {
@@ -1504,6 +1476,8 @@
           "enable_rates": false,
           "enable_discount": false,
           "enable_gift_wrap": false,
+          "enable_koloa_gift_ui": true,
+          "koloa_gift_heading": "🎁 Your Free Gift Is Ready!",
           "ship_df_country": "United States"
         }
       },
@@ -1556,7 +1530,7 @@
               "enable_wishlist": true,
               "enable_compare": true,
               "btn_atc_full": false,
-              "pr_btn_round": 40,
+              "pr_btn_round": 10,
               "ani": "t4s-ani-tada",
               "time": 6,
               "btn_txt": "3",
@@ -2055,7 +2029,7 @@
               "show_qty": true,
               "enable_wishlist": true,
               "enable_compare": true,
-              "pr_btn_round": 40,
+              "pr_btn_round": 10,
               "ani": "t4s-ani-shake",
               "time": 3,
               "btn_txt": "3",

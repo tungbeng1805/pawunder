@@ -69,7 +69,7 @@
             "enable_wishlist": true,
             "enable_compare": true,
             "btn_atc_full": false,
-            "pr_btn_round": 40,
+            "pr_btn_round": 10,
             "ani": "t4s-ani-shake",
             "time": 6,
             "btn_txt": "3",

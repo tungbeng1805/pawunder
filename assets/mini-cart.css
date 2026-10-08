@@ -595,3 +595,19 @@ ul.t4s-cart_discount_price {
 .t4s-order-discount__item svg {
     width: 14px;
 }
+
+.t4s-cart__discountPrice {
+    color: red;
+}
+
+.t4s-cart__originalPrice, .t4s-cart__discountPrice {
+    font-size: 14px;
+}
+
+.tb-free-ship {
+    background-color: #F06724;
+    color: #fff;
+    border-radius: 5px;
+    padding: 3px 0;
+    text-align: center;
+}
