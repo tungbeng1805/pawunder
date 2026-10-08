@@ -185,11 +185,7 @@
         "tabs_layout_fix": "full",
         "bg": "#f6f6f8",
         "bg_mb": "#ffffff",
-        "product_list": [
-          "55up130-55-inch-4k-ultra-hd-roku-smart-led-tv",
-          "55-ku6470-6-series-uhd-crystal-colour-hdr-smart-tv",
-          "65uf850t-super-ultra-slim-hd-4k-cinema"
-        ],
+        "product_list": [],
         "sticky_mode": "2",
         "sticky_show": "2",
         "sticky_layout_mb": "minimal",
