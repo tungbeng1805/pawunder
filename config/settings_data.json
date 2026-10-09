@@ -528,7 +528,7 @@
           "bgnav": "#ffffff",
           "opnav": 100,
           "clnav": "#222222",
-          "clnav_hover": "#F06724",
+          "clnav_hover": "#f06724",
           "h_icon": "kalles",
           "hover_icon": "2",
           "show_search": true,
@@ -542,13 +542,13 @@
           "bgnavst": "#ffffff",
           "opnavst": 100,
           "clnavst": "#222222",
-          "clnavst_hover": "#F06724",
+          "clnavst_hover": "#f06724",
           "transparent_header": false,
           "space_transparent_header": false,
           "bgnavtr": "#000000",
           "opnavtr": 40,
           "clnavtr": "#ffffff",
-          "clnavtr_hover": "#F06724",
+          "clnavtr_hover": "#f06724",
           "fm_nav": "1",
           "fs_nav": 14,
           "fw_nav": 400,
@@ -2094,6 +2094,28 @@
         "type": "shopify://apps/vitals/blocks/app-embed/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
         "disabled": false,
         "settings": {}
+      },
+      "15683396631634586217": {
+        "type": "shopify://apps/inbox/blocks/chat/841fc607-4181-4ad1-842d-e24d7f8bad6b",
+        "disabled": false,
+        "settings": {
+          "greeting_message": "",
+          "show_featured_products": true,
+          "featured_products": [],
+          "background_color": "#FFFFFF",
+          "font_color": "#000000",
+          "agent_invert_activator_colors": true,
+          "button_color": "#000000",
+          "button_icon": "chat_bubble",
+          "button_text": "chat_with_us",
+          "button_horizontal_position": "bottom_right",
+          "button_vertical_position": "lowest",
+          "agent_inherit_fonts": true,
+          "agent_font": "system_ui_n4",
+          "agent_font_size": 14,
+          "agent_activator_font_size": 16,
+          "agent_border_radius": 16
+        }
       }
     }
   }
