@@ -4273,7 +4273,7 @@ em {
    pointer-events: none;
     -webkit-transform: translate3d(-104%,0,0);
     transform: translate3d(-104%,0,0);
-    z-index:999999999999999999999;
+    z-index:999999999999999999999 !important;
 }
 button[data-btn-as-a] {
     margin: 0 !important;
