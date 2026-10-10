@@ -231,7 +231,7 @@
              {%- assign button_style = bk_stts.button_style -%}
             {%- case block.type -%}
                {%- when 'price' -%}
-                  <div class="t4s-cart-total t4s-row t4s-gx-5 t4s-gy-0 t4s-align-items-start t4s-justify-content-between" {{ block.shopify_attributes }}>
+                  <div class="t4s-cart-total t4s-row t4s-gx-5 t4s-gy-0 t4s-align-items-end t4s-justify-content-between" {{ block.shopify_attributes }}>
                      <div class="t4s-col-auto"><strong>{{ 'cart.mini_cart.subtotal' | t }}</strong></div>
                      <div data-cart-prices class="t4s-col-auto t4s-text-right">
                         {%- if cart.total_discount > 0 -%}
