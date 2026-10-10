@@ -47,6 +47,53 @@
             "price_sale_color": "#ec0101"
           }
         },
+        "description": {
+          "type": "description",
+          "settings": {
+            "des": "2",
+            "text": "<p>Go kalles this summer with this vintage navy and white striped v-neck t-shirt from the Nike. Perfect for pairing with denim and white kicks for a stylish kalles vibe.</p>",
+            "readm": false,
+            "length": 31,
+            "readm_txt": "Read more",
+            "readl_txt": "Less"
+          }
+        },
+        "form": {
+          "type": "form",
+          "settings": {
+            "selector_mode": "block",
+            "color_mode": "variant_image",
+            "enable_fit_ratio_img": false,
+            "color_size": "exlarge",
+            "show_qty": true,
+            "enable_wishlist": true,
+            "enable_compare": true,
+            "btn_atc_full": false,
+            "pr_btn_round": 10,
+            "ani": "t4s-ani-shake",
+            "time": 6,
+            "btn_txt": "3",
+            "btn_icon": false,
+            "button_style": "default",
+            "button_color": "primary",
+            "button_effect": "sweep-to-top",
+            "wishlist_color": "#222222",
+            "wishlist_color_hover": "#56cfe1",
+            "wishlist_color_active": "#e81e1e",
+            "compare_color": "#222222",
+            "compare_color_hover": "#56cfe1",
+            "compare_color_active": "#222222",
+            "show_dynamic_checkout": false,
+            "btn_txt2": "3",
+            "button_color_payment": "dark",
+            "show_gift_card_recipient": true,
+            "product_list": [],
+            "show_product_current": true,
+            "qty_val": "0",
+            "advance_label": "Choose style",
+            "advance_pr_list": []
+          }
+        },
         "free_gifts_eNQmKn": {
           "type": "free_gifts",
           "settings": {
@@ -96,6 +143,8 @@
       "block_order": [
         "title",
         "price_review",
+        "description",
+        "form",
         "free_gifts_eNQmKn",
         "23551ebc-3be1-40d6-81b2-30f03478cccb"
       ],
