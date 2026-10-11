@@ -47,24 +47,6 @@
             "price_sale_color": "#ec0101"
           }
         },
-        "order_UBbBfB": {
-          "type": "order",
-          "settings": {
-            "hide_pre": false,
-            "icon": "2",
-            "icon_name": "las la-truck",
-            "ani": "none",
-            "txt": "Order in the next [hour] to get it between [date_start] and [date_end]",
-            "ds": 10,
-            "de": 15,
-            "mode": "1",
-            "cut_day": "SAT,SUN",
-            "frm_day": "t44, t45 t46",
-            "time": "16:00:00",
-            "hr": "hours",
-            "min": "minutes"
-          }
-        },
         "form": {
           "type": "form",
           "settings": {
@@ -150,7 +132,6 @@
       "block_order": [
         "title",
         "price_review",
-        "order_UBbBfB",
         "form",
         "free_gifts_eNQmKn",
         "23551ebc-3be1-40d6-81b2-30f03478cccb"
