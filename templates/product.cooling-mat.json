@@ -47,6 +47,12 @@
             "price_sale_color": "#ec0101"
           }
         },
+        "text_M4CDBe": {
+          "type": "text",
+          "settings": {
+            "text": "<p>❄️ <strong>Instant Heat Relief:</strong> Prevents overheating and heatstroke during scorching summers.<br/>🧊 <strong>Self-Cooling Technology: </strong>Automatically keeps pets cool without water or refrigeration.<br/>☁️ <strong>Orthopedic Comfort:</strong> 3D egg-crate foam for joint support.<br/>🐾 <strong>100% Chew-Safe:</strong> No toxic gels or wires, safe for pets.<br/>🧼 <strong>Grab-and-Go Design:</strong> Lightweight and foldable for cars, crates, and travel.</p>"
+          }
+        },
         "form": {
           "type": "form",
           "settings": {
@@ -132,6 +138,7 @@
       "block_order": [
         "title",
         "price_review",
+        "text_M4CDBe",
         "form",
         "free_gifts_eNQmKn",
         "23551ebc-3be1-40d6-81b2-30f03478cccb"
