@@ -189,6 +189,92 @@
         "time": 3
       }
     },
+    "vitals_3440f77d_M8nmit": {
+      "type": "vitals-3440f77d",
+      "blocks": {
+        "heading_EYmwgr": {
+          "type": "heading",
+          "settings": {
+            "heading": "Video Carousel",
+            "heading_size": "32",
+            "heading_style": "regular",
+            "description": "",
+            "description_size": "16",
+            "text_color": "#222222",
+            "text_alignment": "center"
+          }
+        },
+        "video_HfXTj7": {
+          "type": "video",
+          "settings": {
+            "video_desktop": "shopify://files/videos/FDown.vn_TikTok_Video_Downloader_d333.mp4"
+          }
+        },
+        "video_yhMP7P": {
+          "type": "video",
+          "settings": {
+            "video_desktop": "shopify://files/videos/Dog and Cat Mat Cooling Summer Pad Mat (1).mp4"
+          }
+        },
+        "video_pgjweM": {
+          "type": "video",
+          "settings": {
+            "video_desktop": "shopify://files/videos/0825(4).mp4"
+          }
+        },
+        "video_nNPMPm": {
+          "type": "video",
+          "settings": {
+            "video_desktop": "shopify://files/videos/tiktok_hd.mp4"
+          }
+        },
+        "video_fDMkrn": {
+          "type": "video",
+          "settings": {
+            "video_desktop": "shopify://files/videos/0825(5).mp4"
+          }
+        },
+        "video_jBqtpW": {
+          "type": "video",
+          "settings": {
+            "video_desktop": "shopify://files/videos/0825(6).mp4"
+          }
+        }
+      },
+      "block_order": [
+        "heading_EYmwgr",
+        "video_HfXTj7",
+        "video_yhMP7P",
+        "video_pgjweM",
+        "video_nNPMPm",
+        "video_fDMkrn",
+        "video_jBqtpW"
+      ],
+      "name": "🧡 Vitals: Video Carousel",
+      "settings": {
+        "aspect_ratio": "2/3",
+        "videos_corner_radius": 16,
+        "autoplay": true,
+        "loop": true,
+        "show_video_controls": true,
+        "controls_color": "#ffffff",
+        "controls_background_color": "#222222",
+        "videos_per_row": "5",
+        "section_background_style": "regular",
+        "section_background": "",
+        "section_gradient": "linear-gradient(#72ffb3, #fffa63)",
+        "enable_animation": false,
+        "arrows_style": "chevron",
+        "arrows_color": "#222222",
+        "section_width": 100,
+        "section_max_width": "",
+        "videos_space_between": 20,
+        "vertical_padding": 40,
+        "vertical_margin": 0,
+        "vertical_padding_mobile": 20,
+        "vertical_margin_mobile": 0
+      }
+    },
     "sidebar": {
       "type": "sidebar-product",
       "blocks": {
@@ -358,90 +444,21 @@
         "code_cus_css": ""
       }
     },
-    "vitals_3440f77d_M8nmit": {
-      "type": "vitals-3440f77d",
+    "1791704710df2545c2": {
+      "type": "apps",
       "blocks": {
-        "heading_EYmwgr": {
-          "type": "heading",
+        "vitals_product_reviews_EMXUtd": {
+          "type": "shopify://apps/vitals/blocks/product-reviews/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
           "settings": {
-            "heading": "Video Carousel",
-            "heading_size": "32",
-            "heading_style": "regular",
-            "description": "",
-            "description_size": "16",
-            "text_color": "#222222",
-            "text_alignment": "center"
-          }
-        },
-        "video_HfXTj7": {
-          "type": "video",
-          "settings": {
-            "video_desktop": "shopify://files/videos/FDown.vn_TikTok_Video_Downloader_d333.mp4"
-          }
-        },
-        "video_yhMP7P": {
-          "type": "video",
-          "settings": {
-            "video_desktop": "shopify://files/videos/Dog and Cat Mat Cooling Summer Pad Mat (1).mp4"
-          }
-        },
-        "video_pgjweM": {
-          "type": "video",
-          "settings": {
-            "video_desktop": "shopify://files/videos/0825(4).mp4"
-          }
-        },
-        "video_nNPMPm": {
-          "type": "video",
-          "settings": {
-            "video_desktop": "shopify://files/videos/tiktok_hd.mp4"
-          }
-        },
-        "video_fDMkrn": {
-          "type": "video",
-          "settings": {
-            "video_desktop": "shopify://files/videos/0825(5).mp4"
-          }
-        },
-        "video_jBqtpW": {
-          "type": "video",
-          "settings": {
-            "video_desktop": "shopify://files/videos/0825(6).mp4"
+            "hide_mock_data": false
           }
         }
       },
       "block_order": [
-        "heading_EYmwgr",
-        "video_HfXTj7",
-        "video_yhMP7P",
-        "video_pgjweM",
-        "video_nNPMPm",
-        "video_fDMkrn",
-        "video_jBqtpW"
+        "vitals_product_reviews_EMXUtd"
       ],
-      "name": "🧡 Vitals: Video Carousel",
       "settings": {
-        "aspect_ratio": "2/3",
-        "videos_corner_radius": 16,
-        "autoplay": true,
-        "loop": true,
-        "show_video_controls": true,
-        "controls_color": "#ffffff",
-        "controls_background_color": "#222222",
-        "videos_per_row": "5",
-        "section_background_style": "regular",
-        "section_background": "",
-        "section_gradient": "linear-gradient(#72ffb3, #fffa63)",
-        "enable_animation": false,
-        "arrows_style": "chevron",
-        "arrows_color": "#222222",
-        "section_width": 100,
-        "section_max_width": "",
-        "videos_space_between": 20,
-        "vertical_padding": 40,
-        "vertical_margin": 0,
-        "vertical_padding_mobile": 20,
-        "vertical_margin_mobile": 0
+        "include_margins": true
       }
     },
     "product-recommendations": {
@@ -561,6 +578,7 @@
     "vitals_3440f77d_M8nmit",
     "sidebar",
     "image_gallery_packery_WjrGeN",
+    "1791704710df2545c2",
     "product-recommendations",
     "recently-viewed-products"
   ]
