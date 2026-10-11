@@ -414,6 +414,7 @@
     },
     "recently-viewed-products": {
       "type": "recently_viewed",
+      "disabled": true,
       "settings": {
         "show": true,
         "design_heading": "1",
@@ -466,6 +467,10 @@
         "mg_mb": ",,30px,",
         "pd_mb": ""
       }
+    },
+    "17917040044faa9c44": {
+      "type": "_blocks",
+      "settings": {}
     }
   },
   "order": [
@@ -474,6 +479,7 @@
     "sidebar",
     "image_gallery_packery_WjrGeN",
     "product-recommendations",
-    "recently-viewed-products"
+    "recently-viewed-products",
+    "17917040044faa9c44"
   ]
 }
