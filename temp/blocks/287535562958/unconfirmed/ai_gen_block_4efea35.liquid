@@ -1,6 +1,340 @@
+{% doc %}
+  @prompt
+    Create a fully customizable, responsive Video Gallery section for my Shopify theme, with a modern, clean, professional e-commerce design.
+    
+    **1. Video Blocks**
+    - Each video must be an individual block that can be added, edited, reordered, duplicated, or removed in the Shopify Theme Editor.
+    - Allow uploading videos directly from Shopify Files or selecting Shopify-hosted videos.
+    - Support adding unlimited video blocks where possible.
+    - Each video block should have an optional poster/thumbnail image.
+    
+    **2. Responsive Video Grid**
+    - Allow merchants to customize the number of visible videos per row independently for each device:
+      - Desktop: 1–6 videos
+      - Tablet: 1–6 videos
+      - Mobile: 1–6 videos
+    - Provide separate range sliders in the Theme Editor for Desktop, Tablet, and Mobile.
+    - Automatically adjust the grid layout based on screen size.
+    - Allow customization of spacing/gaps between videos.
+    
+    **3. Video Aspect Ratio**
+    - Add a section setting to select the video aspect ratio:
+      - 9:16 (Portrait)
+      - 1:1 (Square)
+      - 4:3 (Landscape)
+    - All video blocks must follow the selected aspect ratio.
+    - Use object-fit: cover to maintain consistent dimensions without distortion.
+    
+    **4. Video Playback**
+    - Videos should autoplay and loop automatically.
+    - Support video audio with an option to enable or disable sound.
+    - Add a customizable mute/unmute button on each video.
+    - Since browsers may block autoplay with sound, videos should autoplay muted initially when required, with sound enabled through user interaction.
+    - Hide default browser video controls in the gallery.
+    
+    **5. Fullscreen Video Popup**
+    - When a visitor clicks on any video, open a fullscreen video popup/modal.
+    - The selected video should play in a large fullscreen viewer.
+    - Include a close (X) button in the top-right corner.
+    - Add a sound toggle and video playback controls inside the popup.
+    - Allow closing the popup by clicking outside the video or pressing ESC.
+    - Automatically pause the gallery video when its popup opens.
+    - Pause the popup video when the popup closes.
+    - Ensure the popup works smoothly on desktop, tablet, and mobile.
+    
+    **6. Section Customization**
+    Add the following settings in the Shopify Theme Editor:
+    - Section heading (optional)
+    - Section description (optional)
+    - Desktop videos per row (1–6)
+    - Tablet videos per row (1–6)
+    - Mobile videos per row (1–6)
+    - Video aspect ratio (9:16, 1:1, 4:3)
+    - Video autoplay toggle
+    - Video loop toggle
+    - Video sound toggle
+    - Video gap/spacing
+    - Section background color
+    - Section padding top and bottom
+    - Video border radius
+    
+    **7. Design Requirements**
+    - Clean, premium, modern Shopify storefront design.
+    - Responsive CSS Grid layout.
+    - Smooth hover effects.
+    - Rounded video corners with customizable radius.
+    - No unnecessary borders or decorations.
+    - Optimized for mobile shopping experiences.
+    - Avoid layout shifts while videos load.
+    
+    **8. Technical Requirements**
+    - Use Shopify Liquid, HTML, CSS, JavaScript, and valid Shopify section schema.
+    - All settings must work directly in the Shopify Theme Editor.
+    - Use Shopify video_picker settings for individual video blocks.
+    - Use native HTML5 video elements.
+    - Avoid external libraries and dependencies.
+    - Ensure compatibility with Shopify Online Store 2.0.
+    - Use unique section IDs to prevent conflicts when multiple video sections exist on the same page.
+    - Properly initialize and clean up video interactions when the section is reloaded in the Theme Editor.
+    
+    **Important:** Generate a complete, functional Shopify section with individual video blocks. Every setting must be editable in the Theme Editor without modifying code. Prioritize smooth performance, responsive behavior, and a polished storefront appearance.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-video-gallery-item-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    color: #222222;
+  }
+
+  .ai-video-gallery-item-{{ ai_gen_id }}__frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: {% if block.settings.aspect_ratio == 'portrait' %}9 / 16{% elsif block.settings.aspect_ratio == 'square' %}1 / 1{% else %}4 / 3{% endif %};
+    overflow: hidden;
+    border-radius: {{ block.settings.border_radius }}px;
+    background: #f2f2f2;
+  }
+
+  .ai-video-gallery-item-{{ ai_gen_id }}__video,
+  .ai-video-gallery-item-{{ ai_gen_id }}__poster {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-video-gallery-item-{{ ai_gen_id }}__poster {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .ai-video-gallery-item-{{ ai_gen_id }}__open {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    cursor: zoom-in;
+  }
+
+  .ai-video-gallery-item-{{ ai_gen_id }}__sound {
+    position: absolute;
+    z-index: 3;
+    right: 12px;
+    bottom: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    min-height: 42px;
+    border: 1px solid rgba(255,255,255,.35);
+    border-radius: 50%;
+    background: rgba(20,20,20,.78);
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .ai-video-gallery-item-{{ ai_gen_id }}__sound svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .ai-video-gallery-item-{{ ai_gen_id }}__button:focus-visible,
+  .ai-video-gallery-item-{{ ai_gen_id }}__sound:focus-visible,
+  .ai-video-gallery-item-{{ ai_gen_id }}__close:focus-visible,
+  .ai-video-gallery-item-{{ ai_gen_id }}__modal-sound:focus-visible {
+    outline: 3px solid #f06724;
+    outline-offset: 3px;
+  }
+
+  .ai-video-gallery-item-{{ ai_gen_id }}__modal {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(0,0,0,.92);
+  }
+
+  .ai-video-gallery-item-{{ ai_gen_id }}__modal[open] {
+    display: flex;
+  }
+
+  .ai-video-gallery-item-{{ ai_gen_id }}__modal-content {
+    position: relative;
+    width: min(100%, 1100px);
+    height: min(90vh, 900px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-video-gallery-item-{{ ai_gen_id }}__modal-video {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .ai-video-gallery-item-{{ ai_gen_id }}__close,
+  .ai-video-gallery-item-{{ ai_gen_id }}__modal-sound {
+    position: absolute;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border: 1px solid rgba(255,255,255,.5);
+    border-radius: 50%;
+    color: #fff;
+    background: rgba(20,20,20,.8);
+    cursor: pointer;
+  }
+
+  .ai-video-gallery-item-{{ ai_gen_id }}__close {
+    top: 12px;
+    right: 12px;
+    font-size: 26px;
+    line-height: 1;
+  }
+
+  .ai-video-gallery-item-{{ ai_gen_id }}__modal-sound {
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .ai-video-gallery-item-{{ ai_gen_id }}__modal-sound svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ai-video-gallery-item-{{ ai_gen_id }}__frame { scroll-behavior: auto; }
+  }
+{% endstyle %}
+
+<video-gallery-item-{{ ai_gen_id }} class="ai-video-gallery-item-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-video-gallery-item-{{ ai_gen_id }}__frame">
+    {% if block.settings.video != blank %}
+      {{ block.settings.video | video_tag: class: 'ai-video-gallery-item-' | append: ai_gen_id | append: '__video', autoplay: block.settings.autoplay, loop: block.settings.loop, muted: true, controls: false, playsinline: true, preload: 'metadata', poster: block.settings.poster | image_url: width: 1200 }}
+      {% if block.settings.poster != blank %}
+        <img class="ai-video-gallery-item-{{ ai_gen_id }}__poster" src="{{ block.settings.poster | image_url: width: 1200 }}" alt="{{ block.settings.poster.alt | escape }}" loading="lazy" width="{{ block.settings.poster.width }}" height="{{ block.settings.poster.height }}">
+      {% endif %}
+      <button class="ai-video-gallery-item-{{ ai_gen_id }}__open" type="button" aria-label="Open video in fullscreen"></button>
+      {% if block.settings.allow_sound %}
+        <button class="ai-video-gallery-item-{{ ai_gen_id }}__sound" type="button" aria-label="Turn sound on" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>
+        </button>
+      {% endif %}
+    {% else %}
+      <div class="ai-video-gallery-item-{{ ai_gen_id }}__placeholder">{{ 'image' | placeholder_svg_tag }}<span>Add a Shopify-hosted video to this block.</span></div>
+    {% endif %}
+  </div>
+  {% if block.settings.video != blank %}
+    <div class="ai-video-gallery-item-{{ ai_gen_id }}__modal" role="dialog" aria-modal="true" aria-label="Video viewer" tabindex="-1">
+      <div class="ai-video-gallery-item-{{ ai_gen_id }}__modal-content">
+        <button class="ai-video-gallery-item-{{ ai_gen_id }}__close" type="button" aria-label="Close video">×</button>
+        <video class="ai-video-gallery-item-{{ ai_gen_id }}__modal-video" controls playsinline loop {% if block.settings.poster != blank %}poster="{{ block.settings.poster | image_url: width: 1600 }}"{% endif %}></video>
+        {% if block.settings.allow_sound %}
+          <button class="ai-video-gallery-item-{{ ai_gen_id }}__modal-sound" type="button" aria-label="Turn sound on" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg>
+          </button>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+</video-gallery-item-{{ ai_gen_id }}>
+
+<script>
+  (() => {
+    const tag = 'video-gallery-item-{{ ai_gen_id }}';
+    if (customElements.get(tag)) return;
+    class VideoGalleryItem extends HTMLElement {
+      connectedCallback() {
+        this.preview = this.querySelector('.ai-video-gallery-item-{{ ai_gen_id }}__video');
+        this.modal = this.querySelector('.ai-video-gallery-item-{{ ai_gen_id }}__modal');
+        this.viewer = this.querySelector('.ai-video-gallery-item-{{ ai_gen_id }}__modal-video');
+        this.soundButtons = this.querySelectorAll('.ai-video-gallery-item-{{ ai_gen_id }}__sound, .ai-video-gallery-item-{{ ai_gen_id }}__modal-sound');
+        if (!this.preview || !this.modal || !this.viewer) return;
+        this.source = this.preview.querySelector('source');
+        this.sourceUrl = this.source ? this.source.src : this.preview.currentSrc;
+        this.onOpen = () => this.openViewer();
+        this.onClose = () => this.closeViewer();
+        this.onKey = (event) => { if (event.key === 'Escape' && this.modal.hasAttribute('open')) this.closeViewer(); };
+        this.querySelector('.ai-video-gallery-item-{{ ai_gen_id }}__open')?.addEventListener('click', this.onOpen);
+        this.querySelector('.ai-video-gallery-item-{{ ai_gen_id }}__close')?.addEventListener('click', this.onClose);
+        this.modal.addEventListener('click', (event) => { if (event.target === this.modal) this.closeViewer(); });
+        this.soundButtons.forEach((button) => button.addEventListener('click', () => this.toggleSound()));
+        document.addEventListener('keydown', this.onKey);
+        this.poster = this.querySelector('.ai-video-gallery-item-{{ ai_gen_id }}__poster');
+        if (this.preview.autoplay) {
+          const promise = this.preview.play();
+          if (promise && promise.catch) promise.catch(() => {});
+        }
+        this.preview.addEventListener('playing', () => { if (this.poster) this.poster.hidden = true; });
+      }
+      openViewer() {
+        this.preview.pause();
+        if (!this.viewer.src && this.sourceUrl) this.viewer.src = this.sourceUrl;
+        this.viewer.muted = !{{ block.settings.allow_sound | json }};
+        this.modal.setAttribute('open', '');
+        document.documentElement.style.overflow = 'hidden';
+        this.viewer.play().catch(() => {});
+        this.querySelector('.ai-video-gallery-item-{{ ai_gen_id }}__close')?.focus();
+      }
+      closeViewer() {
+        if (!this.modal.hasAttribute('open')) return;
+        this.viewer.pause();
+        this.modal.removeAttribute('open');
+        document.documentElement.style.overflow = '';
+        if (this.preview.autoplay) this.preview.play().catch(() => {});
+        this.querySelector('.ai-video-gallery-item-{{ ai_gen_id }}__open')?.focus();
+      }
+      toggleSound() {
+        const muted = !this.viewer.muted;
+        this.viewer.muted = muted;
+        this.preview.muted = muted;
+        this.soundButtons.forEach((button) => {
+          button.setAttribute('aria-pressed', String(!muted));
+          button.setAttribute('aria-label', muted ? 'Turn sound on' : 'Mute video');
+        });
+      }
+      disconnectedCallback() {
+        document.removeEventListener('keydown', this.onKey);
+        this.preview?.pause();
+        this.viewer?.pause();
+      }
+    }
+    customElements.define(tag, VideoGalleryItem);
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Video gallery item",
+  "settings": [
+    { "type": "video", "id": "video", "label": "Shopify-hosted video" },
+    { "type": "image_picker", "id": "poster", "label": "Poster image" },
+    { "type": "select", "id": "aspect_ratio", "label": "Aspect ratio", "options": [{ "value": "portrait", "label": "9:16 portrait" }, { "value": "square", "label": "1:1 square" }, { "value": "landscape", "label": "4:3 landscape" }], "default": "square" },
+    { "type": "checkbox", "id": "autoplay", "label": "Autoplay", "default": true },
+    { "type": "checkbox", "id": "loop", "label": "Loop", "default": true },
+    { "type": "checkbox", "id": "allow_sound", "label": "Allow sound toggle", "default": true },
+    { "type": "range", "id": "border_radius", "label": "Corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "desktop_width_percent", "label": "Desktop width", "min": 50, "max": 100, "step": 5, "unit": "%", "default": 100 }
+  ],
+  "presets": [{ "name": "Video gallery item" }],
+  "tag": null,
+  "class": "video-gallery-item-block"
+}
 {% endschema %}
