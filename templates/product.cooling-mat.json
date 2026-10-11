@@ -509,11 +509,15 @@
         },
         "video_fDMkrn": {
           "type": "video",
-          "settings": {}
+          "settings": {
+            "video_desktop": "shopify://files/videos/0825(5).mp4"
+          }
         },
         "video_jBqtpW": {
           "type": "video",
-          "settings": {}
+          "settings": {
+            "video_desktop": "shopify://files/videos/0825(6).mp4"
+          }
         }
       },
       "block_order": [
