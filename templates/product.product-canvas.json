@@ -42,11 +42,11 @@
           "type": "properties",
           "settings": {
             "type": "file",
-            "heading": "Your name",
+            "heading": "Image custom",
             "des": "Description",
             "color_des": "#222222",
             "options": "option1, option2",
-            "required": false,
+            "required": true,
             "show_at_checkout": true,
             "visibility": "all",
             "collection_based": [],
