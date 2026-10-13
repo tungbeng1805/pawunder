@@ -106,79 +106,6 @@
             "svg": "amazon_payments,american_express,apple_pay,bitcoin,google_pay,jcb,master,paypal,shopify_pay,sofort,visa",
             "height": 30
           }
-        },
-        "size_delivery_ask": {
-          "type": "size_delivery_ask",
-          "settings": {
-            "size_chart": "3",
-            "pos_sizeg": "1",
-            "sc_type": "1",
-            "page": "size-chart",
-            "size_ck": "",
-            "delivery": true,
-            "page_dr": "delivery-return",
-            "ask": true,
-            "phone": true
-          }
-        },
-        "95d4f334-8ea7-4cd2-b609-2373b1e848b8": {
-          "type": "tab_des",
-          "settings": {
-            "title": "Description"
-          }
-        },
-        "e36839f5-0847-44e2-97d3-2885597bd1ff": {
-          "type": "tab_add",
-          "settings": {
-            "title": "Additional Information"
-          }
-        },
-        "754ad4a0-7308-4a3e-b325-e2f2c0b85d4c": {
-          "type": "tab_html",
-          "settings": {
-            "title": "Custom tab",
-            "content": "",
-            "page": "wash-care"
-          }
-        },
-        "56e67368-7424-4d73-8f14-dacdda4c59be": {
-          "type": "tab_rivui",
-          "settings": {
-            "title": "Reviews",
-            "review_liquid": ""
-          }
-        },
-        "94011ade-ec25-4d68-b37a-70660ede49dd": {
-          "type": "social",
-          "settings": {
-            "socials_align": "start",
-            "social_mode": "2",
-            "social_style": "1",
-            "social_size": "extra_small",
-            "bd_radius": 0,
-            "use_color_set": true,
-            "icon_cl": "#222222",
-            "bg_cl": "#00badb",
-            "space_h_item": "20",
-            "space_v_item": "5",
-            "space_h_item_mb": "20",
-            "space_v_item_mb": "4"
-          }
-        },
-        "bded529b-9b8f-4d5c-8f04-5de0b22e627d": {
-          "type": "tab_html",
-          "settings": {
-            "title": "Collapsible tab",
-            "content": "",
-            "page": ""
-          }
-        },
-        "complimentary_products_j9adkH": {
-          "type": "complimentary_products",
-          "settings": {
-            "text": "Pairs well with",
-            "show_complimentary": true
-          }
         }
       },
       "block_order": [
@@ -186,15 +113,7 @@
         "price_review",
         "properties_JmBNki",
         "form",
-        "23551ebc-3be1-40d6-81b2-30f03478cccb",
-        "size_delivery_ask",
-        "95d4f334-8ea7-4cd2-b609-2373b1e848b8",
-        "e36839f5-0847-44e2-97d3-2885597bd1ff",
-        "754ad4a0-7308-4a3e-b325-e2f2c0b85d4c",
-        "56e67368-7424-4d73-8f14-dacdda4c59be",
-        "94011ade-ec25-4d68-b37a-70660ede49dd",
-        "bded529b-9b8f-4d5c-8f04-5de0b22e627d",
-        "complimentary_products_j9adkH"
+        "23551ebc-3be1-40d6-81b2-30f03478cccb"
       ],
       "settings": {
         "pr_layout": "default",
@@ -233,11 +152,7 @@
         "tabs_layout_fix": "full",
         "bg": "#f6f6f8",
         "bg_mb": "#ffffff",
-        "product_list": [
-          "55up130-55-inch-4k-ultra-hd-roku-smart-led-tv",
-          "55-ku6470-6-series-uhd-crystal-colour-hdr-smart-tv",
-          "65uf850t-super-ultra-slim-hd-4k-cinema"
-        ],
+        "product_list": [],
         "sticky_mode": "2",
         "sticky_show": "2",
         "sticky_layout_mb": "minimal",
