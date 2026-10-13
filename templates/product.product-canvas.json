@@ -9,14 +9,6 @@
  */
 {
   "sections": {
-    "breadcrumb": {
-      "type": "brc-nav-product",
-      "settings": {
-        "back_next_pr": true,
-        "cl_bg": "#f6f6f6",
-        "cl_link": "#222222"
-      }
-    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -46,21 +38,27 @@
             "price_sale_color": "#ec0101"
           }
         },
-        "description": {
-          "type": "description",
+        "properties_JmBNki": {
+          "type": "properties",
           "settings": {
-            "des": "2",
-            "text": "<p>Go kalles this summer with this vintage navy and white striped v-neck t-shirt from the Nike. Perfect for pairing with denim and white kicks for a stylish kalles vibe.</p>",
-            "readm": false,
-            "length": 31,
-            "readm_txt": "Read more",
-            "readl_txt": "Less"
+            "type": "file",
+            "heading": "Your name",
+            "des": "Description",
+            "color_des": "#222222",
+            "options": "option1, option2",
+            "required": false,
+            "show_at_checkout": true,
+            "visibility": "all",
+            "collection_based": [],
+            "type_based": "",
+            "tag_based": "",
+            "product_based": []
           }
         },
         "form": {
           "type": "form",
           "settings": {
-            "selector_mode": "circle",
+            "selector_mode": "dropdown",
             "color_mode": "color is-sw-cl__round",
             "enable_fit_ratio_img": false,
             "color_size": "medium",
@@ -121,19 +119,6 @@
             "page_dr": "delivery-return",
             "ask": true,
             "phone": true
-          }
-        },
-        "meta": {
-          "type": "meta",
-          "settings": {
-            "show_options": false,
-            "show_vendor": false,
-            "show_type": false,
-            "show_sku": true,
-            "show_barcode": false,
-            "show_available": true,
-            "show_category": true,
-            "show_tags": true
           }
         },
         "95d4f334-8ea7-4cd2-b609-2373b1e848b8": {
@@ -199,11 +184,10 @@
       "block_order": [
         "title",
         "price_review",
-        "description",
+        "properties_JmBNki",
         "form",
         "23551ebc-3be1-40d6-81b2-30f03478cccb",
         "size_delivery_ask",
-        "meta",
         "95d4f334-8ea7-4cd2-b609-2373b1e848b8",
         "e36839f5-0847-44e2-97d3-2885597bd1ff",
         "754ad4a0-7308-4a3e-b325-e2f2c0b85d4c",
@@ -460,7 +444,6 @@
     }
   },
   "order": [
-    "breadcrumb",
     "main",
     "sidebar",
     "product-recommendations",
