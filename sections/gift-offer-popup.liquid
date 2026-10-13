@@ -1,0 +1,109 @@
+{%- liquid
+  assign bogo_product = section.settings.bogo_product
+  assign combo_product_1 = section.settings.combo_product_1
+  assign combo_product_2 = section.settings.combo_product_2
+  assign bogo_available = false
+  assign combo_available = false
+  if bogo_product != blank and bogo_product.selected_or_first_available_variant != blank
+    assign bogo_available = true
+  endif
+  if combo_product_1 != blank and combo_product_1.selected_or_first_available_variant != blank and combo_product_2 != blank and combo_product_2.selected_or_first_available_variant != blank
+    assign combo_available = true
+  endif
+  assign show_popup = false
+  if section.settings.enable
+    if bogo_available
+      assign show_popup = true
+    elsif combo_available
+      assign show_popup = true
+    endif
+  endif
+-%}
+
+{%- if show_popup -%}
+  {{ 'gift-offer-popup.css' | asset_url | stylesheet_tag }}
+
+  <div
+    id="GiftOfferPopup-{{ section.id }}"
+    class="gift-offer-popup"
+    data-gift-offer-popup
+    data-section-id="{{ section.id }}"
+    aria-hidden="true"
+    hidden
+  >
+    <div class="gift-offer-popup__backdrop" data-gift-offer-close></div>
+    <div class="gift-offer-popup__dialog" role="dialog" aria-modal="true" aria-labelledby="GiftOfferTitle-{{ section.id }}">
+      <button type="button" class="gift-offer-popup__close" data-gift-offer-close aria-label="Close">×</button>
+      <h2 id="GiftOfferTitle-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.subheading != blank -%}<p class="gift-offer-popup__subheading">{{ section.settings.subheading | escape }}</p>{%- endif -%}
+
+      <div class="gift-offer-popup__choices" role="radiogroup" aria-label="Offer choices">
+        {%- if bogo_available -%}
+          <label class="gift-offer-popup__choice is-selected">
+            <input type="radio" name="gift-offer-{{ section.id }}" value="bogo" checked>
+            <span class="gift-offer-popup__choice-content">
+              <span class="gift-offer-popup__choice-title">{{ section.settings.bogo_label | escape }}</span>
+              <span class="gift-offer-popup__products">
+                {%- if bogo_product.featured_image -%}<img src="{{ bogo_product.featured_image | image_url: width: 120 }}" alt="{{ bogo_product.featured_image.alt | default: bogo_product.title | escape }}" width="60" height="60" loading="lazy">{%- endif -%}
+                <span>{{ bogo_product.title | escape }}</span>
+              </span>
+            </span>
+          </label>
+        {%- endif -%}
+
+        {%- if combo_available -%}
+          <label class="gift-offer-popup__choice{% unless bogo_available %} is-selected{% endunless %}">
+            <input type="radio" name="gift-offer-{{ section.id }}" value="combo"{% unless bogo_available %} checked{% endunless %}>
+            <span class="gift-offer-popup__choice-content">
+              <span class="gift-offer-popup__choice-title">{{ section.settings.combo_label | escape }}</span>
+              <span class="gift-offer-popup__products">
+                <span class="gift-offer-popup__product">
+                  {%- if combo_product_1.featured_image -%}<img src="{{ combo_product_1.featured_image | image_url: width: 120 }}" alt="{{ combo_product_1.featured_image.alt | default: combo_product_1.title | escape }}" width="60" height="60" loading="lazy">{%- endif -%}
+                  <span>{{ combo_product_1.title | escape }}</span>
+                </span>
+                <span class="gift-offer-popup__product">
+                  {%- if combo_product_2.featured_image -%}<img src="{{ combo_product_2.featured_image | image_url: width: 120 }}" alt="{{ combo_product_2.featured_image.alt | default: combo_product_2.title | escape }}" width="60" height="60" loading="lazy">{%- endif -%}
+                  <span>{{ combo_product_2.title | escape }}</span>
+                </span>
+              </span>
+            </span>
+          </label>
+        {%- endif -%}
+      </div>
+
+      <p class="gift-offer-popup__error" data-gift-offer-error role="alert" hidden></p>
+      <button type="button" class="gift-offer-popup__pick" data-gift-offer-pick>{{ section.settings.button_label | escape }}</button>
+    </div>
+
+    <script type="application/json" data-gift-offer-config>
+      {
+        "bogo": {% if bogo_available %}[{"id": {{ bogo_product.selected_or_first_available_variant.id | json }}, "quantity": 1, "properties": {"FREE GIFT": "true"}}]{% else %}[]{% endif %},
+        "combo": {% if combo_available %}[{"id": {{ combo_product_1.selected_or_first_available_variant.id | json }}, "quantity": 1, "properties": {"FREE GIFT": "true"}}, {"id": {{ combo_product_2.selected_or_first_available_variant.id | json }}, "quantity": 1, "properties": {"FREE GIFT": "true"}}]{% else %}[]{% endif %}
+      }
+    </script>
+  </div>
+
+  <script src="{{ 'gift-offer-popup.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Gift offer popup",
+  "tag": "section",
+  "class": "gift-offer-popup-section",
+  "settings": [
+    { "type": "checkbox", "id": "enable", "label": "Enable popup", "default": true },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Choose your offer" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Select an offer before adding to cart." },
+    { "type": "header", "content": "Buy 1 Get 1" },
+    { "type": "text", "id": "bogo_label", "label": "Option label", "default": "Buy 1, get 1 free" },
+    { "type": "product", "id": "bogo_product", "label": "Gift product" },
+    { "type": "header", "content": "Two-product combo" },
+    { "type": "text", "id": "combo_label", "label": "Option label", "default": "Get the 2-product combo" },
+    { "type": "product", "id": "combo_product_1", "label": "Combo product 1" },
+    { "type": "product", "id": "combo_product_2", "label": "Combo product 2" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Pick gift" }
+  ],
+  "presets": [{ "name": "Gift offer popup" }]
+}
+{% endschema %}

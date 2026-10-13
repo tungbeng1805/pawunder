@@ -122,7 +122,18 @@
               {%- if item.line_level_discount_allocations != blank -%}
                  <ul class="t4s-cart_discount_price">
                     {%- for discount_allocation in item.line_level_discount_allocations -%}
-                      <li class="t4s-order-discount__item"><svg viewBox="0 0 24 24" width="20"><use href="#icon-cart-tag"/></svg> {{ discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money }})</li>
+                      {%- liquid
+                        assign discount_title = discount_allocation.discount_application.title | upcase
+                        assign offer_type = item.properties['_Gift offer type']
+                        assign is_gift_line = item.properties['FREE GIFT']
+                      -%}
+                      <li class="t4s-order-discount__item"><svg viewBox="0 0 24 24" width="20"><use href="#icon-cart-tag"/></svg>
+                        {%- if is_gift_line == blank and discount_title contains 'BUY 1 GET 1 FREE' and offer_type != blank -%}
+                          {%- if offer_type == 'combo' -%}BUY 2 GET 2 FREE{%- else -%}BUY 1 GET 1 FREE{%- endif -%}
+                        {%- else -%}
+                          {{ discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money }})
+                        {%- endif -%}
+                      </li>
                     {%- endfor -%}
                  </ul>
               {%- endif -%}

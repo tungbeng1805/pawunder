@@ -1,0 +1,20 @@
+.gift-offer-popup[hidden] { display: none !important; }
+.gift-offer-popup { position: fixed; z-index: 100001; inset: 0; display: grid; place-items: center; padding: 20px; }
+.gift-offer-popup__backdrop { position: absolute; inset: 0; background: rgba(0, 0, 0, .52); }
+.gift-offer-popup__dialog { position: relative; width: min(100%, 520px); max-height: calc(100vh - 40px); overflow: auto; padding: 30px; border-radius: 12px; background: #fff; box-shadow: 0 20px 60px rgba(0,0,0,.25); color: #222; }
+.gift-offer-popup__dialog h2 { margin: 0 28px 8px 0; font-size: 24px; line-height: 1.25; }
+.gift-offer-popup__subheading { margin: 0 0 20px; color: #666; }
+.gift-offer-popup__close { position: absolute; top: 14px; right: 16px; border: 0; background: transparent; color: #222; font-size: 30px; line-height: 1; cursor: pointer; }
+.gift-offer-popup__choices { display: grid; gap: 10px; }
+.gift-offer-popup__choice { display: block; cursor: pointer; }
+.gift-offer-popup__choice input { position: absolute; opacity: 0; pointer-events: none; }
+.gift-offer-popup__choice-content { display: block; padding: 14px; border: 1px solid #ddd; border-radius: 8px; transition: border-color .2s, box-shadow .2s; }
+.gift-offer-popup__choice.is-selected .gift-offer-popup__choice-content { border-color: #111; box-shadow: 0 0 0 1px #111; }
+.gift-offer-popup__choice-title { display: block; margin-bottom: 10px; font-weight: 700; }
+.gift-offer-popup__products { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 14px; }
+.gift-offer-popup__product { display: inline-flex; align-items: center; gap: 7px; }
+.gift-offer-popup__products img { width: 48px; height: 48px; border-radius: 5px; object-fit: cover; }
+.gift-offer-popup__pick { width: 100%; margin-top: 20px; padding: 14px 18px; border: 0; border-radius: 6px; background: #111; color: #fff; font-weight: 700; cursor: pointer; }
+.gift-offer-popup__pick:disabled { opacity: .65; cursor: wait; }
+.gift-offer-popup__error { margin: 14px 0 0; color: #c00; }
+@media (max-width: 480px) { .gift-offer-popup__dialog { padding: 24px 18px; } }
