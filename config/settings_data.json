@@ -58,6 +58,7 @@
     "enable_shadow_round_img": true,
     "pr_curent": "3",
     "use_group_media": true,
+    "show_first_media": true,
     "use_change_variant_by_img": true,
     "enable_his": true,
     "variant_remove": "2",

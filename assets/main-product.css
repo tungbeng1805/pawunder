@@ -57,6 +57,27 @@
 .t4s-product-form__submit.is--disabled {
   opacity: .5;
 } 
+
+/* Show the option value below image-based variant swatches on product pages. */
+.t4s-main-product__content .t4s-color-mode__variant_image .t4s-swatch__item.is-sw__color {
+  position: relative;
+  margin-bottom: 27px;
+  overflow: visible;
+}
+.t4s-main-product__content .t4s-color-mode__variant_image .t4s-swatch__item.is-sw__color::after {
+  content: attr(data-value);
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--secondary-sw-color);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
 .is-no-pick__true .t4s-product-price {
     display: none;
 }
@@ -665,6 +686,8 @@ button.t4s-product-form__submit[disabled="disabled"]{
   color: var(--price-sale-color);
   margin-left: 6px;
   display: inline-block;
+  font-size: 24px;
+  font-weight: 600;
 }
 .t4s-product__info-container .t4s-product-price .t4s-labrl-sale span {
   font-size: 14px;
