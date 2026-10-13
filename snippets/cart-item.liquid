@@ -147,7 +147,7 @@
             <button data-quantity-selector data-increase-qty type="button" class="t4s-quantity-selector is--plus"><svg focusable="false" class="icon icon--plus" viewBox="0 0 10 10" role="presentation"><path d="M6 4h4v2H6v4H4V6H0V4h4V0h2v4z" fill="currentColor" fill-rule="evenodd"></path></svg></button>
           </div>
           {%- endif -%}
-          <a href="{{ cart_change_url }}?quantity=0&amp;id={{ item_key }}" rel="nofollow" class="t4s-mini_cart__remove" data-no-instant data-cart-remove data-id="{{ item_key }}" data-tooltip="top-start" data-t4s-tooltip='{{ 'cart.general.remove_item' | t | escape }}'><svg viewBox="0 0 24 24" width="17"><use href="#icon-cart-remove"/></svg></a>
+          <a href="{{ cart_change_url }}?quantity=0&amp;id={{ item_key }}" rel="nofollow" class="t4s-mini_cart__remove" data-no-instant data-cart-remove{% if item.properties['_Gift offer type'] != blank and item.properties['FREE GIFT'] == blank %} data-gift-offer-main{% endif %} data-id="{{ item_key }}" data-tooltip="top-start" data-t4s-tooltip='{{ 'cart.general.remove_item' | t | escape }}'><svg viewBox="0 0 24 24" width="17"><use href="#icon-cart-remove"/></svg></a>
        </div>
     </div>
  </div>

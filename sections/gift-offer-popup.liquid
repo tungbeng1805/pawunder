@@ -86,6 +86,9 @@
   <script src="{{ 'gift-offer-popup.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
+{%- comment -%}Remove existing gift offers even when the popup is disabled.{%- endcomment -%}
+<script src="{{ 'gift-offer-cart.js' | asset_url }}" defer="defer"></script>
+
 {% schema %}
 {
   "name": "Gift offer popup",

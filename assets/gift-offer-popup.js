@@ -5,6 +5,7 @@
   let pendingForm = null;
   let activePopup = null;
   let lastTrigger = null;
+  let addingOffer = false;
 
   const getPopup = () => document.querySelector('[data-gift-offer-popup]');
   const getConfig = popup => {
@@ -12,17 +13,25 @@
     catch (_) { return {}; }
   };
 
-  const closePopup = () => {
+  const cartIsOpen = () => {
+    const drawer = document.querySelector('#t4s-mini_cart');
+    return drawer && drawer.getAttribute('aria-hidden') === 'false';
+  };
+
+  const closePopup = (restoreFocus = true) => {
     if (!activePopup) return;
+    const trigger = lastTrigger;
     activePopup.hidden = true;
     activePopup.setAttribute('aria-hidden', 'true');
     document.documentElement.classList.remove('gift-offer-popup-open');
-    lastTrigger && lastTrigger.focus();
     activePopup = null;
     pendingForm = null;
+    lastTrigger = null;
+    if (restoreFocus && trigger) trigger.focus();
   };
 
   const openPopup = (form, trigger) => {
+    if (addingOffer || cartIsOpen()) return;
     const popup = getPopup();
     if (!popup) return;
     pendingForm = form;
@@ -70,6 +79,9 @@
     if (!form || !getPopup()) return;
     event.preventDefault();
     event.stopImmediatePropagation();
+    // Theme/app callbacks may replay ATC after the gift request finishes.
+    // Only a fresh customer click can start another offer selection.
+    if (event.isTrusted === false || addingOffer || cartIsOpen()) return;
     openPopup(form, button);
   }, true);
 
@@ -81,6 +93,8 @@
     if (!getPopup()) return;
     event.preventDefault();
     event.stopImmediatePropagation();
+    const activation = window.navigator && window.navigator.userActivation;
+    if (event.isTrusted === false || addingOffer || cartIsOpen() || (activation && !activation.isActive)) return;
     openPopup(form, submitter || form.querySelector('[data-atc-form], [name="add"]'));
   }, true);
 
@@ -96,6 +110,10 @@
     }
     const pickButton = event.target.closest('[data-gift-offer-pick]');
     if (!pickButton || !pendingForm) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    if (addingOffer || pickButton.disabled) return;
+    addingOffer = true;
 
     const error = popup.querySelector('[data-gift-offer-error]');
     const selected = popup.querySelector('input[type="radio"]:checked');
@@ -105,7 +123,13 @@
       // This private property is only for the cart label. It is not the
       // FREE GIFT marker, which remains exclusive to gift line items.
       mainItem.properties['_Gift offer type'] = selected.value;
-      const items = [mainItem].concat(config[selected.value] || []);
+      // A distinct group also prevents gifts from separate offers merging.
+      const group = window.crypto && window.crypto.randomUUID ? window.crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+      mainItem.properties['_Gift offer group'] = group;
+      const gifts = (config[selected.value] || []).map(item => ({
+        ...item, properties: { ...item.properties, '_Gift offer group': group }
+      }));
+      const items = [mainItem].concat(gifts);
       pickButton.disabled = true;
       const response = await fetch(window.T4Sroutes ? window.T4Sroutes.cart_add_url + '.js' : '/cart/add.js', {
         method: 'POST', credentials: 'same-origin',
@@ -119,7 +143,8 @@
         throw new Error(data.description || 'Could not add the selected offer to cart.');
       }
       const data = await response.json();
-      closePopup();
+      // The drawer takes focus after success; do not focus the ATC trigger.
+      closePopup(false);
       if (data.sections && window.T4SThemeSP && window.T4SThemeSP.Cart && window.T4SThemeSP.Cart.renderContents) {
         window.T4SThemeSP.Cart.renderContents(data.sections);
         if (window.jQuery_T4NT) window.jQuery_T4NT(document).trigger('cart:updated').trigger('add:cart:success');
@@ -132,6 +157,7 @@
       error.textContent = message.message || 'Could not add the selected offer to cart.';
       error.hidden = false;
     } finally {
+      addingOffer = false;
       pickButton.disabled = false;
     }
   });
