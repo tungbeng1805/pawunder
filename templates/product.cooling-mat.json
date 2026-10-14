@@ -577,6 +577,23 @@
         "mg_mb": ",,30px,",
         "pd_mb": ""
       }
+    },
+    "gift_offer_popup_pmKcwd": {
+      "type": "gift-offer-popup",
+      "name": "Gift offer popup",
+      "settings": {
+        "enable": true,
+        "heading": "Choose your offer",
+        "subheading": "Select an offer before adding to cart.",
+        "bogo_label": "Buy 1, get 1 free",
+        "bogo_product": "pet-cooling-mat-dogs-cats",
+        "bogo_image": "shopify://shop_images/1791960833363_6205455399737755752_g1999108096142304712_a04d7c59523eb81d6685718fb4b6c8e9.jpg",
+        "combo_label": "Get the 2-product combo",
+        "combo_product_1": "pet-comb-teddy-knot-opening-special-brush-dog-hair-cat-grooming",
+        "combo_product_2": "polyester-new-fashion-pet-bell-decorative-collar-for-cats-japanese-style-simple-design-halloween-christmas-cross-border-hot-sale",
+        "combo_image": "shopify://shop_images/1791963716977_6205455399737755752_g1999108096142304712_1784584e158857825aa10139791441b4.jpg",
+        "button_label": "Add to Cart with Selected Offer"
+      }
     }
   },
   "order": [
@@ -587,6 +604,7 @@
     "image_gallery_packery_WjrGeN",
     "1791704710df2545c2",
     "product-recommendations",
-    "recently-viewed-products"
+    "recently-viewed-products",
+    "gift_offer_popup_pmKcwd"
   ]
 }
