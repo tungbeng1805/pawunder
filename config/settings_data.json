@@ -2050,11 +2050,6 @@
     },
     "content_for_index": [],
     "blocks": {
-      "6770548097779500122": {
-        "type": "shopify://apps/koala-upsells-gifts/blocks/gifts-embed/baf92dc5-8ffa-40c0-967e-57b74cddc9e3",
-        "disabled": false,
-        "settings": {}
-      },
       "5134484470793087125": {
         "type": "shopify://apps/vitals/blocks/app-embed/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
         "disabled": false,
@@ -2081,6 +2076,11 @@
           "agent_activator_font_size": 16,
           "agent_border_radius": 16
         }
+      },
+      "6770548097779500122": {
+        "type": "shopify://apps/koala-upsells-gifts/blocks/gifts-embed/baf92dc5-8ffa-40c0-967e-57b74cddc9e3",
+        "disabled": true,
+        "settings": {}
       }
     }
   }
