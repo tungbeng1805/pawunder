@@ -103,6 +103,58 @@ test('duplicate clicks do not send overlapping cart mutations', async () => {
   assert.equal(ctx.requests.length, 2);
 });
 
+test('quantity button keeps every grouped gift in sync with a 1–2 offer', async () => {
+  const listeners = [];
+  const requests = [];
+  const rendered = [];
+  const cart = {
+    items: [
+      main('main', 'group-a', 'combo'),
+      gift('gift-a', 'group-a', 20),
+      gift('gift-b', 'group-a', 30),
+      main('other', 'group-b'),
+      gift('other-gift', 'group-b')
+    ]
+  };
+  const wrapperClasses = new Set();
+  const wrapper = { classList: { add: item => wrapperClasses.add(item), remove: item => wrapperClasses.delete(item) } };
+  const input = {
+    value: '1', dataset: { id: 'main' },
+    getAttribute: attribute => ({ step: '1', min: '1', max: '9999' })[attribute],
+    closest: selector => selector === '[data-cart-wrapper]' ? wrapper : selector.includes('data-gift-offer-quantity') ? input : null
+  };
+  const quantityWrapper = { querySelector: selector => selector === '[data-quantity-value]' ? input : null };
+  const increase = { closest: selector => selector === '[data-quantity-wrapper]' ? quantityWrapper : null, matches: selector => selector === '[data-increase-qty]' };
+  const popup = { querySelector: () => ({ textContent: JSON.stringify(config) }) };
+  const window = {
+    location: { pathname: '/products/test', reload() {} },
+    T4Sroutes: { cart_url: '/en/cart' },
+    T4SThemeSP: { Cart: { renderContents: sections => rendered.push(sections) } }
+  };
+  const document = {
+    addEventListener: (name, fn, capture) => listeners.push({ name, fn, capture }),
+    querySelector: () => popup
+  };
+  vm.runInNewContext(cartSource, {
+    window, document,
+    fetch: async (url, init = {}) => {
+      requests.push({ url, body: init.body && JSON.parse(init.body) });
+      return { ok: true, json: async () => init.method ? { sections: { cart_data: 'count', mini_cart: 'cart' } } : cart };
+    }
+  });
+  const event = {
+    target: { closest: selector => selector === '[data-quantity-selector]' ? increase : null },
+    preventDefault() { this.prevented = true; }, stopImmediatePropagation() { this.stopped = true; }
+  };
+  await listeners.filter(listener => listener.name === 'click' && listener.capture).at(-1).fn(event);
+  assert.equal(event.prevented, true);
+  assert.equal(event.stopped, true);
+  assert.equal(requests[0].url, '/en/cart.js');
+  assert.deepEqual(requests[1].body.updates, { main: 2, 'gift-a': 2, 'gift-b': 2 });
+  assert.equal(rendered.length, 1);
+  assert.equal(wrapperClasses.size, 0);
+});
+
 for (const [order, combinedSource] of [
   ['popup first', source + '\n' + cartSource],
   ['cart first', cartSource + '\n' + source]
@@ -228,6 +280,6 @@ test('cart removal initializes independently without initializing or accessing t
   vm.runInContext(cartSource, context);
   assert.equal(window.GiftOfferCartLoaded, true);
   assert.equal(window.GiftOfferPopupLoaded, undefined);
-  assert.equal(listeners.length, 1);
+  assert.equal(listeners.length, 3);
   assert.equal(listeners[0].name, 'click');
 });

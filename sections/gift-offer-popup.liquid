@@ -2,6 +2,9 @@
   assign bogo_product = section.settings.bogo_product
   assign combo_product_1 = section.settings.combo_product_1
   assign combo_product_2 = section.settings.combo_product_2
+  assign bogo_image = section.settings.bogo_image
+  assign combo_image = section.settings.combo_image
+  assign heading_words = section.settings.heading | split: ' '
   assign bogo_available = false
   assign combo_available = false
   if bogo_product != blank and bogo_product.selected_or_first_available_variant != blank
@@ -33,19 +36,30 @@
   >
     <div class="gift-offer-popup__backdrop" data-gift-offer-close></div>
     <div class="gift-offer-popup__dialog" role="dialog" aria-modal="true" aria-labelledby="GiftOfferTitle-{{ section.id }}">
-      <button type="button" class="gift-offer-popup__close" data-gift-offer-close aria-label="Close">×</button>
-      <h2 id="GiftOfferTitle-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
-      {%- if section.settings.subheading != blank -%}<p class="gift-offer-popup__subheading">{{ section.settings.subheading | escape }}</p>{%- endif -%}
+      <button type="button" class="gift-offer-popup__close" data-gift-offer-close aria-label="Close offer selector"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M8 8l16 16M24 8L8 24"/></svg></button>
+      <header class="gift-offer-popup__header">
+        <svg class="gift-offer-popup__gift-icon" viewBox="0 0 100 100" aria-hidden="true"><g fill="#ffc83d"><path d="M12 22l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" transform="translate(0 4) scale(.8)"/><path d="M90 40l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/><path d="M26 82l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" transform="translate(-6 -10)"/></g><rect x="22" y="44" width="56" height="42" rx="4" fill="#ffb347"/><rect x="18" y="34" width="64" height="16" rx="4" fill="#ffc46b"/><rect x="46" y="34" width="10" height="52" fill="#e8222f"/><path d="M50 34C36 12 20 22 34 34zM50 34C64 12 80 22 66 34z" fill="#ee2a36"/><circle cx="50" cy="34" r="5" fill="#c9141f"/></svg>
+        <div class="gift-offer-popup__heading">
+          <h2 id="GiftOfferTitle-{{ section.id }}" class="GiftOfferTitle">{%- for word in heading_words -%}{%- if forloop.last -%}<span class="gift-offer-popup__heading-accent">{{ word | escape }}</span>{%- else -%}{{ word | escape }} {% endif %}{%- endfor -%}</h2>
+          {%- if section.settings.subheading != blank -%}<p class="gift-offer-popup__subheading">{{ section.settings.subheading | escape }}</p>{%- endif -%}
+        </div>
+        <svg class="gift-offer-popup__paws" viewBox="0 0 60 60" fill="#ffc47a" aria-hidden="true"><g transform="rotate(-15 20 20)"><ellipse cx="20" cy="26" rx="8" ry="7"/><circle cx="10" cy="16" r="3.5"/><circle cx="17" cy="10" r="3.5"/><circle cx="25" cy="10" r="3.5"/><circle cx="31" cy="16" r="3.5"/></g><g transform="translate(18 24) rotate(15 20 20)"><ellipse cx="20" cy="26" rx="8" ry="7"/><circle cx="10" cy="16" r="3.5"/><circle cx="17" cy="10" r="3.5"/><circle cx="25" cy="10" r="3.5"/><circle cx="31" cy="16" r="3.5"/></g></svg>
+      </header>
 
       <div class="gift-offer-popup__choices" role="radiogroup" aria-label="Offer choices">
         {%- if bogo_available -%}
           <label class="gift-offer-popup__choice is-selected">
             <input type="radio" name="gift-offer-{{ section.id }}" value="bogo" checked>
             <span class="gift-offer-popup__choice-content">
-              <span class="gift-offer-popup__choice-title">{{ section.settings.bogo_label | escape }}</span>
-              <span class="gift-offer-popup__products">
-                {%- if bogo_product.featured_image -%}<img src="{{ bogo_product.featured_image | image_url: width: 120 }}" alt="{{ bogo_product.featured_image.alt | default: bogo_product.title | escape }}" width="60" height="60" loading="lazy">{%- endif -%}
-                <span>{{ bogo_product.title | escape }}</span>
+              <span class="gift-offer-popup__radio" aria-hidden="true"><span></span></span>
+              <span class="gift-offer-popup__bogo-layout">
+                <span class="gift-offer-popup__visual gift-offer-popup__visual--bogo">
+                  {%- if bogo_image != blank -%}
+                    {{ bogo_image | image_url: width: 1200 | image_tag: class: 'gift-offer-popup__offer-image', widths: '360, 540, 720, 960, 1200', sizes: '(max-width: 649px) calc(100vw - 128px), 370px', loading: 'lazy', alt: bogo_image.alt | default: section.settings.bogo_label }}
+                  {%- elsif bogo_product.featured_image -%}
+                    {{ bogo_product.featured_image | image_url: width: 900 | image_tag: class: 'gift-offer-popup__offer-image', widths: '360, 540, 720, 900', sizes: '(max-width: 649px) calc(100vw - 128px), 370px', loading: 'lazy', alt: bogo_product.featured_image.alt | default: bogo_product.title }}
+                  {%- endif -%}
+                </span>
               </span>
             </span>
           </label>
@@ -55,16 +69,17 @@
           <label class="gift-offer-popup__choice{% unless bogo_available %} is-selected{% endunless %}">
             <input type="radio" name="gift-offer-{{ section.id }}" value="combo"{% unless bogo_available %} checked{% endunless %}>
             <span class="gift-offer-popup__choice-content">
-              <span class="gift-offer-popup__choice-title">{{ section.settings.combo_label | escape }}</span>
-              <span class="gift-offer-popup__products">
-                <span class="gift-offer-popup__product">
-                  {%- if combo_product_1.featured_image -%}<img src="{{ combo_product_1.featured_image | image_url: width: 120 }}" alt="{{ combo_product_1.featured_image.alt | default: combo_product_1.title | escape }}" width="60" height="60" loading="lazy">{%- endif -%}
-                  <span>{{ combo_product_1.title | escape }}</span>
-                </span>
-                <span class="gift-offer-popup__product">
-                  {%- if combo_product_2.featured_image -%}<img src="{{ combo_product_2.featured_image | image_url: width: 120 }}" alt="{{ combo_product_2.featured_image.alt | default: combo_product_2.title | escape }}" width="60" height="60" loading="lazy">{%- endif -%}
-                  <span>{{ combo_product_2.title | escape }}</span>
-                </span>
+              <span class="gift-offer-popup__radio" aria-hidden="true"><span></span></span>
+              <span class="gift-offer-popup__visual gift-offer-popup__visual--combo">
+                {%- if combo_image != blank -%}
+                  {{ combo_image | image_url: width: 1200 | image_tag: class: 'gift-offer-popup__offer-image', widths: '360, 540, 720, 960, 1200', sizes: '(max-width: 649px) calc(100vw - 80px), 560px', loading: 'lazy', alt: combo_image.alt | default: section.settings.combo_label }}
+                {%- else -%}
+                  <span class="gift-offer-popup__fallback-products" aria-label="{{ combo_product_1.title | escape }} and {{ combo_product_2.title | escape }}">
+                    <span class="gift-offer-popup__gift-item">{%- if combo_product_1.featured_image -%}{{ combo_product_1.featured_image | image_url: width: 600 | image_tag: widths: '260, 400, 600', loading: 'lazy', alt: combo_product_1.featured_image.alt | default: combo_product_1.title }}{%- endif -%}<span class="gift-offer-popup__item-price"><span class="gift-offer-popup__compare-price">{{ combo_product_1.selected_or_first_available_variant.price | money }}</span><span class="gift-offer-popup__free-price">FREE</span></span></span>
+                    <span class="gift-offer-popup__plus" aria-hidden="true">+</span>
+                    <span class="gift-offer-popup__gift-item">{%- if combo_product_2.featured_image -%}{{ combo_product_2.featured_image | image_url: width: 600 | image_tag: widths: '260, 400, 600', loading: 'lazy', alt: combo_product_2.featured_image.alt | default: combo_product_2.title }}{%- endif -%}<span class="gift-offer-popup__item-price"><span class="gift-offer-popup__compare-price">{{ combo_product_2.selected_or_first_available_variant.price | money }}</span><span class="gift-offer-popup__free-price">FREE</span></span></span>
+                  </span>
+                {%- endif -%}
               </span>
             </span>
           </label>
@@ -72,7 +87,7 @@
       </div>
 
       <p class="gift-offer-popup__error" data-gift-offer-error role="alert" hidden></p>
-      <button type="button" class="gift-offer-popup__pick" data-gift-offer-pick>{{ section.settings.button_label | escape }}</button>
+      <button type="button" class="gift-offer-popup__pick" data-gift-offer-pick><span>{{ section.settings.button_label | escape }}</span><span aria-hidden="true">→</span></button>
     </div>
 
     <script type="application/json" data-gift-offer-config>
@@ -101,11 +116,13 @@
     { "type": "header", "content": "Buy 1 Get 1" },
     { "type": "text", "id": "bogo_label", "label": "Option label", "default": "Buy 1, get 1 free" },
     { "type": "product", "id": "bogo_product", "label": "Gift product" },
+    { "type": "image_picker", "id": "bogo_image", "label": "Offer image (replaces product image)" },
     { "type": "header", "content": "Two-product combo" },
     { "type": "text", "id": "combo_label", "label": "Option label", "default": "Get the 2-product combo" },
     { "type": "product", "id": "combo_product_1", "label": "Combo product 1" },
     { "type": "product", "id": "combo_product_2", "label": "Combo product 2" },
-    { "type": "text", "id": "button_label", "label": "Button label", "default": "Pick gift" }
+    { "type": "image_picker", "id": "combo_image", "label": "Offer image (replaces product images)" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Add to Cart with Selected Offer" }
   ],
   "presets": [{ "name": "Gift offer popup" }]
 }
