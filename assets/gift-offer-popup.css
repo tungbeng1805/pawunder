@@ -257,6 +257,8 @@
   width: 100%;
   max-height: 184px;
   object-fit: contain;
+  border-radius: 14px;
+  overflow: hidden;
 }
 
 .gift-offer-popup__quantity-mark {
@@ -328,6 +330,8 @@
 
 .gift-offer-popup__visual--combo>.gift-offer-popup__offer-image {
   max-height: 220px;
+  border-radius: 14px !important;
+  overflow: hidden !important;
 }
 
 .gift-offer-popup__fallback-products {
@@ -525,6 +529,13 @@ html.gift-offer-popup-open {
 
   .gift-offer-popup__subheading {
     font-size: 12px;
+  }
+  .gift-offer-popup__close {
+    top: 0;
+    right: 0;
+  }
+  .gift-offer-popup__pick {
+    padding: 10px 5px;
   }
 }
 
