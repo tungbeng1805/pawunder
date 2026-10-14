@@ -132,7 +132,10 @@
                 {%- endcapture -%}
                 <div class="t4s-cart_unit_price">{{ item.unit_price | money }}<span>/</span>{{- unit_price_base_unit -}}</div>
              {%- endif -%}
-             {%- if item.line_level_discount_allocations != blank -%}
+             {%- comment -%}The selected free-gift offer is summarized in the gift box below the cart item list.
+               Do not repeat Shopify's line-level BxGy allocation under its qualifying product.
+             {%- endcomment -%}
+             {%- if item.line_level_discount_allocations != blank and item.properties['_Gift offer type'] == blank -%}
                 <ul class="t4s-cart_discount_price">
                    {%- for discount_allocation in item.line_level_discount_allocations -%}
                      {%- liquid
