@@ -37,8 +37,10 @@
       "block_order": [
         "61658221-289a-451c-832e-472e370318ff"
       ],
+      "disabled": true,
       "settings": {
-        "image": "shopify:\/\/shop_images\/shopping-cart-head.jpg",
+        "heading_fullwidth": false,
+        "use_specify_image": true,
         "parallax": false,
         "color": "#000000",
         "overlay": 54,
@@ -65,7 +67,7 @@
           "type": "btn",
           "settings": {
             "title": "Return To Shop",
-            "url": "\/",
+            "url": "/",
             "btn_icon": false,
             "button_style": "default",
             "btn_cl": "primary",
@@ -85,8 +87,14 @@
           "settings": {
             "btn_icon": false,
             "button_style": "default",
+            "btn_size": "large",
             "btn_cl": "primary",
-            "button_effect": "default"
+            "button_effect": "default",
+            "btn_icon2": false,
+            "button_style2": "outline",
+            "btn_size2": "large",
+            "btn_cl2": "dark",
+            "button_effect2": "default"
           }
         },
         "5ae3c0ee-4bc7-4818-af8a-d10d3958189a": {
@@ -110,11 +118,14 @@
         "9f0f4b67-92cb-4f7e-ae91-e921e23ed3ff"
       ],
       "settings": {
-        "enable_calc_ship": true,
-        "enable_note": true,
-        "enable_rates": true,
-        "enable_discount": true,
-        "enable_gift_wrap": true
+        "enable_calc_ship": false,
+        "enable_note": false,
+        "enable_rates": false,
+        "enable_discount": false,
+        "enable_gift_wrap": false,
+        "enable_koloa_gift_ui": true,
+        "koloa_gift_heading": "🎁 Your Free Gift Is Ready!",
+        "ship_df_country": "United States"
       }
     }
   },
