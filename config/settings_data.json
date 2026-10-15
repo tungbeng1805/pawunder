@@ -304,7 +304,7 @@
         ],
         "settings": {
           "sticky": false,
-          "collapse": true,
+          "collapse": false,
           "border_top": false,
           "enable_follow_on_shop": true,
           "border_pos": "in",
