@@ -196,6 +196,78 @@
         "time": 3
       }
     },
+    "vitals_3440f77d_XpmzrR": {
+      "type": "vitals-3440f77d",
+      "blocks": {
+        "heading_CEnafT": {
+          "type": "heading",
+          "settings": {
+            "heading": "Video Products",
+            "heading_size": "32",
+            "heading_style": "regular",
+            "description": "",
+            "description_size": "16",
+            "text_color": "#222222",
+            "text_alignment": "center"
+          }
+        },
+        "video_AmXH9K": {
+          "type": "video",
+          "settings": {
+            "video_desktop": "shopify://files/videos/Too cute.mp4"
+          }
+        },
+        "video_nUy66t": {
+          "type": "video",
+          "settings": {
+            "video_desktop": "shopify://files/videos/Honest Review Of Dog Shoes.mp4"
+          }
+        },
+        "video_iVLXdW": {
+          "type": "video",
+          "settings": {
+            "video_desktop": "shopify://files/videos/You need to see this before buying..mp4"
+          }
+        },
+        "video_KTe6Ga": {
+          "type": "video",
+          "settings": {
+            "video_desktop": "shopify://files/videos/Good fit.mp4"
+          }
+        }
+      },
+      "block_order": [
+        "heading_CEnafT",
+        "video_AmXH9K",
+        "video_nUy66t",
+        "video_iVLXdW",
+        "video_KTe6Ga"
+      ],
+      "name": "🧡 Vitals: Video Carousel",
+      "settings": {
+        "aspect_ratio": "2/3",
+        "videos_corner_radius": 16,
+        "autoplay": true,
+        "loop": true,
+        "show_video_controls": true,
+        "controls_color": "#ffffff",
+        "controls_background_color": "#222222",
+        "videos_per_row": "5",
+        "section_background_style": "regular",
+        "section_background": "",
+        "section_gradient": "linear-gradient(#72ffb3, #fffa63)",
+        "enable_animation": false,
+        "arrows_style": "chevron",
+        "arrows_color": "#222222",
+        "section_width": 100,
+        "section_max_width": "",
+        "videos_space_between": 20,
+        "vertical_padding": 40,
+        "vertical_margin": 0,
+        "vertical_padding_mobile": 20,
+        "vertical_margin_mobile": 0
+      }
+    },
     "sidebar": {
       "type": "sidebar-product",
       "blocks": {
@@ -497,6 +569,7 @@
   "order": [
     "breadcrumb",
     "main",
+    "vitals_3440f77d_XpmzrR",
     "sidebar",
     "image_gallery_packery_WjrGeN",
     "product-recommendations",
