@@ -96,6 +96,7 @@
         "560f5822-3eeb-4070-a2cd-b5738881a4c1",
         "be9b8b8f-6cac-47ab-b809-a2fe640a75a7"
       ],
+      "disabled": true,
       "settings": {
         "show_top_collections": true,
         "source": "2",
@@ -187,11 +188,12 @@
         "68582c09-d394-43f0-b988-c2b38412941b",
         "ce2a8456-1d79-4523-8329-3afa244c8b98"
       ],
+      "disabled": true,
       "settings": {
         "heading_fullwidth": false,
         "use_specify_image": true,
         "parallax": false,
-        "color": "#310E0E",
+        "color": "#310e0e",
         "overlay": 54,
         "padding": 80,
         "paddingmb": 50,
