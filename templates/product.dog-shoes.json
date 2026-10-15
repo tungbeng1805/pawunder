@@ -564,6 +564,23 @@
         "combo_image": "shopify://shop_images/1791963716977_6205455399737755752_g1999108096142304712_1784584e158857825aa10139791441b4.jpg",
         "button_label": "Add to Cart with Selected Offer"
       }
+    },
+    "1792050896246a7bda": {
+      "type": "apps",
+      "blocks": {
+        "vitals_product_reviews_xKpUC4": {
+          "type": "shopify://apps/vitals/blocks/product-reviews/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {
+            "hide_mock_data": false
+          }
+        }
+      },
+      "block_order": [
+        "vitals_product_reviews_xKpUC4"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
@@ -574,6 +591,7 @@
     "image_gallery_packery_WjrGeN",
     "product-recommendations",
     "recently-viewed-products",
-    "gift_offer_popup_h9EWqB"
+    "gift_offer_popup_h9EWqB",
+    "1792050896246a7bda"
   ]
 }
