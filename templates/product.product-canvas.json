@@ -43,7 +43,7 @@
           "settings": {
             "type": "file",
             "heading": "Image custom",
-            "des": "Description",
+            "des": " Accept 1 photo (JPG, PNG). High resolution recommended.",
             "color_des": "#222222",
             "options": "option1, option2",
             "required": true,
@@ -88,11 +88,7 @@
             "show_product_current": true,
             "qty_val": "0",
             "advance_label": "Choose style",
-            "advance_pr_list": [
-              "mens-long-sleeve-rash-guard",
-              "combat-hoodie",
-              "combat-long-sleeve-rashguard"
-            ]
+            "advance_pr_list": []
           }
         },
         "custom_liquid_rVLcdj": {
