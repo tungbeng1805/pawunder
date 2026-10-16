@@ -580,6 +580,21 @@
         "use_cus_css": false,
         "code_cus_css": ""
       }
+    },
+    "17921675055c15ab28": {
+      "type": "apps",
+      "blocks": {
+        "vitals_all_reviews_badge_tKjEzT": {
+          "type": "shopify://apps/vitals/blocks/all-reviews-badge/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vitals_all_reviews_badge_tKjEzT"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
@@ -587,6 +602,7 @@
     "featured_collection_tkmzhT",
     "banner_9DiqxA",
     "featured_collection_h6fy9G",
-    "product_video_section_ieWGjR"
+    "product_video_section_ieWGjR",
+    "17921675055c15ab28"
   ]
 }
