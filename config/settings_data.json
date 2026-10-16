@@ -467,7 +467,7 @@
             "type": "base",
             "settings": {
               "title": "Pet Accessories",
-              "url": "shopify://collections",
+              "url": "shopify://collections/new-arrivals",
               "open_link": "_self",
               "icon": "",
               "cus_cl": false,
@@ -480,7 +480,7 @@
             "type": "base",
             "settings": {
               "title": "Personalized",
-              "url": "shopify://collections",
+              "url": "shopify://collections/all",
               "open_link": "_self",
               "icon": "",
               "cus_cl": false,
@@ -493,7 +493,7 @@
             "type": "base",
             "settings": {
               "title": "Decor",
-              "url": "shopify://collections/personalized-pet-home-decor",
+              "url": "shopify://collections/all",
               "open_link": "_self",
               "icon": "",
               "cus_cl": false,
