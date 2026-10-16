@@ -358,16 +358,6 @@
     "image_gallery_packery_WjrGeN": {
       "type": "image-gallery-packery",
       "blocks": {
-        "image_item_mpXRWk": {
-          "type": "image_item",
-          "settings": {
-            "image": "shopify://shop_images/dog-boots-productpage-a1.webp",
-            "link": "",
-            "col_dk": "12",
-            "col_tb": "12",
-            "col_mb": "12"
-          }
-        },
         "image_item_8bX4xC": {
           "type": "image_item",
           "settings": {
@@ -378,10 +368,20 @@
             "col_mb": "12"
           }
         },
+        "image_item_mpXRWk": {
+          "type": "image_item",
+          "settings": {
+            "image": "shopify://shop_images/Sf1cb386ec9704470bb7d02336333a971Q.avif",
+            "link": "",
+            "col_dk": "12",
+            "col_tb": "12",
+            "col_mb": "12"
+          }
+        },
         "image_item_JymnVz": {
           "type": "image_item",
           "settings": {
-            "image": "shopify://shop_images/how_to_use.webp",
+            "image": "shopify://shop_images/S083b3aeb092c48dda2f665c17877c576t.avif",
             "link": "",
             "col_dk": "12",
             "col_tb": "12",
@@ -391,7 +391,17 @@
         "image_item_ziMwcn": {
           "type": "image_item",
           "settings": {
-            "image": "shopify://shop_images/pawunder-a2.webp",
+            "image": "shopify://shop_images/1792144822783_6205455399737755752_g1999108096142304712_d713233e8dd4a15db39819ff7c705c18.jpg",
+            "link": "",
+            "col_dk": "12",
+            "col_tb": "12",
+            "col_mb": "12"
+          }
+        },
+        "image_item_zgbHAb": {
+          "type": "image_item",
+          "settings": {
+            "image": "shopify://shop_images/1792144822125_6205455399737755752_g1999108096142304712_95569c15b96a716b6e7bbca4b7e6dfee.jpg",
             "link": "",
             "col_dk": "12",
             "col_tb": "12",
@@ -400,10 +410,11 @@
         }
       },
       "block_order": [
-        "image_item_mpXRWk",
         "image_item_8bX4xC",
+        "image_item_mpXRWk",
         "image_item_JymnVz",
-        "image_item_ziMwcn"
+        "image_item_ziMwcn",
+        "image_item_zgbHAb"
       ],
       "name": "Image gallery packery",
       "settings": {
