@@ -1,6 +1,6 @@
 {%- liquid 
 assign show_script = true
-assign show_script2 = true
+assign show_image_preview_script = true
 assign pr_title = product.title
 assign pr_type = product.type
 assign pr_tag = product.tags
@@ -133,29 +133,35 @@ assign pr_collection_title = product.collections | map: 'title'
         <input type="hidden" {{ required }} id="name_{{ id_field }}" name="properties[{{ name_field_checkout }}]">
 
         {%- else -%}
-        {%- if show_script2 -%}
-        {%- assign show_script2 = false -%}
+        {%- if show_image_preview_script -%}
+        {%- assign show_image_preview_script = false -%}
         <script>
-            function extractFilenameT4s(path) {
-              if (path.substr(0, 12) == "C:\\fakepath\\")
-                return path.substr(12); // modern browser
-              var x;
-              x = path.lastIndexOf('/');
-              if (x >= 0) // Unix-based path
-                return path.substr(x+1);
-              x = path.lastIndexOf('\\');
-              if (x >= 0) // Windows-based path
-                return path.substr(x+1);
-              return path; // just the filename
+          function previewImageT4s(input, previewId) {
+            var preview = document.getElementById(previewId);
+            var file = input.files && input.files[0];
+            if (!preview) return;
+            if (preview.dataset.objectUrl) URL.revokeObjectURL(preview.dataset.objectUrl);
+            if (!file || !file.type || file.type.indexOf('image/') !== 0) {
+              preview.hidden = true;
+              preview.removeAttribute('src');
+              delete preview.dataset.objectUrl;
+              return;
             }
-            function updateFilenameT4s(path, id) {
-               var name = extractFilenameT4s(path);
-               if (name) document.getElementById(id).textContent = extractFilenameT4s(path);
-            }
+            var imageUrl = URL.createObjectURL(file);
+            preview.src = imageUrl;
+            preview.dataset.objectUrl = imageUrl;
+            preview.hidden = false;
+          }
         </script>
         {%- endif -%}
-        <label class="t4s-line-item-property__label t4s_as_title" id="label_{{ id_field }}" for="name_{{ id_field }}">{{ name_field }}</label><br>
-        <input {{ required }} id="name_{{ id_field }}" type="file" onchange="updateFilenameT4s(this.value,'label_{{ id_field }}')" data-accept="image/jpg,image/jpeg,image/gif,image/png" autocorrect="off" autocapitalize="off" name="properties[{{ name_field_checkout }}]">
+        <label class="t4s-line-item-property__label t4s_as_title" id="label_{{ id_field }}" for="name_{{ id_field }}">{{ name_field }}</label>
+        <div class="t4s-line-item-property__file-upload">
+          <input {{ required }} id="name_{{ id_field }}" type="file" accept="image/jpg,image/jpeg,image/gif,image/png" onchange="previewImageT4s(this, 'preview_{{ id_field }}')" autocorrect="off" autocapitalize="off" name="properties[{{ name_field_checkout }}]">
+        </div>
+        <img id="preview_{{ id_field }}" class="t4s-line-item-property__image-preview" alt="{{ name_field }} preview" hidden>
+        {%- if bk_stts_field.des != blank -%}
+          <p class="t4s-line-item-property__description" style="color: {{ bk_stts_field.color_des }}">{{ bk_stts_field.des }}</p>
+        {%- endif -%}
       
       {%- endcase -%}
    </div>
