@@ -2,7 +2,7 @@
   if (window.GiftOfferPopupLoaded) return;
   window.GiftOfferPopupLoaded = true;
 
-  let pendingForm = null;
+  let pendingItem = null;
   let activePopup = null;
   let lastTrigger = null;
   let addingOffer = false;
@@ -25,16 +25,16 @@
     activePopup.setAttribute('aria-hidden', 'true');
     document.documentElement.classList.remove('gift-offer-popup-open');
     activePopup = null;
-    pendingForm = null;
+    pendingItem = null;
     lastTrigger = null;
     if (restoreFocus && trigger) trigger.focus();
   };
 
-  const openPopup = (form, trigger) => {
+  const openPopup = (item, trigger) => {
     if (addingOffer || cartIsOpen()) return;
     const popup = getPopup();
     if (!popup) return;
-    pendingForm = form;
+    pendingItem = item;
     lastTrigger = trigger;
     activePopup = popup;
     popup.hidden = false;
@@ -54,6 +54,20 @@
       if (match && value !== '') properties[match[1]] = value;
     });
     return { id: Number(id), quantity: Math.max(1, Number(formData.get('quantity') || 1)), properties };
+  };
+
+  // The theme's sticky ATC is not a form submitter. Build the same cart item
+  // payload from its current variant and quantity so it can use this popup too.
+  const stickyItem = button => {
+    const sticky = button.closest('[data-sticky-addtocart]');
+    const id = button.dataset.variantId;
+    if (!sticky || !id) throw new Error('Please select a product variant first.');
+    const quantity = sticky.querySelector('[data-quantity-value]');
+    return {
+      id: Number(id),
+      quantity: Math.max(1, Number(quantity && quantity.value || 1)),
+      properties: {}
+    };
   };
 
   const refreshDrawer = async () => {
@@ -82,7 +96,25 @@
     // Theme/app callbacks may replay ATC after the gift request finishes.
     // Only a fresh customer click can start another offer selection.
     if (event.isTrusted === false || addingOffer || cartIsOpen()) return;
-    openPopup(form, button);
+    openPopup(formItem(form), button);
+  }, true);
+
+  // Sticky ATC uses data-action-atc instead of submitting the main product form.
+  // Capture it before Kalles' delegated handler adds the product on its own.
+  document.addEventListener('click', event => {
+    const button = event.target.closest('[data-sticky-addtocart] [data-action-atc]');
+    if (!button || button.disabled || button.getAttribute('aria-disabled') === 'true' || !getPopup()) return;
+    let item;
+    try {
+      item = stickyItem(button);
+    } catch (_) {
+      // Let the theme handle an incomplete sticky ATC payload as usual.
+      return;
+    }
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    if (event.isTrusted === false || addingOffer || cartIsOpen()) return;
+    openPopup(item, button);
   }, true);
 
   document.addEventListener('submit', event => {
@@ -95,7 +127,7 @@
     event.stopImmediatePropagation();
     const activation = window.navigator && window.navigator.userActivation;
     if (event.isTrusted === false || addingOffer || cartIsOpen() || (activation && !activation.isActive)) return;
-    openPopup(form, submitter || form.querySelector('[data-atc-form], [name="add"]'));
+    openPopup(formItem(form), submitter || form.querySelector('[data-atc-form], [name="add"]'));
   }, true);
 
   document.addEventListener('click', async event => {
@@ -109,7 +141,7 @@
       return;
     }
     const pickButton = event.target.closest('[data-gift-offer-pick]');
-    if (!pickButton || !pendingForm) return;
+    if (!pickButton || !pendingItem) return;
     event.preventDefault();
     event.stopImmediatePropagation();
     if (addingOffer || pickButton.disabled) return;
@@ -119,7 +151,7 @@
     const selected = popup.querySelector('input[type="radio"]:checked');
     const config = getConfig(popup);
     try {
-      const mainItem = formItem(pendingForm);
+      const mainItem = { ...pendingItem, properties: { ...pendingItem.properties } };
       // This private property is only for the cart label. It is not the
       // FREE GIFT marker, which remains exclusive to gift line items.
       mainItem.properties['_Gift offer type'] = selected.value;
