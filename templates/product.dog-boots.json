@@ -1,0 +1,597 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumb": {
+      "type": "brc-nav-product",
+      "disabled": true,
+      "settings": {
+        "back_next_pr": true,
+        "cl_bg": "#f6f6f6",
+        "cl_link": "#222222"
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "txt_tr_pr": "none",
+            "fnt_df_pr": "1",
+            "size_pr": 24,
+            "fw_pr": 600,
+            "lh_pr": 0,
+            "ls_pr": 0,
+            "pr_title_color": "#222222"
+          }
+        },
+        "price_review": {
+          "type": "price_review",
+          "settings": {
+            "price": "0",
+            "type_sale": "0",
+            "tax_ship": false,
+            "rating": true,
+            "review_liquid": "",
+            "size_price_pr": 22,
+            "fw_price_pr": 400,
+            "price_color": "#696969",
+            "price_sale_color": "#ec0101"
+          }
+        },
+        "text_qU8eeM": {
+          "type": "text",
+          "settings": {
+            "text": "<p>🐾 <strong>All-Weather Protection</strong>: Shields paws from hot pavement, ice, and salt to prevent burns & injuries</p><p>🚫 <strong>Anti-Slip Traction</strong>: Rugged, non-slip soles for stability on slick floors or rough trails</p><p>🌬️ <strong>Breathable Comfort</strong>: Ventilated fabric keeps paws cool and dry on long walks</p><p>🔒 <strong>Secure Fit</strong>: Adjustable, reflective straps stay snug during active play</p><p>🧼<strong> Mess-Free Use</strong>: Blocks mud, dirt, and allergens - no more dirty paws indoors</p>"
+          }
+        },
+        "free_gifts_eNQmKn": {
+          "type": "free_gifts",
+          "settings": {
+            "show_heading": true,
+            "heading": "Current Offer! FREE Gifts With Your Order",
+            "heading_size": 18,
+            "heading_weight": "700",
+            "free_text": "FREE",
+            "card_gap": 8,
+            "border_radius": 8,
+            "dash_color": "#f0a030",
+            "title_size": 13,
+            "title_color": "#222222",
+            "background": "#ffffff",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "image_1": "shopify://shop_images/1791998997314_6205455399737755752_g1999108096142304712_f920ce841fab360dc5fbf70356fe29c9.jpg",
+            "title_1": "Free Gifts With Offer",
+            "price_1": "",
+            "show_badge_1": false,
+            "show_border_1": false,
+            "image_2": "shopify://shop_images/1791269588908_6205455399737755752_g1999108096142304712_6f018977eac0af251769c31d35802efb.jpg",
+            "title_2": "Dog hair cat grooming",
+            "price_2": "$15.00",
+            "show_badge_2": true,
+            "show_border_2": true,
+            "image_3": "shopify://shop_images/1791269589439_6205455399737755752_g1999108096142304712_eea4d68130f408f4565ba19b808fb3da.jpg",
+            "title_3": "Polyester New Fashion Pet",
+            "price_3": "$15.00",
+            "show_badge_3": true,
+            "show_border_3": true
+          }
+        },
+        "form": {
+          "type": "form",
+          "settings": {
+            "selector_mode": "block",
+            "color_mode": "variant_image",
+            "enable_fit_ratio_img": false,
+            "color_size": "exlarge",
+            "show_qty": true,
+            "enable_wishlist": true,
+            "enable_compare": true,
+            "btn_atc_full": false,
+            "pr_btn_round": 10,
+            "ani": "t4s-ani-shake",
+            "time": 6,
+            "btn_txt": "3",
+            "btn_icon": false,
+            "button_style": "default",
+            "button_color": "primary",
+            "button_effect": "sweep-to-top",
+            "wishlist_color": "#222222",
+            "wishlist_color_hover": "#56cfe1",
+            "wishlist_color_active": "#e81e1e",
+            "compare_color": "#222222",
+            "compare_color_hover": "#56cfe1",
+            "compare_color_active": "#222222",
+            "show_dynamic_checkout": false,
+            "btn_txt2": "3",
+            "button_color_payment": "dark",
+            "show_gift_card_recipient": true,
+            "product_list": [],
+            "show_product_current": true,
+            "qty_val": "0",
+            "advance_label": "Choose style",
+            "advance_pr_list": []
+          }
+        },
+        "custom_liquid_qGPXAz": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"shipping-wrapper-fixed\">\n  \n  <script>\n    const shippingConfig = {\n      deliveryMin: 5,   \n      deliveryMax: 7,\n      shipAfterMin: 1,\n      shipAfterMax: 2,\n      // Dán link icon của bạn vào đây\n      iconHeader: \"https://cdn.shopify.com/s/files/1/0659/7217/5054/files/intransit-icon-header.png?v=1775634225\", \n      iconOrder: \"https://cdn.shopify.com/s/files/1/0659/7217/5054/files/placed-order-icon.png?v=1775620337\", \n      iconShip: \"https://cdn.shopify.com/s/files/1/0659/7217/5054/files/intransit-icon.png?v=1775620337\",\n      iconDelivery: \"https://cdn.shopify.com/s/files/1/0659/7217/5054/files/delivered-icon.png?v=1775620337\"\n    };\n  </script>\n\n  <div class=\"shipping-timeline-v3\">\n    <div class=\"tm-header-v3\">\n      <img id=\"tm-main-icon\" src=\"\" class=\"tm-truck-icon-v3\" alt=\"shipping\"> \n      <span>Expected Delivery: <span id=\"tm-delivery-range-v3\" class=\"tm-bold-v3\">...</span></span>\n    </div>\n\n    <div class=\"tm-steps-wrapper-v3\">\n      <div class=\"tm-step-v3\">\n        <div class=\"tm-icon-box-v3\"><img id=\"tm-img-v3-1\" src=\"\" alt=\"order\"></div>\n        <div class=\"tm-date-v3\" id=\"tm-order-date-v3\">...</div>\n        <div class=\"tm-label-v3\">Order placed</div>\n      </div>\n      \n      <div class=\"tm-line-v3\"></div>\n\n      <div class=\"tm-step-v3\">\n        <div class=\"tm-icon-box-v3\"><img id=\"tm-img-v3-2\" src=\"\" alt=\"ship\"></div>\n        <div class=\"tm-date-v3\" id=\"tm-ship-date-v3\">...</div>\n        <div class=\"tm-label-v3\">Order ships</div>\n      </div>\n\n      <div class=\"tm-line-v3\"></div>\n\n      <div class=\"tm-step-v3\">\n        <div class=\"tm-icon-box-v3\"><img id=\"tm-img-v3-3\" src=\"\" alt=\"delivery\"></div>\n        <div class=\"tm-date-v3\" id=\"tm-delivery-date-v3\">...</div>\n        <div class=\"tm-label-v3\">Delivered!</div>\n      </div>\n    </div>\n  </div>\n</div>\n\n<style>\n  /* Cố định khung chứa để không bị chèn lấp */\n  .shipping-wrapper-fixed {\n    display: block;\n    clear: both;\n    width: 100%;\n    margin: 20px 0;\n    padding: 0;\n    overflow: hidden; /* Ngăn các thành phần con tràn ra ngoài */\n  }\n\n  .shipping-timeline-v3 {\n    background: #fdfdfd;\n    padding: 15px;\n    border-radius: 4px;\n  }\n\n  .tm-header-v3 {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    font-size: 16px;\n    margin-bottom: 25px;\n    color: #111;\n  }\n\n  .tm-truck-icon-v3 { \n    width: 28px; /* Đã fix size icon header */\n    height: auto; \n  }\n\n  .tm-bold-v3 { font-weight: 700; }\n\n  .tm-steps-wrapper-v3 {\n    display: flex;\n    align-items: flex-start;\n    justify-content: space-between;\n    width: 100%;\n    max-width: 100%;\n  }\n\n  .tm-step-v3 {\n    flex: 0 0 80px; /* Cố định độ rộng từng bước để không bị xô lệch */\n    text-align: center;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n  }\n\n  .tm-icon-box-v3 {\n    width: 40px;\n    height: 40px;\n    background: #f0faff; \n    border-radius: 50%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    margin-bottom: 8px;\n  }\n\n  .tm-icon-box-v3 img {\n    width: 22px; /* Đã fix size 3 icon dưới */\n    height: 22px;\n    object-fit: contain;\n  }\n\n  .tm-line-v3 {\n    flex: 1;\n    height: 1px;\n    border-top: 2px dotted #a8d5db;\n    margin-top: 20px; /* Căn chỉnh đường kẻ giữa các icon */\n  }\n\n  .tm-date-v3 {\n    font-weight: 700;\n    font-size: 13px;\n    margin-top: 5px;\n    white-space: nowrap;\n  }\n\n  .tm-label-v3 {\n    font-size: 11px;\n    color: #666;\n    margin-top: 2px;\n    line-height: 1.2;\n  }\n\n  @media (max-width: 480px) {\n    .tm-header-v3 { font-size: 14px; }\n    .tm-step-v3 { flex: 0 0 70px; }\n    .tm-date-v3 { font-size: 11px; }\n    .tm-icon-box-v3 { width: 35px; height: 35px; }\n  }\n</style>\n\n<script>\n  (function() {\n    const config = shippingConfig;\n    const months = [\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\", \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"];\n    \n    function formatDay(date) {\n      return months[date.getMonth()] + \" \" + String(date.getDate()).padStart(2, '0');\n    }\n\n    function getRange(startDays, endDays) {\n      const d1 = new Date();\n      d1.setDate(d1.getDate() + startDays);\n      const d2 = new Date();\n      d2.setDate(d2.getDate() + endDays);\n      if (d1.getMonth() === d2.getMonth()) {\n        return months[d1.getMonth()] + \" \" + String(d1.getDate()).padStart(2, '0') + \"-\" + String(d2.getDate()).padStart(2, '0');\n      } else {\n        return months[d1.getMonth()] + \" \" + d1.getDate() + \" - \" + months[d2.getMonth()] + \" \" + d2.getDate();\n      }\n    }\n\n    const today = new Date();\n    // Gán Icons\n    if(config.iconHeader) document.getElementById('tm-main-icon').src = config.iconHeader;\n    if(config.iconOrder) document.getElementById('tm-img-v3-1').src = config.iconOrder;\n    if(config.iconShip) document.getElementById('tm-img-v3-2').src = config.iconShip;\n    if(config.iconDelivery) document.getElementById('tm-img-v3-3').src = config.iconDelivery;\n\n    // Gán Dates\n    document.getElementById('tm-order-date-v3').innerText = formatDay(today);\n    document.getElementById('tm-ship-date-v3').innerText = getRange(config.shipAfterMin, config.shipAfterMax);\n    const delTxt = getRange(config.deliveryMin, config.deliveryMax);\n    document.getElementById('tm-delivery-date-v3').innerText = delTxt;\n    document.getElementById('tm-delivery-range-v3').innerText = delTxt;\n  })();\n</script>"
+          }
+        },
+        "23551ebc-3be1-40d6-81b2-30f03478cccb": {
+          "type": "img",
+          "settings": {
+            "al": "start",
+            "mess": "",
+            "size": 16,
+            "source": "1",
+            "wimg": 70,
+            "svg": "amazon_payments,american_express,apple_pay,bitcoin,google_pay,jcb,master,paypal,shopify_pay,sofort,visa",
+            "height": 30
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price_review",
+        "text_qU8eeM",
+        "free_gifts_eNQmKn",
+        "form",
+        "custom_liquid_qGPXAz",
+        "23551ebc-3be1-40d6-81b2-30f03478cccb"
+      ],
+      "settings": {
+        "pr_layout": "default",
+        "enable_sticky_info": true,
+        "media_layout": "thumbnails_left",
+        "media_size": "medium",
+        "thumb_lr_size": "medium",
+        "image_ratio": "ratioadapt",
+        "image_size": "cover",
+        "image_position": "8",
+        "main_click": "none",
+        "zoom_tp": "external",
+        "enable_zoom_icon": true,
+        "enable_zoom_click_mb": true,
+        "enable_video_looping": false,
+        "enable_video_muting": true,
+        "enable_video_autoplaying": true,
+        "eff": "fade",
+        "nav_btn": true,
+        "btn_vi": "always",
+        "btn_owl": "outline",
+        "btn_shape": "round",
+        "btn_cl": "dark",
+        "btn_size": "small",
+        "btn_hidden_mobile": true,
+        "nav_dot": false,
+        "dot_owl": "default",
+        "dots_cl": "dark",
+        "dots_round": true,
+        "dots_space": 10,
+        "dots_hidden_mobile": false,
+        "tabs_design": "tab",
+        "tabs_design_mb": "accordion",
+        "tabs_position": "external",
+        "enable_first_tab": false,
+        "tabs_layout_fix": "full",
+        "bg": "#f6f6f8",
+        "bg_mb": "#ffffff",
+        "product_list": [],
+        "sticky_mode": "2",
+        "sticky_show": "2",
+        "sticky_layout_mb": "minimal",
+        "enable_select": true,
+        "ani": "t4s-ani-shake",
+        "time": 3
+      }
+    },
+    "vitals_3440f77d_XpmzrR": {
+      "type": "vitals-3440f77d",
+      "blocks": {
+        "heading_CEnafT": {
+          "type": "heading",
+          "settings": {
+            "heading": "Video Products",
+            "heading_size": "32",
+            "heading_style": "regular",
+            "description": "",
+            "description_size": "16",
+            "text_color": "#222222",
+            "text_alignment": "center"
+          }
+        },
+        "video_AmXH9K": {
+          "type": "video",
+          "settings": {
+            "video_desktop": "shopify://files/videos/Too cute.mp4"
+          }
+        },
+        "video_nUy66t": {
+          "type": "video",
+          "settings": {
+            "video_desktop": "shopify://files/videos/Honest Review Of Dog Shoes.mp4"
+          }
+        },
+        "video_iVLXdW": {
+          "type": "video",
+          "settings": {
+            "video_desktop": "shopify://files/videos/You need to see this before buying..mp4"
+          }
+        },
+        "video_KTe6Ga": {
+          "type": "video",
+          "settings": {
+            "video_desktop": "shopify://files/videos/Good fit.mp4"
+          }
+        }
+      },
+      "block_order": [
+        "heading_CEnafT",
+        "video_AmXH9K",
+        "video_nUy66t",
+        "video_iVLXdW",
+        "video_KTe6Ga"
+      ],
+      "name": "🧡 Vitals: Video Carousel",
+      "settings": {
+        "aspect_ratio": "2/3",
+        "videos_corner_radius": 16,
+        "autoplay": true,
+        "loop": true,
+        "show_video_controls": true,
+        "controls_color": "#ffffff",
+        "controls_background_color": "#222222",
+        "videos_per_row": "5",
+        "section_background_style": "regular",
+        "section_background": "",
+        "section_gradient": "linear-gradient(#72ffb3, #fffa63)",
+        "enable_animation": false,
+        "arrows_style": "chevron",
+        "arrows_color": "#222222",
+        "section_width": 100,
+        "section_max_width": "",
+        "videos_space_between": 20,
+        "vertical_padding": 40,
+        "vertical_margin": 0,
+        "vertical_padding_mobile": 20,
+        "vertical_margin_mobile": 0
+      }
+    },
+    "sidebar": {
+      "type": "sidebar-product",
+      "blocks": {
+        "f01b181b-62ee-4735-8e25-32cb71ccfaba": {
+          "type": "category",
+          "settings": {
+            "title_category": "Product Categories",
+            "cat_source": "1",
+            "cat_link_list": "",
+            "count": true
+          }
+        },
+        "f65f464b-9487-43be-9c91-8688a098bb6f": {
+          "type": "collection",
+          "settings": {
+            "title_fea_pr": "Sale Products",
+            "collection": "frontpage",
+            "limit_pr": 5,
+            "image_ratio": "t4s_ratioadapt",
+            "image_size": "t4s_cover",
+            "image_position": "t4s_position_8"
+          }
+        },
+        "83340bb8-58d2-4148-89e2-a4c7a01cf792": {
+          "type": "instagram",
+          "settings": {
+            "title_ins": "Instagram",
+            "mode": "2",
+            "acc": "",
+            "limit": 12,
+            "open_link": "_blank",
+            "round": 0,
+            "col_dk": "3",
+            "space_item": "6"
+          }
+        },
+        "9ce9ded8-1cef-4e32-b98b-47364ffa328c": {
+          "type": "shipping",
+          "settings": {
+            "title": "Shipping & Delivery",
+            "shipping_1": "las la-truck,FREE SHIPPING,Free shipping for all US order",
+            "shipping_2": "las la-headset,SUPPORT 24/7,We support 24 hours a day",
+            "shipping_3": "las la-exchange-alt,30 DAYS RETURN,You have 30 days to return",
+            "shipping_4": "",
+            "shipping_5": "",
+            "shipping_6": ""
+          }
+        },
+        "4a9c6ae8-f3b4-4192-a6d1-82d01670bce6": {
+          "type": "image",
+          "settings": {
+            "b_link": "",
+            "open_link": "_self",
+            "img_effect": "none",
+            "date": "2022/12/26",
+            "content_align": "center",
+            "cdt_des": "2",
+            "countdown_pos": "2",
+            "cdt_size": "medium",
+            "box_bdr": 0,
+            "bd_width": 0,
+            "space_item": 10,
+            "number_cl": "#ffffff",
+            "text_cl": "#ffffff",
+            "border_cl": "#000000",
+            "bg_cl": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "f01b181b-62ee-4735-8e25-32cb71ccfaba",
+        "f65f464b-9487-43be-9c91-8688a098bb6f",
+        "83340bb8-58d2-4148-89e2-a4c7a01cf792",
+        "9ce9ded8-1cef-4e32-b98b-47364ffa328c",
+        "4a9c6ae8-f3b4-4192-a6d1-82d01670bce6"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable_drawer": true,
+        "space": 50,
+        "size": "medium",
+        "br_style": "none",
+        "brcolor": "#222222",
+        "sidebar_bdr": 5,
+        "sidebar_pd": 10
+      }
+    },
+    "image_gallery_packery_WjrGeN": {
+      "type": "image-gallery-packery",
+      "blocks": {
+        "image_item_mpXRWk": {
+          "type": "image_item",
+          "settings": {
+            "image": "shopify://shop_images/dog-boots-productpage-a1.webp",
+            "link": "",
+            "col_dk": "12",
+            "col_tb": "12",
+            "col_mb": "12"
+          }
+        },
+        "image_item_8bX4xC": {
+          "type": "image_item",
+          "settings": {
+            "image": "shopify://shop_images/how_to_measure_the_paww.webp",
+            "link": "",
+            "col_dk": "12",
+            "col_tb": "12",
+            "col_mb": "12"
+          }
+        },
+        "image_item_JymnVz": {
+          "type": "image_item",
+          "settings": {
+            "image": "shopify://shop_images/how_to_use.webp",
+            "link": "",
+            "col_dk": "12",
+            "col_tb": "12",
+            "col_mb": "12"
+          }
+        },
+        "image_item_ziMwcn": {
+          "type": "image_item",
+          "settings": {
+            "image": "shopify://shop_images/pawunder-a2.webp",
+            "link": "",
+            "col_dk": "12",
+            "col_tb": "12",
+            "col_mb": "12"
+          }
+        }
+      },
+      "block_order": [
+        "image_item_mpXRWk",
+        "image_item_8bX4xC",
+        "image_item_JymnVz",
+        "image_item_ziMwcn"
+      ],
+      "name": "Image gallery packery",
+      "settings": {
+        "design_heading": "1",
+        "heading_align": "t4s-text-center",
+        "top_heading": "",
+        "icon_heading": "las la-gem",
+        "top_subheading": "",
+        "tophead_mb": 30,
+        "click_image": "data-t4s-gallery",
+        "nav_thumbs": true,
+        "open_link": "_blank",
+        "item_rd": 0,
+        "img_effect": "none",
+        "b_effect": "none",
+        "image_ratio": "ratioadapt",
+        "image_size": "cover",
+        "image_position": "8",
+        "space_item": "30",
+        "space_item_mb": "10",
+        "layout": "t4s-container-wrap",
+        "cl_bg": "",
+        "cl_bg_gradient": "",
+        "mg": "30px,,50px,",
+        "pd": "",
+        "mg_tb": "30px,,50px,",
+        "pd_tb": "",
+        "mg_mb": ",,30px,",
+        "pd_mb": "",
+        "use_cus_css": false,
+        "code_cus_css": ""
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "disabled": true,
+      "settings": {
+        "show": true,
+        "design_heading": "1",
+        "heading_align": "t4s-text-center",
+        "top_heading": "You may also like",
+        "icon_heading": "las la-gem",
+        "top_subheading": "",
+        "tophead_mb": 30,
+        "product_des": "1",
+        "show_vendor": false,
+        "use_cdt": false,
+        "limit": 12,
+        "display_type": "4",
+        "image_ratio": "rationt",
+        "image_size": "nt_cover",
+        "image_position": "8",
+        "content_align": "default",
+        "col_dk": "4",
+        "col_tb": "2",
+        "col_mb": "2",
+        "space_h_item": "30",
+        "space_v_item": "30",
+        "space_h_item_mb": "10",
+        "space_v_item_mb": "10",
+        "layout_des": "2",
+        "loop": true,
+        "au_time": 0,
+        "au_hover": true,
+        "nav_btn": true,
+        "btn_vi": "1",
+        "btn_owl": "outline",
+        "btn_shape": "round",
+        "btn_cl": "dark",
+        "btn_size": "small",
+        "btn_hidden_mobile": true,
+        "nav_dot": false,
+        "dot_owl": "1",
+        "dots_cl": "dark",
+        "dots_round": true,
+        "dots_space": 10,
+        "dots_hidden_mobile": false,
+        "layout": "t4s-container-wrap",
+        "cl_bg": "",
+        "cl_bg_gradient": "",
+        "mg": "75px,,50px,",
+        "pd": "",
+        "mg_tb": "",
+        "pd_tb": "",
+        "mg_mb": ",,30px,",
+        "pd_mb": ""
+      }
+    },
+    "recently-viewed-products": {
+      "type": "recently_viewed",
+      "disabled": true,
+      "settings": {
+        "show": true,
+        "design_heading": "1",
+        "heading_align": "t4s-text-center",
+        "top_heading": "Recently viewed products",
+        "icon_heading": "las la-gem",
+        "top_subheading": "",
+        "tophead_mb": 30,
+        "product_des": "1",
+        "show_vendor": false,
+        "use_cdt": false,
+        "limit": 14,
+        "sortby": "1",
+        "unavailable_prs": "show",
+        "image_ratio": "rationt",
+        "image_size": "cover",
+        "image_position": "8",
+        "content_align": "default",
+        "col_dk": "4",
+        "col_tb": "2",
+        "col_mb": "2",
+        "space_h_item": "30",
+        "space_v_item": "30",
+        "space_h_item_mb": "10",
+        "space_v_item_mb": "10",
+        "layout_des": "2",
+        "loop": true,
+        "au_time": 0,
+        "au_hover": true,
+        "nav_btn": true,
+        "btn_vi": "always",
+        "btn_owl": "outline",
+        "btn_shape": "round",
+        "btn_cl": "dark",
+        "btn_size": "small",
+        "btn_hidden_mobile": true,
+        "nav_dot": false,
+        "dot_owl": "default",
+        "dots_cl": "dark",
+        "dots_round": true,
+        "dots_space": 10,
+        "dots_hidden_mobile": false,
+        "layout": "t4s-container-wrap",
+        "cl_bg": "",
+        "cl_bg_gradient": "",
+        "mg": "75px,,50px,",
+        "pd": "",
+        "mg_tb": "",
+        "pd_tb": "",
+        "mg_mb": ",,30px,",
+        "pd_mb": ""
+      }
+    },
+    "gift_offer_popup_h9EWqB": {
+      "type": "gift-offer-popup",
+      "name": "Gift offer popup",
+      "settings": {
+        "enable": true,
+        "heading": "Choose your offer",
+        "subheading": "Select an offer before adding to cart.",
+        "bogo_label": "Buy 1, get 1 free",
+        "bogo_product": "water-resistant-dog-shoes",
+        "bogo_image": "shopify://shop_images/1791998997235_6205455399737755752_g1999108096142304712_fca2bf6edb8adc4eb2de054dcb02549e.jpg",
+        "combo_label": "Get the 2-product combo",
+        "combo_product_1": "pet-comb-teddy-knot-opening-special-brush-dog-hair-cat-grooming",
+        "combo_product_2": "polyester-new-fashion-pet-bell-decorative-collar-for-cats-japanese-style-simple-design-halloween-christmas-cross-border-hot-sale",
+        "combo_image": "shopify://shop_images/1791963716977_6205455399737755752_g1999108096142304712_1784584e158857825aa10139791441b4.jpg",
+        "button_label": "Add to Cart with Selected Offer"
+      }
+    },
+    "1792050896246a7bda": {
+      "type": "apps",
+      "blocks": {
+        "vitals_product_reviews_xKpUC4": {
+          "type": "shopify://apps/vitals/blocks/product-reviews/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {
+            "hide_mock_data": false
+          }
+        }
+      },
+      "block_order": [
+        "vitals_product_reviews_xKpUC4"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "breadcrumb",
+    "main",
+    "vitals_3440f77d_XpmzrR",
+    "sidebar",
+    "image_gallery_packery_WjrGeN",
+    "product-recommendations",
+    "recently-viewed-products",
+    "gift_offer_popup_h9EWqB",
+    "1792050896246a7bda"
+  ]
+}
