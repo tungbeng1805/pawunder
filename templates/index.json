@@ -187,7 +187,7 @@
             "icon_themes": "car",
             "icon": "las la-shipping-fast",
             "title": "FREE SHIPPING",
-            "text": "<p>Free shipping on all US order or order above $100</p>",
+            "text": "<p>Free shipping on all order</p>",
             "html": ""
           }
         },
@@ -236,7 +236,7 @@
         "icon_heading": "las la-gem",
         "top_subheading": "",
         "tophead_mb": 30,
-        "content_align": "text-start",
+        "content_align": "text-center",
         "align_vertical": false,
         "design_padding": "1",
         "source": "themes_icon",
@@ -247,8 +247,8 @@
         "col_mb": "1",
         "border": false,
         "cl_bd": "#ddd",
-        "cl_ic": "#9e9e9e",
-        "cl_hd": "#222222",
+        "cl_ic": "#F06724",
+        "cl_hd": "#F06724",
         "cl_cot": "#878787",
         "bg_item": "#fff",
         "hd_fs": 16,
