@@ -30,11 +30,13 @@
     "price_primary": "#F06724",
     "link_color_hover": "#F06724",
     "cl_lazyload": "#F06724",
-    "font_source": "2",
-    "fnt_fm_sp2": "poppins_n4",
-    "fnt_fm_sp3": "libre_baskerville_n4",
-    "fnt_fm_gg2": "Poppins",
-    "fnt_fm_gg3": "Libre Baskerville",
+    "font_source": "1",
+    "fnt_fm_sp1": "geist_n4",
+    "fnt_fm_sp2": "geist_n4",
+    "fnt_fm_sp3": "geist_n4",
+    "fnt_fm_gg1": "Geist",
+    "fnt_fm_gg2": "Geist",
+    "fnt_fm_gg3": "Geist",
     "hd_ffamily": "1",
     "wishlist_mode": "0",
     "enable_compe": false,
@@ -2076,11 +2078,6 @@
           "agent_activator_font_size": 16,
           "agent_border_radius": 16
         }
-      },
-      "6770548097779500122": {
-        "type": "shopify://apps/koala-upsells-gifts/blocks/gifts-embed/baf92dc5-8ffa-40c0-967e-57b74cddc9e3",
-        "disabled": true,
-        "settings": {}
       }
     }
   }
