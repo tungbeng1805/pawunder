@@ -37,7 +37,7 @@
           "type": "price_review",
           "settings": {
             "price": "0",
-            "type_sale": "0",
+            "type_sale": "1",
             "tax_ship": false,
             "rating": true,
             "review_liquid": "",
