@@ -671,7 +671,7 @@ button.t4s-product-form__submit[disabled="disabled"]{
 
 /* Price */
 .t4s-product__price-review{
-  display: flex;
+  display: block;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;

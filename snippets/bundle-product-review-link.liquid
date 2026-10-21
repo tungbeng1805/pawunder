@@ -1,0 +1,63 @@
+{% comment %}
+  Five-star review link placed beneath the product price.
+  The link remains a normal anchor as a no-JavaScript fallback.
+{% endcomment %}
+
+<style>
+  .bundle-product-review-link {
+    align-items: center;
+    color: inherit;
+    column-gap: 3px;
+    display: inline-flex;
+    margin-top: 6px;
+    text-decoration: none;
+  }
+
+  .bundle-product-review-link__stars {
+    align-items: center;
+    display: inline-flex;
+  }
+
+  .bundle-product-review-link__star {
+    color: #F06724;
+    display: block;
+    height: 20px;
+    width: 20px;
+  }
+
+  .bundle-product-review-link__label {
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .bundle-product-review-link:hover .bundle-product-review-link__label,
+  .bundle-product-review-link:focus-visible .bundle-product-review-link__label {
+
+  }
+</style>
+
+<a class="bundle-product-review-link" href="#bundle-product_reviews" data-bundle-product-review-link aria-label="Read customer reviews">
+  <span class="bundle-product-review-link__stars" aria-label="5 out of 5 stars" role="img">
+    {%- for star in (1..5) -%}
+      <svg class="bundle-product-review-link__star" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M12 2.25l2.947 5.973 6.59.958-4.768 4.648 1.125 6.563L12 17.292l-5.894 3.099 1.125-6.563-4.768-4.648 6.59-.958L12 2.25z"/>
+      </svg>
+    {%- endfor -%}
+  </span>
+  <span class="bundle-product-review-link__label">(100+ Reviews)</span>
+</a>
+
+<script>
+  (() => {
+    document.querySelectorAll('[data-bundle-product-review-link]').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const reviews = document.getElementById('bundle-product_reviews');
+        if (!reviews) return;
+
+        event.preventDefault();
+        reviews.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', '#bundle-product_reviews');
+      });
+    });
+  })();
+</script>

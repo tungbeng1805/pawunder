@@ -90,13 +90,13 @@
 
           {%- elsif on_sale -%}
 
-          <del>{{ money_compare_at_price }}</del><ins>{{ 'products.product.from_price_html' | t: price_min: money_price, class: 't4s-price-from' }}</ins>
+          <ins>{{ 'products.product.from_price_html' | t: price_min: money_price, class: 't4s-price-from' }}</ins><del> {{ money_compare_at_price }}</del>
 
           {%- else -%}
           {{ 'products.product.from_price_html' | t: price_min: money_price, class: 't4s-price-from' }}
           {%- endif -%}
 
-      {%- elsif on_sale -%}<del>{{ money_compare_at_price }}</del><ins>{{ money_price }}</ins>
+      {%- elsif on_sale -%}<ins>{{ money_price }}</ins> <del>{{ money_compare_at_price }}</del>
       {%- else -%}{{ money_price }}
       {%- endif -%}
 </div>
