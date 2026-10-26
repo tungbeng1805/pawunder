@@ -4382,7 +4382,7 @@ shopify policy
 }
 shopify-payment-terms {
     margin-bottom: 15px;
-    display: block;
+    display: none;
 }
 .isotopet4s:not(.isotopet4s-later):not([style]) { display: block; }
 

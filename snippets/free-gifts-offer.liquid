@@ -55,32 +55,88 @@
     color: #111111;
   }
   #fgo-{{ fgo_id }} .fgo__track {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 34px minmax(0, 2fr);
+    align-items: stretch;
     gap: var(--fgo-gap);
     width: 100%;
     max-width: 100%;
     margin: 0;
     padding: 0;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x proximity;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    -webkit-overflow-scrolling: touch;
   }
-  #fgo-{{ fgo_id }} .fgo__track::-webkit-scrollbar {
-    display: none;
+  #fgo-{{ fgo_id }} .fgo__combo {
+    min-width: 0;
+    padding: 12px 10px 10px;
+    border: 1px solid #ffe0b2;
+    border-radius: calc(var(--fgo-radius) + 8px);
+    background: #fff7e9;
+  }
+  #fgo-{{ fgo_id }} .fgo__combo-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 0 0 10px;
+    color: #d94b00;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.3;
+    text-align: center;
+  }
+  #fgo-{{ fgo_id }} .fgo__combo-label::before,
+  #fgo-{{ fgo_id }} .fgo__combo-label::after {
+    content: '';
+    flex: 1 1 0;
+    max-width: 44px;
+    height: 1px;
+    background: #ffad60;
+  }
+  #fgo-{{ fgo_id }} .fgo__combo-label > span {
+    padding: 4px 9px;
+    border: 1px solid #ffbb78;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  #fgo-{{ fgo_id }} .fgo__combo-items {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    min-width: 0;
+  }
+  #fgo-{{ fgo_id }} .fgo__combo--pair .fgo__combo-items {
+    grid-template-columns: minmax(0, 1fr) 26px minmax(0, 1fr);
+    gap: 4px;
+  }
+  #fgo-{{ fgo_id }} .fgo__operator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    width: 34px;
+    height: 34px;
+    border: 2px solid #ff7900;
+    border-radius: 50%;
+    background: #fff;
+    color: #e85c00;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  #fgo-{{ fgo_id }} .fgo__operator--plus {
+    width: 26px;
+    height: 26px;
+    background: #ff7900;
+    color: #fff;
+    font-size: 23px;
   }
   #fgo-{{ fgo_id }} .fgo__card {
     display: flex;
-    flex: 1 1 0;
     flex-direction: column;
     align-items: stretch;
-    width: 32%;
-    min-width: 92px;
-    scroll-snap-align: start;
+    width: 100%;
+    min-width: 0;
     text-align: center;
     color: inherit;
   }
@@ -177,17 +233,45 @@
       padding-top: 8px;
     }
     #fgo-{{ fgo_id }} .fgo__track {
-      gap: min(var(--fgo-gap), 6px);
+      grid-template-columns: minmax(0, 1fr) 26px minmax(0, 2fr);
+      gap: min(var(--fgo-gap), 4px);
+    }
+    #fgo-{{ fgo_id }} .fgo__combo {
+      padding: 8px 5px 7px;
+      border-radius: var(--fgo-radius);
+    }
+    #fgo-{{ fgo_id }} .fgo__combo-label {
+      gap: 3px;
+      margin-bottom: 8px;
+      font-size: 10px;
+    }
+    #fgo-{{ fgo_id }} .fgo__combo-label > span {
+      padding: 3px 5px;
+    }
+    #fgo-{{ fgo_id }} .fgo__combo--pair .fgo__combo-items {
+      grid-template-columns: minmax(0, 1fr) 18px minmax(0, 1fr);
+      gap: 2px;
+    }
+    #fgo-{{ fgo_id }} .fgo__operator {
+      width: 26px;
+      height: 26px;
+      font-size: 10px;
+    }
+    #fgo-{{ fgo_id }} .fgo__operator--plus {
+      width: 18px;
+      height: 18px;
+      border-width: 1px;
+      font-size: 17px;
     }
     #fgo-{{ fgo_id }} .fgo__title {
       margin-top: 4px;
-      font-size: min(var(--fgo-title-size), 12px);
+      font-size: min(var(--fgo-title-size), 11px);
     }
     #fgo-{{ fgo_id }} .fgo__badge {
       top: 8px;
       gap: 2px;
-      padding: 1px 4px;
-      font-size: 10px;
+      padding: 1px 2px;
+      font-size: 9px;
     }
     #fgo-{{ fgo_id }} .fgo__frame.is-dashed .fgo__img-wrap {
       inset: 3px;
@@ -201,7 +285,7 @@
       font-size: 11px;
     }
     #fgo-{{ fgo_id }} .fgo__badge {
-      font-size: 9px;
+      font-size: 8px;
     }
   }
 {%- endstyle -%}
@@ -210,7 +294,25 @@
     <p class="fgo__heading">{{ stts.heading | escape }}</p>
   {%- endif -%}
   <div class="fgo__track">
-    {%- for i in (1..3) -%}
+    {%- for combo in (1..2) -%}
+      {%- liquid
+        assign first_card = 1
+        assign last_card = 1
+        if combo == 2
+          assign first_card = 2
+          assign last_card = 3
+        endif
+      -%}
+      {%- if combo == 2 -%}
+        <span class="fgo__operator">OR</span>
+      {%- endif -%}
+      <div class="fgo__combo{% if combo == 2 %} fgo__combo--pair{% endif %}" role="group" aria-label="Combo {{ combo }}">
+        <p class="fgo__combo-label"><span><span aria-hidden="true">🎁</span> COMBO {{ combo }}</span></p>
+        <div class="fgo__combo-items">
+          {%- for i in (first_card..last_card) -%}
+      {%- if i == 3 -%}
+        <span class="fgo__operator fgo__operator--plus" role="img" aria-label="Plus">+</span>
+      {%- endif -%}
       {%- liquid
         case i
           when 1
@@ -272,6 +374,9 @@
         {%- if card_title != blank -%}
           <p class="fgo__title">{{ card_title | escape }}</p>
         {%- endif -%}
+      </div>
+          {%- endfor -%}
+        </div>
       </div>
     {%- endfor -%}
   </div>
