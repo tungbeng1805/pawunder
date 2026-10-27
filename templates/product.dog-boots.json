@@ -47,6 +47,10 @@
             "price_sale_color": "#ec0101"
           }
         },
+        "vitals_reviews_stars_ftUqDL": {
+          "type": "shopify://apps/vitals/blocks/reviews-stars/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
+          "settings": {}
+        },
         "gift_combo_tag_GhedcT": {
           "type": "gift_combo_tag",
           "settings": {
@@ -153,6 +157,7 @@
       "block_order": [
         "title",
         "price_review",
+        "vitals_reviews_stars_ftUqDL",
         "gift_combo_tag_GhedcT",
         "form",
         "free_gifts_eNQmKn",
