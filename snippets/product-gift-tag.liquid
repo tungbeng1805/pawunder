@@ -1,0 +1,16 @@
+<div class="paw-gift-tag" {{ block.shopify_attributes }}>
+  <div class="paw-gift-tag__icon" aria-hidden="true">
+    {%- if block.settings.image != blank -%}
+      {{ block.settings.image | image_url: width: 160 | image_tag: loading: 'lazy', alt: '' }}
+    {%- else -%}
+      <img src="{{ 'gift-icon-dimensional.svg' | asset_url }}" width="44" height="44" alt="" loading="lazy">
+    {%- endif -%}
+  </div>
+  <div class="paw-gift-tag__copy">
+    <div class="paw-gift-tag__title"><span>{{ block.settings.highlight | escape }}</span> {{ block.settings.heading | escape }}</div>
+    {%- if block.settings.subtitle != blank -%}
+      <div class="paw-gift-tag__subtitle">{{ block.settings.subtitle | escape }}</div>
+    {%- endif -%}
+  </div>
+  <div class="paw-gift-tag__badge"><span>{{ block.settings.badge | escape }}</span></div>
+</div>

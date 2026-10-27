@@ -882,6 +882,10 @@ endif -%}
                 {%- when 'custom_liquid' -%}
                   <div class="t4s-liquid_{{ bk_id }} t4s-pr__custom-liquid t4s-rte" {{ block.shopify_attributes }}>{{ bk_stts.custom_liquid }}</div>
 
+                {%- when 'gift_combo_tag' -%}
+                  {{ 'product-gift-tag.css' | asset_url | stylesheet_tag }}
+                  {%- render 'product-gift-tag', block: block -%}
+
                 {%- when 'free_gifts' -%}
                   <div class="fgo-anchor" style="display:block;width:100%;max-width:100%;min-width:0;" {{ block.shopify_attributes }}>
                     {%- render 'free-gifts-offer', scope_id: bk_id, stts: bk_stts -%}
@@ -1830,6 +1834,42 @@ endif -%}
     }
   ],
   "blocks": [
+{
+  "type": "gift_combo_tag",
+  "name": "Gift combo tag",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Gift image"
+    },
+    {
+      "type": "text",
+      "id": "highlight",
+      "label": "Highlighted text",
+      "default": "FREE"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Gift Combo With Your Order"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Choose your favorite combo below"
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge text",
+      "default": "FREE"
+    }
+  ]
+},
     {
       "type": "@app"
     },

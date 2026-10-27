@@ -1,0 +1,81 @@
+.paw-gift-tag {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  max-width: 540px;
+  min-width: 0;
+  margin: 14px 0 22px;
+  border: 1px solid #ffd19a;
+  border-radius: 9px;
+  background: #fff7eb;
+  box-shadow: 0 3px 12px #d58b3620;
+  color: #222;
+}
+.paw-gift-tag::before,
+.paw-gift-tag::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 20px;
+  background: #fff;
+  border: 1px solid #ffd19a;
+  transform: translateY(-50%);
+}
+.paw-gift-tag::before { left: -1px; border-left: 0; border-radius: 0 12px 12px 0; }
+.paw-gift-tag::after { right: -1px; border-right: 0; border-radius: 12px 0 0 12px; }
+.paw-gift-tag__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 86px;
+  margin: 5px 0;
+  padding: 0 12px;
+  border-right: 1px dashed #ffb06f;
+}
+.paw-gift-tag__icon span { font-size: 44px; line-height: 1; }
+.paw-gift-tag__icon img { display: block; width: 44px; height: 44px; object-fit: contain; }
+.paw-gift-tag__copy { flex: 1; min-width: 0; padding: 12px; align-self: center; }
+.paw-gift-tag__title { font-size: 16px; line-height: 1.35; font-weight: 700; }
+.paw-gift-tag__title > span { color: #ff5b00; }
+.paw-gift-tag__subtitle { margin-top: 2px; color: #555; font-size: 14px; line-height: 1.4; }
+.paw-gift-tag__badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 80px;
+  margin: 5px 0;
+  padding: 17px 12px 5px;
+  border-left: 1px dashed #ffb06f;
+}
+.paw-gift-tag__badge span {
+  position: relative;
+  padding: 2px 7px;
+  border: 2px solid #ff5b00;
+  border-radius: 10px;
+  background: #fff;
+  color: #ff5b00;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.paw-gift-tag__badge span::before {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 12px;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(70deg, transparent 42%, #ff5b00 44% 58%, transparent 60%) left bottom / 6px 8px no-repeat,
+    linear-gradient(#ff5b00, #ff5b00) center top / 2px 8px no-repeat,
+    linear-gradient(-70deg, transparent 42%, #ff5b00 44% 58%, transparent 60%) right bottom / 6px 8px no-repeat;
+}
+@media (max-width: 480px) {
+  .paw-gift-tag__icon { flex-basis: 60px; padding: 0 8px; }
+  .paw-gift-tag__icon span { font-size: 34px; }
+  .paw-gift-tag__icon img { width: 44px; height: 44px; }
+  .paw-gift-tag__copy { padding: 10px 8px; }
+  .paw-gift-tag__badge { flex-basis: 65px; padding-right: 8px; padding-left: 8px; }
+}

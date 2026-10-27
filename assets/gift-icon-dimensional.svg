@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" fill="none">
+  <title>Dimensional orange ribbon gift box</title>
+  <defs>
+    <linearGradient id="gift-front" x1="9" y1="20" x2="25" y2="39" gradientUnits="userSpaceOnUse"><stop stop-color="#FFF0DA"/><stop offset="1" stop-color="#F4CCA0"/></linearGradient>
+    <linearGradient id="gift-ribbon" x1="15" y1="13" x2="26" y2="38" gradientUnits="userSpaceOnUse"><stop stop-color="#FF9947"/><stop offset="1" stop-color="#ED5811"/></linearGradient>
+  </defs>
+  <ellipse cx="22" cy="40.5" rx="14" ry="2" fill="#D59C65" opacity=".2"/>
+  <path d="M7 21L23 26L37 20V34C37 35 36.5 35.5 35.5 36L23 41L8.5 36C7.5 35.7 7 35 7 34V21Z" fill="url(#gift-front)"/>
+  <path d="M23 26L37 20V34C37 35 36.5 35.5 35.5 36L23 41V26Z" fill="#E9B987"/>
+  <path d="M5 15L21 10L39 15.5L23 22L5 15Z" fill="#FFF3E1"/>
+  <path d="M5 15L23 21V27L5 21V15Z" fill="#FFE4C3"/>
+  <path d="M23 21L39 15.5V21.5L23 27V21Z" fill="#F5CEA1"/>
+  <path d="M13 12.5L29.5 18.8V38.4L24.5 40.4V20.5L8.5 14L13 12.5Z" fill="#F66A20"/>
+  <path d="M29 12.5L13.5 17.8V37.7L19 39.6V19.5L34 14L29 12.5Z" fill="url(#gift-ribbon)"/>
+  <path d="M22 13C17 13 10 11 11 6.5C11.6 3.8 14.5 3.5 17 6C19 8 22 13 22 13Z" fill="#FF8E3F"/>
+  <path d="M22 13C27 13 34 10 32 6C30.5 3.5 27.5 5 26 7C24 9 22 13 22 13Z" fill="#F2671D"/>
+  <path d="M18 10.5C15 10 13 8.5 14 7.5C15 6.5 17 9 18 10.5ZM26 10.5C28 9.8 30 8 29 7.3C28 6.6 26.5 9 26 10.5Z" fill="#FFD19A"/>
+  <rect x="19" y="10" width="7" height="5" rx="2.5" fill="#FF792B"/>
+</svg>
