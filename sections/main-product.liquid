@@ -397,34 +397,7 @@ endif -%}
                 {%- when 'price_review' -%}
                   <div class="t4s-product__price-review" style="--price-size:{{ bk_stts.size_price_pr }}px;--price-weight:{{ bk_stts.fw_price_pr }};--price-color:{{ bk_stts.price_color }};--price-sale-color:{{ bk_stts.price_sale_color }};">
                     {%- render 'product-price-single', variant: current_variant, product: product, PR_no_pick: PR_no_pick, type_sale: bk_stts.type_sale, price_varies_style: bk_stts.price -%}
-                    {%- render 'bundle-product-review-link' -%}
                     {%- if bk_stts.rating -%}
-                    {%- assign pid = product.id -%}
-                    <a href="#{{ idTabReview }}" data-go-id="#{{ idTabReview }}" class="t4s-product__review t4s-d-inline-block">
-                      {%- case settings.app_review -%}
-                        {%- when '1' -%}
-                          <span class="shopify-product-reviews-badge" data-id="{{ pid }}"></span>
-                        {%- when '2' -%}
-                          <div class="review-widget"><ryviu-widget-total reviews_data="{{ pr_metafields.ryviu.product_reviews_info | escape }}" product_id="{{ pid }}" handle="{{ product.handle }}"></ryviu-widget-total></div>
-                        {%- when '3' -%}
-                          <div product-id="{{ pid }}" class="alr-display-review-badge"></div>
-                        {%- when '4' -%}
-                          <div class="loox-rating" data-id="{{ pid }}" data-rating="{{ pr_metafields.loox.avg_rating }}" data-raters="{{ pr_metafields.loox.num_reviews }}"></div>
-                        {%- when '5' -%}
-                          {%- capture the_snippet_review_avg %}{% render 'ssw-widget-avg-rate-profile' %}{% endcapture -%}
-                          {%- unless the_snippet_review_avg contains 'Liquid error' %}{{ the_snippet_review_avg }}{% endunless -%}
-                        {%- when '7' -%}
-                          <!-- Start of Judge.me code -->
-                            <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' style="pointer-events: none;">
-                              {{- product.metafields.judgeme.badge -}}
-                            </div>
-                          <!-- End of Judge.me code -->
-                        {%- when '8' -%}
-                          <div id="scm-product-detail-rate" class="scm-reviews-rate" data-rate-version2= {{ product.metafields.scm_review_importer.reviewsData.reviewCountInfo | json }} data-product-id= {{ product.id }}></div>
-                        {%- else -%}
-                          <div class="t4s-pr_rating t4s-review_pr_other">{{ bk_stts.review_liquid }}</div>
-                      {%- endcase -%}
-                    </a>
                     {%- endif -%}
                   </div>
 
