@@ -1,0 +1,14 @@
+{%- assign content_image = block.settings.image -%}
+{%- if content_image != blank or request.design_mode -%}
+  <div class="paw-product-image" style="--image-width: {{ block.settings.width }}%; text-align: {{ block.settings.alignment }}; margin: 16px 0;" {{ block.shopify_attributes }}>
+    <div style="display: inline-block; width: var(--image-width); max-width: 100%; vertical-align: top;">
+      {%- if content_image != blank -%}
+        {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}" style="display: block;">{%- endif -%}
+        {{ content_image | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '240, 360, 480, 640, 800, 1200, 1600', sizes: '(min-width: 768px) 50vw, 100vw', style: 'display: block; width: 100%; height: auto;' }}
+        {%- if block.settings.link != blank -%}</a>{%- endif -%}
+      {%- else -%}
+        {{ 'image' | placeholder_svg_tag: 't4s-placeholder-svg' }}
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}

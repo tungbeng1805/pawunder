@@ -855,6 +855,9 @@ endif -%}
                 {%- when 'custom_liquid' -%}
                   <div class="t4s-liquid_{{ bk_id }} t4s-pr__custom-liquid t4s-rte" {{ block.shopify_attributes }}>{{ bk_stts.custom_liquid }}</div>
 
+                {%- when 'content_image' -%}
+                  {%- render 'product-content-image', block: block -%}
+
                 {%- when 'gift_combo_tag' -%}
                   {{ 'product-gift-tag.css' | asset_url | stylesheet_tag }}
                   {%- render 'product-gift-tag', block: block -%}
@@ -1807,6 +1810,52 @@ endif -%}
     }
   ],
   "blocks": [
+{
+  "type": "content_image",
+  "name": "Image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "width",
+      "label": "Image width",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Image link"
+    }
+  ]
+},
 {
   "type": "gift_combo_tag",
   "name": "Gift combo tag",
