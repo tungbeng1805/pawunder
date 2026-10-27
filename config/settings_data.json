@@ -207,7 +207,7 @@
             "settings": {
               "image_child": "shopify://shop_images/logo-pawunder-white.png",
               "link_img": "",
-              "img_width": 120,
+              "img_width": 60,
               "img_width_mb": 0,
               "mgb": 34,
               "mgb_mb": 24
@@ -782,7 +782,7 @@
           "pr_title_color_hover": "#56cfe1",
           "price_color": "#696969",
           "price_color_second": "#696969",
-          "price_sale_color": "#F06724",
+          "price_sale_color": "#f06724",
           "vendors_color": "#878787",
           "vendors_color_hover": "#56cfe1",
           "countdown_color": "#56cfe1",
