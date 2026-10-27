@@ -47,6 +47,15 @@
             "price_sale_color": "#ec0101"
           }
         },
+        "gift_combo_tag_GhedcT": {
+          "type": "gift_combo_tag",
+          "settings": {
+            "highlight": "FREE",
+            "heading": "Gift Combo With Your Order",
+            "subtitle": "Choose your favorite combo below",
+            "badge": "FREE"
+          }
+        },
         "form": {
           "type": "form",
           "settings": {
@@ -144,6 +153,7 @@
       "block_order": [
         "title",
         "price_review",
+        "gift_combo_tag_GhedcT",
         "form",
         "free_gifts_eNQmKn",
         "custom_liquid_qGPXAz",
