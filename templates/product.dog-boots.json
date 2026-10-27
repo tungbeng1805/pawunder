@@ -403,6 +403,16 @@
             "col_mb": "12"
           }
         },
+        "image_item_FAX83P": {
+          "type": "image_item",
+          "settings": {
+            "image": "shopify://shop_images/3d6a16f4-36c0-431c-a5bf-3fde9738a92a.png",
+            "link": "",
+            "col_dk": "6",
+            "col_tb": "6",
+            "col_mb": "12"
+          }
+        },
         "image_item_ziMwcn": {
           "type": "image_item",
           "settings": {
@@ -418,6 +428,7 @@
         "image_item_mpXRWk",
         "image_item_8bX4xC",
         "image_item_JymnVz",
+        "image_item_FAX83P",
         "image_item_ziMwcn"
       ],
       "name": "Image gallery packery",
