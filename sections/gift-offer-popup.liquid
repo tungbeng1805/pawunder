@@ -25,6 +25,7 @@
 
 {%- if show_popup -%}
   {{ 'gift-offer-popup.css' | asset_url | stylesheet_tag }}
+  {{ 'gift-offer-popup-selection.css' | asset_url | stylesheet_tag }}
 
   <div
     id="GiftOfferPopup-{{ section.id }}"
@@ -61,6 +62,10 @@
                   {%- endif -%}
                 </span>
               </span>
+              <span class="gift-offer-popup__choice-label">
+                <span class="gift-offer-popup__choice-title">{{ section.settings.bogo_label | escape }}</span>
+                <span class="gift-offer-popup__selected-pill">Selected</span>
+              </span>
             </span>
           </label>
         {%- endif -%}
@@ -81,13 +86,17 @@
                   </span>
                 {%- endif -%}
               </span>
+              <span class="gift-offer-popup__choice-label">
+                <span class="gift-offer-popup__choice-title">{{ section.settings.combo_label | escape }}</span>
+                <span class="gift-offer-popup__selected-pill">Selected</span>
+              </span>
             </span>
           </label>
         {%- endif -%}
       </div>
 
       <p class="gift-offer-popup__error" data-gift-offer-error role="alert" hidden></p>
-      <button type="button" class="gift-offer-popup__pick" data-gift-offer-pick><span>{{ section.settings.button_label | escape }}</span><span aria-hidden="true">→</span></button>
+      <button type="button" class="gift-offer-popup__pick" data-gift-offer-pick><span data-gift-offer-pick-label>{{ section.settings.button_label | escape }}</span><span aria-hidden="true">→</span></button>
     </div>
 
     <script type="application/json" data-gift-offer-config>

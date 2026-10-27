@@ -13,6 +13,14 @@
     catch (_) { return {}; }
   };
 
+  const updatePickLabel = popup => {
+    const selected = popup.querySelector('input[type="radio"]:checked');
+    const label = popup.querySelector('[data-gift-offer-pick-label]');
+    if (!selected || !label) return;
+    const choiceTitle = selected.closest('.gift-offer-popup__choice').querySelector('.gift-offer-popup__choice-title');
+    if (choiceTitle) label.textContent = `Add ${choiceTitle.textContent.trim()}`;
+  };
+
   const cartIsOpen = () => {
     const drawer = document.querySelector('#t4s-mini_cart');
     return drawer && drawer.getAttribute('aria-hidden') === 'false';
@@ -41,6 +49,7 @@
     popup.setAttribute('aria-hidden', 'false');
     document.documentElement.classList.add('gift-offer-popup-open');
     popup.querySelector('[data-gift-offer-error]').hidden = true;
+    updatePickLabel(popup);
     popup.querySelector('[data-gift-offer-pick]').focus();
   };
 
@@ -138,6 +147,7 @@
     if (choice) {
       popup.querySelectorAll('.gift-offer-popup__choice').forEach(item => item.classList.toggle('is-selected', item === choice));
       choice.querySelector('input').checked = true;
+      updatePickLabel(popup);
       return;
     }
     const pickButton = event.target.closest('[data-gift-offer-pick]');

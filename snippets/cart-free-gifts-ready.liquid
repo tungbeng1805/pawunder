@@ -1,164 +1,122 @@
 {%- comment -%}
-  Renders Koloa free-gift items in a grouped promo layout.
-  Accepts: gift_keys (comma-separated line item keys), heading (optional)
+  Renders each gift-offer group as a distinct reward card.
+  One gift is a Buy 1 Get 1 offer; two gifts are a Combo 2 offer.
 {%- endcomment -%}
 {%- if gift_keys != blank -%}
-  {%- assign cfg_heading = heading | default: '🎁 Your Free Gift Is Ready!' -%}
   {%- style -%}
     .t4s-mini_cart__item.is--koloa-gift,
-    .t4s-page_cart__item.is--koloa-gift {
-      display: none !important;
-    }
-    .cfg {
-      margin: 12px 16px 16px;
-      color: #111;
-    }
-    .cfg__heading {
-      margin: 0 0 10px;
-      text-align: center;
-      font-size: 15px;
-      font-weight: 700;
-      line-height: 1.3;
-      color: #111;
-    }
-    .cfg__box {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px 10px;
-      padding: 12px;
-      border: 1px solid #2f5d3a;
-      border-radius: 10px;
-      background: #fff;
-    }
-    .cfg-gift {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      min-width: 0;
-    }
-    .cfg-gift__media {
-      position: relative;
-      flex: 0 0 52px;
-      width: 52px;
-      height: 52px;
-    }
-    .cfg-gift__qty {
-      position: absolute;
-      z-index: 1;
-      top: -4px;
-      left: -4px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 18px;
-      height: 18px;
-      padding: 0 4px;
-      border-radius: 3px;
-      background: #6b7c3a;
-      color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-      line-height: 1;
-    }
-    .cfg-gift__img,
-    .cfg-gift__media svg {
-      display: block;
-      width: 52px;
-      height: 52px;
-      object-fit: cover;
-      border-radius: 6px;
-      background: #f4f4f4;
-    }
-    .cfg-gift__info {
-      min-width: 0;
-      flex: 1 1 auto;
-    }
-    .cfg-gift__title {
-      margin: 0;
-      font-size: 12px;
-      font-weight: 500;
-      line-height: 1.35;
-      color: #111;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .cfg-gift__price {
-      margin: 4px 0 0;
-      font-size: 12px;
-      line-height: 1.3;
-    }
-    .cfg-gift__price-free {
-      color: #000;
-    }
-    .cfg-gift__price-was {
-      margin-inline-start: 6px;
-      color: #d32f2f;
-      text-decoration: line-through;
-      font-weight: 500;
-    }
-    .t4s-cartPage__items .cfg {
-      margin: 20px 0 10px;
-    }
-    @media (max-width: 420px) {
-      .cfg__box {
-        grid-template-columns: 1fr;
-      }
-    }
+    .t4s-page_cart__item.is--koloa-gift { display: none !important; }
+
+    .cfg { margin: 8px 16px 12px; color: #161616; }
+    .cfg + .cfg { margin-top: 12px; }
+    .cfg__reward { overflow: hidden; border: 1px solid #ffd1ba; border-radius: 14px; background: #fff3e9; box-shadow: 0 8px 20px rgba(240, 103, 36, .16); }
+    .cfg__hero { position: relative; min-height: 123px; padding: 17px 12px 10px; overflow: hidden; color: #fff; text-align: center; background: radial-gradient(circle at 14% 20%, rgba(255,220,77,.95) 0 4px, transparent 5px), radial-gradient(circle at 88% 24%, rgba(255,220,77,.95) 0 4px, transparent 5px), linear-gradient(135deg, #ff5c1f 0%, #f8781e 55%, #ff9d20 100%); }
+    .cfg__hero::before { content: '🎁'; position: absolute; top: 17px; left: 13px; font-size: 43px; line-height: 1; filter: drop-shadow(0 4px 1px rgba(117, 39, 0, .2)); transform: rotate(-8deg); }
+    .cfg__hero::after { content: '✦  ✦  ✦'; position: absolute; right: 9px; bottom: 37px; color: #ffe467; font-size: 13px; letter-spacing: 1px; transform: rotate(-14deg); }
+    .cfg__eyebrow { display: inline-flex; align-items: center; gap: 4px; margin: 0 0 3px; padding: 2px 7px; border: 1px solid rgba(255,255,255,.56); border-radius: 99px; background: rgba(111, 40, 7, .18); font-size: 8px; font-weight: 800; letter-spacing: .06em; line-height: 1.2; text-transform: uppercase; }
+    .cfg__title { position: relative; z-index: 1; max-width: 210px; margin: 7px auto 0; font-size: 19px; font-weight: 900; letter-spacing: -.04em; line-height: .98; text-shadow: 0 1px 0 rgba(163, 47, 0, .12); }
+    .cfg__title strong { color: #ffe467; }
+    .cfg__progress { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; height: 30px; margin: 11px 3px 0; }
+    .cfg__progress-track { position: absolute; inset: 0; overflow: hidden; border: 2px solid #fff; border-radius: 99px; background: rgba(255,255,255,.35); box-shadow: 0 2px 0 rgba(174, 65, 0, .2); }
+    .cfg__progress-fill { display: block; width: 100%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #ffe467, #ffd92e); }
+    .cfg__progress-label { position: relative; color: #221b00; font-size: 13px; font-weight: 900; line-height: 1; white-space: nowrap; }
+    .cfg__gifts { display: grid; gap: 7px; padding: 9px; }
+    .cfg--bogo .cfg__gifts { grid-template-columns: 1fr; }
+    .cfg--combo .cfg__gifts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .cfg-gift { position: relative; display: flex; min-width: 0; gap: 10px; padding: 13px 9px 9px; border: 1px solid #ffe0c9; border-radius: 11px; background: #fffdf9; box-shadow: inset 0 0 0 1px rgba(255,255,255,.9); }
+    .cfg--combo .cfg-gift { display: block; padding: 5px; }
+    .cfg-gift__flag { position: absolute; z-index: 3; top: 8px; left: 50%; padding: 5px 8px; border: 1px solid #f7b71d; border-radius: 3px; background: #ffe467; color: #201900; font-size: 9px; font-weight: 900; line-height: 1.1; transform: translateX(-50%) rotate(-7deg); box-shadow: 0 2px 0 rgba(219, 143, 0, .18); white-space: nowrap; }
+    .cfg-gift__media { position: relative; flex: 0 0 85px; width: 85px; height: 85px; }
+    .cfg--combo .cfg-gift__media { width: 100%; height: auto; }
+    .cfg-gift__qty { position: absolute; z-index: 4; top: 1px; left: 1px; display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 99px; background: #f06724; color: #fff; font-size: 9px; font-weight: 800; line-height: 1; }
+    .cfg-gift__img, .cfg-gift__media svg { display: block; width: 100%; height: 85px; object-fit: cover; border-radius: 7px; background: #fff3eb; }
+    .cfg--combo .cfg-gift__img, .cfg--combo .cfg-gift__media svg { height: auto; aspect-ratio: 1 / 1; }
+    .cfg-gift__info { min-width: 0; flex: 1 1 auto; }
+    .cfg-gift__title { margin: 11px 0 0; color: #151515; font-size: 12px; font-weight: 800; line-height: 1.2; display: -webkit-box; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+    .cfg--combo .cfg-gift__title { margin-top: 5px; text-align: center; font-size: 10px; }
+    .cfg-gift__price { margin: 7px 0 0; font-size: 18px; font-weight: 900; line-height: 1; }
+    .cfg--combo .cfg-gift__price { text-align: center; }
+    .cfg-gift__price-free { color: #f05214; }
+    .cfg-gift__price-was { margin-inline-start: 4px; color: #777; font-size: 10px; font-weight: 600; text-decoration: line-through; }
+    .cfg__footer { padding: 1px 9px 11px; text-align: center; }
+    .cfg__savings { margin: 3px 0 9px; color: #151515; font-size: 15px; font-weight: 900; letter-spacing: -.03em; }
+    .cfg__savings strong { color: #f05214; }
+    .cfg__status { display: block; padding: 9px; border-radius: 7px; background: #171717; color: #fff; font-size: 12px; font-weight: 900; line-height: 1.3; }
+    .t4s-cartPage__items .cfg { max-width: 680px; margin: 20px 0 10px; }
+    @media (max-width: 360px) { .cfg--combo .cfg__gifts { gap: 6px; padding: 9px; } }
   {%- endstyle -%}
-  <div class="cfg" data-cart-free-gifts>
-    <p class="cfg__heading">{{ cfg_heading | escape }}</p>
-    <div class="cfg__box">
-      {%- for item in cart.items -%}
-        {%- assign key_needle = item.key | append: ',' -%}
-        {%- if gift_keys contains key_needle -%}
-          {%- liquid
-            assign gift_image = item.image
-            assign gift_qty = item.quantity
-            assign gift_title = item.product.title
-            assign original_price = item.original_price
-            if item.variant.compare_at_price > original_price
-              assign original_price = item.variant.compare_at_price
-            endif
-            if settings.currency_code_enabled
-              assign money_zero = 0 | money_with_currency
-              assign money_original = original_price | money_with_currency
-            else
-              assign money_zero = 0 | money
-              assign money_original = original_price | money
-            endif
-          -%}
-          <div class="cfg-gift">
-            <div class="cfg-gift__media">
-              <span class="cfg-gift__qty" aria-hidden="true">{{ gift_qty }}</span>
-              {%- if gift_image != blank -%}
-                <img
-                  class="cfg-gift__img"
-                  src="{{ gift_image | image_url: width: 160 }}"
-                  srcset="{{ gift_image | image_url: width: 80 }} 80w, {{ gift_image | image_url: width: 160 }} 160w"
-                  sizes="52px"
-                  width="52"
-                  height="52"
-                  loading="lazy"
-                  alt="{{ gift_image.alt | default: gift_title | escape }}"
-                >
-              {%- else -%}
-                {{ 'product-1' | placeholder_svg_tag: 'cfg-gift__img cfg-gift__img--placeholder' }}
-              {%- endif -%}
+
+  {%- assign rendered_groups = '|' -%}
+  {%- for gift_item in cart.items -%}
+    {%- assign gift_key_needle = gift_item.key | append: ',' -%}
+    {%- if gift_keys contains gift_key_needle -%}
+      {%- assign gift_group = gift_item.properties['_Gift offer group'] | default: gift_item.key -%}
+      {%- assign group_token = '|' | append: gift_group | append: '|' -%}
+      {%- unless rendered_groups contains group_token -%}
+        {%- assign rendered_groups = rendered_groups | append: gift_group | append: '|' -%}
+        {%- assign gift_count = 0 -%}
+        {%- for group_item in cart.items -%}
+          {%- assign group_key_needle = group_item.key | append: ',' -%}
+          {%- if gift_keys contains group_key_needle and group_item.properties['_Gift offer group'] == gift_group or gift_item.properties['_Gift offer group'] == blank and group_item.key == gift_item.key -%}
+            {%- assign gift_count = gift_count | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if gift_count == 0 -%}{%- assign gift_count = 1 -%}{%- endif -%}
+        {%- assign offer_savings = gift_item.original_price | times: gift_item.quantity -%}
+        {%- if settings.currency_code_enabled -%}
+          {%- assign money_offer_savings = offer_savings | money_with_currency -%}
+        {%- else -%}
+          {%- assign money_offer_savings = offer_savings | money -%}
+        {%- endif -%}
+        <div class="cfg cfg--{% if gift_count == 1 %}bogo{% else %}combo{% endif %}" data-cart-free-gifts>
+          <div class="cfg__reward">
+            <div class="cfg__hero">
+              <p class="cfg__eyebrow">&#127873; {% if gift_count == 1 %}Buy 1, Get 1{% else %}Combo {{ gift_count }}{% endif %}</p>
+              <p class="cfg__title">{% if gift_count == 1 %}You unlocked a <strong>FREE gift!</strong>{% else %}You unlocked <strong>{{ gift_count }} FREE gifts!</strong>{% endif %}</p>
+              <div class="cfg__progress" aria-label="Offer unlocked"><span class="cfg__progress-track"><span class="cfg__progress-fill"></span></span><span class="cfg__progress-label">100% unlocked</span></div>
             </div>
-            <div class="cfg-gift__info">
-              <p class="cfg-gift__title">{{ gift_title | escape }}</p>
-              <p class="cfg-gift__price">
-                <span class="cfg-gift__price-free">{{ money_zero }}</span>
-                {%- if original_price > 0 -%}
-                  <span class="cfg-gift__price-was">{{ money_original }}</span>
+            <div class="cfg__gifts">
+              {%- for group_item in cart.items -%}
+                {%- assign group_key_needle = group_item.key | append: ',' -%}
+                {%- if gift_keys contains group_key_needle and group_item.properties['_Gift offer group'] == gift_group or gift_item.properties['_Gift offer group'] == blank and group_item.key == gift_item.key -%}
+                  {%- liquid
+                    assign gift_image = group_item.image
+                    assign gift_qty = group_item.quantity
+                    assign gift_title = group_item.product.title
+                    assign original_price = group_item.original_price
+                    if settings.currency_code_enabled
+                      assign money_zero = 0 | money_with_currency
+                      assign money_original = original_price | money_with_currency
+                    else
+                      assign money_zero = 0 | money
+                      assign money_original = original_price | money
+                    endif
+                  -%}
+                  <div class="cfg-gift">
+                    <span class="cfg-gift__flag">FREE GIFT</span>
+                    <div class="cfg-gift__media">
+                      <span class="cfg-gift__qty" aria-label="Quantity {{ gift_qty }}">{{ gift_qty }}</span>
+                      {%- if gift_image != blank -%}
+                        <img class="cfg-gift__img" src="{{ gift_image | image_url: width: 240 }}" srcset="{{ gift_image | image_url: width: 120 }} 120w, {{ gift_image | image_url: width: 240 }} 240w" sizes="{% if gift_count == 1 %}58px{% else %}120px{% endif %}" width="120" height="120" loading="lazy" alt="{{ gift_image.alt | default: gift_title | escape }}">
+                      {%- else -%}
+                        {{ 'product-1' | placeholder_svg_tag: 'cfg-gift__img cfg-gift__img--placeholder' }}
+                      {%- endif -%}
+                    </div>
+                    <div class="cfg-gift__info">
+                      <p class="cfg-gift__title">{{ gift_title | escape }}</p>
+                      <p class="cfg-gift__price"><span class="cfg-gift__price-free">{{ money_zero }}</span>{% if original_price > 0 %}<span class="cfg-gift__price-was">{{ money_original }}</span>{% endif %}</p>
+                    </div>
+                  </div>
                 {%- endif -%}
-              </p>
+              {%- endfor -%}
+            </div>
+            <div class="cfg__footer">
+              {%- if gift_count == 1 and offer_savings > 0 -%}<p class="cfg__savings">You save <strong>{{ money_offer_savings }}</strong> today</p>{%- endif -%}
+              <span class="cfg__status">&#10003; Your free gift is secured</span>
             </div>
           </div>
-        {%- endif -%}
-      {%- endfor -%}
-    </div>
-  </div>
+        </div>
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
 {%- endif -%}

@@ -1,0 +1,101 @@
+/* Selection layout enhancement. Loaded after the original popup stylesheet. */
+.gift-offer-popup__choice-content {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 0 8px;
+  padding: 9px 10px 10px 0;
+  border: 2px solid #e4e4ea;
+  border-radius: 16px;
+}
+
+.gift-offer-popup__choice.is-selected .gift-offer-popup__choice-content,
+.gift-offer-popup__choice input:checked + .gift-offer-popup__choice-content {
+  border-color: #f06724;
+  background: #fff8f3;
+  box-shadow: 0 0 0 2px rgba(240, 103, 36, .14);
+}
+
+.gift-offer-popup__choice:nth-child(2).is-selected .gift-offer-popup__choice-content,
+.gift-offer-popup__choice:nth-child(2) input:checked + .gift-offer-popup__choice-content {
+  background: #fff8f3;
+}
+
+.gift-offer-popup__radio {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  display: grid;
+  width: 27px;
+  height: 27px;
+  border: 2px solid #aeb3bd;
+  border-radius: 50%;
+  background: #fff;
+  transform: translateY(-50%);
+}
+
+.gift-offer-popup__choice.is-selected .gift-offer-popup__radio,
+.gift-offer-popup__choice input:checked + .gift-offer-popup__choice-content .gift-offer-popup__radio {
+  display: grid;
+  border-color: #f06724;
+  background: #f06724;
+}
+
+.gift-offer-popup__radio span {
+  width: 13px;
+  height: 7px;
+  border-width: 0 0 3px 3px;
+}
+
+.gift-offer-popup__bogo-layout,
+.gift-offer-popup__visual {
+  grid-column: 2;
+  min-width: 0;
+}
+
+.gift-offer-popup__choice-label {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 2px 0;
+}
+
+.gift-offer-popup__choice-title {
+  color: var(--gift-ink);
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.gift-offer-popup__selected-pill {
+  display: none;
+  flex: none;
+  padding: 5px 9px;
+  border-radius: 99px;
+  background: #168640;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.gift-offer-popup__choice.is-selected .gift-offer-popup__selected-pill,
+.gift-offer-popup__choice input:checked + .gift-offer-popup__choice-content .gift-offer-popup__selected-pill {
+  display: inline-flex;
+}
+
+.gift-offer-popup__pick {
+  background: linear-gradient(90deg, #f05214, #ff7a1a);
+}
+
+@media (max-width: 480px) {
+  .gift-offer-popup__choice-content { grid-template-columns: 34px minmax(0, 1fr); padding: 7px 8px 8px 0; }
+  .gift-offer-popup__radio { width: 24px; height: 24px; }
+  .gift-offer-popup__choice-title { font-size: 14px; }
+  .gift-offer-popup__choice-label { padding-top: 7px; }
+}

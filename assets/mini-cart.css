@@ -604,6 +604,11 @@ ul.t4s-cart_discount_price {
     font-size: 14px;
 }
 
+.t4s-container-free-ship {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .tb-free-ship {
     background-color: #f06724;
     color: #fff;
