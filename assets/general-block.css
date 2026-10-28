@@ -120,6 +120,6 @@
     height: var(--height-mb);
   }
   .t4s-img-child img {
-    max-width: var(--width-mb);
+    max-width: 100px !important;
   }
 }
