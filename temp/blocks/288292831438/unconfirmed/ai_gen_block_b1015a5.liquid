@@ -1,6 +1,253 @@
+{% doc %}
+  @prompt
+    Tạo cho tôi 1 section Image compare
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-image-compare-{{ ai_gen_id }} {
+    display: block;
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    color: {{ block.settings.text_color }};
+    font-family: inherit;
+  }
+
+  .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__heading {
+    margin: 0 0 18px;
+    color: {{ block.settings.text_color }};
+    font-size: clamp(22px, 3vw, 34px);
+    line-height: 1.2;
+    text-align: {{ block.settings.text_alignment }};
+  }
+
+  .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: {{ block.settings.aspect_ratio }};
+    overflow: hidden;
+    border-radius: {{ block.settings.corner_radius }}px;
+    background: #f2f2f2;
+    isolation: isolate;
+    touch-action: pan-y;
+  }
+
+  .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__image,
+  .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__image {
+    display: block;
+    object-fit: cover;
+  }
+
+  .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;
+    color: #555;
+  }
+
+  .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__placeholder svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    fill: #d8d8d8;
+  }
+
+  .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__empty-note {
+    position: absolute;
+    z-index: 3;
+    bottom: 14px;
+    left: 50%;
+    width: max-content;
+    max-width: calc(100% - 28px);
+    transform: translateX(-50%);
+    padding: 7px 11px;
+    border-radius: 4px;
+    background: #fff;
+    color: #333;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__after {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    clip-path: inset(0 0 0 var(--ai-compare-position, 50%));
+  }
+
+  .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__divider {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    left: var(--ai-compare-position, 50%);
+    width: 2px;
+    transform: translateX(-50%);
+    background: {{ block.settings.divider_color }};
+    pointer-events: none;
+  }
+
+  .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    transform: translate(-50%, -50%);
+    border: 2px solid {{ block.settings.divider_color }};
+    border-radius: 50%;
+    background: {{ block.settings.handle_background }};
+    color: {{ block.settings.handle_icon_color }};
+  }
+
+  .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__handle svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__label {
+    position: absolute;
+    z-index: 2;
+    top: 14px;
+    padding: 7px 11px;
+    border-radius: 4px;
+    background: {{ block.settings.label_background }};
+    color: {{ block.settings.label_text_color }};
+    font-size: 13px;
+    line-height: 1.2;
+    pointer-events: none;
+  }
+
+  .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__label--before {
+    left: 14px;
+  }
+
+  .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__label--after {
+    right: 14px;
+  }
+
+  .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__range {
+    position: absolute;
+    z-index: 4;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+  }
+
+  .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__range:focus-visible {
+    opacity: 1;
+    outline: 3px solid {{ block.settings.focus_color }};
+    outline-offset: -4px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__heading {
+      margin-bottom: 14px;
+    }
+
+    .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__label {
+      top: 10px;
+      font-size: 12px;
+    }
+
+    .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__label--before {
+      left: 10px;
+    }
+
+    .ai-image-compare-{{ ai_gen_id }} .ai-image-compare__label--after {
+      right: 10px;
+    }
+  }
+{% endstyle %}
+
+<image-compare-{{ ai_gen_id }} class="ai-image-compare-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if block.settings.heading != blank %}
+    <h2 class="ai-image-compare__heading">{{ block.settings.heading | escape }}</h2>
+  {% endif %}
+  <div class="ai-image-compare__frame" style="--ai-compare-position: {{ block.settings.start_position }}%;">
+    {% if block.settings.before_image != blank %}
+      <img class="ai-image-compare__image" src="{{ block.settings.before_image | image_url: width: 2000 }}" alt="{{ block.settings.before_image.alt | default: block.settings.before_label | escape }}" loading="lazy" width="{{ block.settings.before_image.width }}" height="{{ block.settings.before_image.height }}">
+    {% else %}
+      <div class="ai-image-compare__placeholder">{{ 'image' | placeholder_svg_tag }}{% if block.settings.after_image == blank %}<span class="ai-image-compare__empty-note">Chọn ảnh trước và sau để bắt đầu</span>{% endif %}</div>
+    {% endif %}
+    <div class="ai-image-compare__after">
+      {% if block.settings.after_image != blank %}
+        <img class="ai-image-compare__image" src="{{ block.settings.after_image | image_url: width: 2000 }}" alt="{{ block.settings.after_image.alt | default: block.settings.after_label | escape }}" loading="lazy" width="{{ block.settings.after_image.width }}" height="{{ block.settings.after_image.height }}">
+      {% else %}
+        <div class="ai-image-compare__placeholder">{{ 'image' | placeholder_svg_tag }}{% if block.settings.before_image == blank %}<span class="ai-image-compare__empty-note">Chọn ảnh trước và sau để bắt đầu</span>{% endif %}</div>
+      {% endif %}
+    </div>
+    {% if block.settings.before_label != blank %}<span class="ai-image-compare__label ai-image-compare__label--before">{{ block.settings.before_label | escape }}</span>{% endif %}
+    {% if block.settings.after_label != blank %}<span class="ai-image-compare__label ai-image-compare__label--after">{{ block.settings.after_label | escape }}</span>{% endif %}
+    <div class="ai-image-compare__divider" aria-hidden="true">
+      <span class="ai-image-compare__handle"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 7 3 12l5 5M16 7l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </div>
+    <input class="ai-image-compare__range" type="range" min="0" max="100" value="{{ block.settings.start_position }}" aria-label="{{ block.settings.slider_aria_label | escape }}">
+  </div>
+</image-compare-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    var tagName = 'image-compare-{{ ai_gen_id }}';
+    if (customElements.get(tagName)) return;
+    class ImageCompare extends HTMLElement {
+      connectedCallback() {
+        this.frame = this.querySelector('.ai-image-compare__frame');
+        this.range = this.querySelector('.ai-image-compare__range');
+        if (!this.frame || !this.range) return;
+        this.updatePosition = this.updatePosition || (() => {
+          this.frame.style.setProperty('--ai-compare-position', this.range.value + '%');
+        });
+        this.range.addEventListener('input', this.updatePosition);
+        this.updatePosition();
+      }
+      disconnectedCallback() {
+        if (this.range && this.updatePosition) this.range.removeEventListener('input', this.updatePosition);
+      }
+    }
+    customElements.define(tagName, ImageCompare);
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Image compare",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "See the difference" },
+    { "type": "image_picker", "id": "before_image", "label": "Before image" },
+    { "type": "image_picker", "id": "after_image", "label": "After image" },
+    { "type": "text", "id": "before_label", "label": "Before label", "default": "Before" },
+    { "type": "text", "id": "after_label", "label": "After label", "default": "After" },
+    { "type": "text", "id": "slider_aria_label", "label": "Slider accessibility label", "default": "Drag to compare images" },
+    { "type": "range", "id": "start_position", "label": "Starting position", "min": 10, "max": 90, "step": 5, "unit": "%", "default": 50 },
+    { "type": "range", "id": "desktop_width_percent", "label": "Desktop width", "min": 50, "max": 100, "step": 5, "unit": "%", "default": 100 },
+    { "type": "select", "id": "aspect_ratio", "label": "Image ratio", "options": [{ "value": "1 / 1", "label": "Square" }, { "value": "4 / 3", "label": "Landscape" }, { "value": "3 / 4", "label": "Portrait" }, { "value": "16 / 9", "label": "Wide" }], "default": "4 / 3" },
+    { "type": "select", "id": "text_alignment", "label": "Heading alignment", "options": [{ "value": "left", "label": "Left" }, { "value": "center", "label": "Center" }, { "value": "right", "label": "Right" }], "default": "center" },
+    { "type": "range", "id": "corner_radius", "label": "Corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 12 },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#222222" },
+    { "type": "color", "id": "divider_color", "label": "Divider and handle border", "default": "#FFFFFF" },
+    { "type": "color", "id": "handle_background", "label": "Handle background", "default": "#222222" },
+    { "type": "color", "id": "handle_icon_color", "label": "Handle icon", "default": "#FFFFFF" },
+    { "type": "color", "id": "label_background", "label": "Label background", "default": "#222222" },
+    { "type": "color", "id": "label_text_color", "label": "Label text", "default": "#FFFFFF" },
+    { "type": "color", "id": "focus_color", "label": "Keyboard focus", "default": "#F06724" }
+  ],
+  "presets": [{ "name": "Image compare" }],
+  "tag": null,
+  "class": "image-compare-block"
+}
 {% endschema %}
