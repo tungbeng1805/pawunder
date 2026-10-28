@@ -399,44 +399,6 @@
     },
     "17931742165241d48d": {
       "type": "_blocks",
-      "blocks": {
-        "ai_gen_block_e40d62f_ALdY9f": {
-          "type": "ai_gen_block_e40d62f",
-          "settings": {
-            "eyebrow": "Made for your pet",
-            "heading": "See the transformation",
-            "content": "<p>Compare the original image with the finished result. Drag the slider to see every detail.</p>",
-            "button_label": "Explore the collection",
-            "button_link": "",
-            "before_label": "Before",
-            "after_label": "After",
-            "slider_aria_label": "Drag to compare images",
-            "start_position": 50,
-            "aspect_ratio": "4 / 3",
-            "desktop_width_percent": 100,
-            "column_gap": 40,
-            "content_padding": 20,
-            "heading_size": 40,
-            "body_size": 16,
-            "corner_radius": 12,
-            "button_radius": 4,
-            "text_color": "#222222",
-            "accent_color": "#F06724",
-            "button_background": "#222222",
-            "button_text_color": "#FFFFFF",
-            "divider_color": "#FFFFFF",
-            "handle_background": "#222222",
-            "handle_icon_color": "#FFFFFF",
-            "label_background": "#222222",
-            "label_text_color": "#FFFFFF",
-            "focus_color": "#F06724"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "ai_gen_block_e40d62f_ALdY9f"
-      ],
       "settings": {}
     }
   },
