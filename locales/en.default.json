@@ -53,6 +53,10 @@
       "home": "Home"
     },
     "mobile_menu": {
+      "shop_heading": "Shop",
+      "support_heading": "Support & account",
+      "preferences_heading": "Language & currency",
+      "help_center": "Help center",
       "menu": "Menu",
       "close": "Close menu, categories",
       "categories": "Categories",

@@ -13,10 +13,17 @@ else
 endif -%}
 
 {%- if show_code -%}
+<div class="paw-menu-brand"><a href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">{% render 'paw-menu-icon', icon: 'paw' %}<span>{{ shop.name | escape }}</span></a><button type="button" class="paw-menu-close" data-drawer-close aria-label="{{ 'general.mobile_menu.close' | t }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
 <ul id="menu-mb__ul" class="t4s-mb__menu" data-section-id="{{ sid }}">
    {%- if section.blocks.size > 0 -%}
       {%- for block in section.blocks -%}
          {%- assign block_stts = block.settings -%}
+         {%- assign paw_title = block_stts.title | downcase | strip -%}
+         {%- assign paw_kind = 'shop' -%}
+         {%- if paw_title contains 'track' -%}{%- assign paw_kind = 'support' -%}{%- endif -%}
+         {%- if forloop.first -%}<li class="paw-menu-heading">{{ 'general.mobile_menu.shop_heading' | t }}</li>{%- endif -%}
+         {%- if paw_kind == 'support' -%}<li class="paw-menu-heading paw-menu-heading--divider">{{ 'general.mobile_menu.support_heading' | t }}</li>{%- endif -%}
+         {%- if block.type == 'lang' -%}<li class="paw-menu-heading paw-menu-heading--divider paw-menu-preferences">{{ 'general.mobile_menu.preferences_heading' | t }}</li>{%- endif -%}
          {%- case block.type -%}
             {%- when 'help' -%}
                <li id="item_mb_help" class="t4s-menu-item t4s-item-level-0 t4s-menu-item-infos"><p class="t4s-menu_infos_title">{{ block_stts.title }}</p><div class="t4s-menu_infos_text t4s-rte--list">{{ block_stts.text }}</div></li>
@@ -193,9 +200,9 @@ endif -%}
             {%- when 'menu' -%}
 
                {%- if linklists[block_stts.menu].links.size > 0 -%}
-                   <li id="item_{{ block.id }}" class="t4s-menu-item t4s-item-level-0 t4s-menu-item-has-children {{ only_icon }}" {{ block.shopify_attributes }}>
+                   <li id="item_{{ block.id }}" class="t4s-menu-item t4s-item-level-0 paw-menu-{{ paw_kind }} t4s-menu-item-has-children {{ only_icon }}" {{ block.shopify_attributes }}>
                      <a href="{{ block_stts.url }}" target="{{ block_stts.open_link }}"><span class="t4s-nav_link_txt t4s-d-flex t4s-align-items-center">
-                        {%- if block_stts.icons_op == '2' and block_stts.icon != blank %}<i class="{{ block_stts.icon | strip }}"></i>
+                        {% render 'paw-menu-icon', icon: paw_title %}{%- if block_stts.icons_op == '2' and block_stts.icon != blank %}<i class="{{ block_stts.icon | strip }}"></i>
                            {%- elsif block_stts.icons_op == '1' and block_stts.image != blank %}
                                {%- assign image = block_stts.image -%}
                               <i class="t4s-d-inline-block t4s-pr">
@@ -242,8 +249,8 @@ endif -%}
                      </ul>
                   </li>
                {%- else -%}
-                   <li id="item_{{ block.id }}" class="t4s-menu-item t4s-item-level-0"><a href="{% if block_stts.url contains '#homet4' %}{{ root_url }}{% else %}{{ block_stts.url }}{% endif %}" target="{{ block_stts.open_link }}">
-                        {%- if block_stts.icons_op == '2' and block_stts.icon != blank %}<i class="{{ block_stts.icon | strip }}"></i>
+                   <li id="item_{{ block.id }}" class="t4s-menu-item t4s-item-level-0 paw-menu-{{ paw_kind }}"><a href="{% if block_stts.url contains '#homet4' %}{{ root_url }}{% else %}{{ block_stts.url }}{% endif %}" target="{{ block_stts.open_link }}">
+                        {% render 'paw-menu-icon', icon: paw_title %}{%- if block_stts.icons_op == '2' and block_stts.icon != blank %}<i class="{{ block_stts.icon | strip }}"></i>
                            {%- elsif block_stts.icons_op == '1' and block_stts.image != blank %}
                                {%- assign image = block_stts.image -%}
                               <i class="t4s-d-inline-block t4s-pr">
@@ -288,7 +295,7 @@ endif -%}
                    <li id="item_{{ block.id }}" class="t4s-menu-item t4s-menu-item-cat t4s-item-level-0 t4s-menu-item-has-children {{ only_icon }}" {{ block.shopify_attributes }}>
                      <a href="{{ block_stts.url }}" target="{{ block_stts.open_link }}">
                        <span class="t4s-nav_link_txt t4s-d-flex t4s-align-items-center">
-                            {%- if block_stts.icons_op == '2' and block_stts.icon != blank %}<i class="{{ block_stts.icon | strip }}"></i>
+                            {% render 'paw-menu-icon', icon: paw_title %}{%- if block_stts.icons_op == '2' and block_stts.icon != blank %}<i class="{{ block_stts.icon | strip }}"></i>
                             {%- elsif block_stts.icons_op == '1' and block_stts.image != blank %}
                                 {%- assign image = block_stts.image -%}
                                 <i class="t4s-d-inline-block t4s-pr">
@@ -301,7 +308,7 @@ endif -%}
                   </li>
                {%- else -%}
                    <li id="item_{{ block.id }}" class="t4s-menu-item t4s-item-level-0"><a href="{{ block_stts.url }}" target="{{ block_stts.open_link }}">
-                        {%- if block_stts.icons_op == '2' and block_stts.icon != blank %}<i class="{{ block_stts.icon | strip }}"></i>
+                        {% render 'paw-menu-icon', icon: paw_title %}{%- if block_stts.icons_op == '2' and block_stts.icon != blank %}<i class="{{ block_stts.icon | strip }}"></i>
                         {%- elsif block_stts.icons_op == '1' and block_stts.image != blank %}
                                {%- assign image = block_stts.image -%}
                               <i class="t4s-d-inline-block t4s-pr">
@@ -318,6 +325,11 @@ endif -%}
       <li><a href="/admin/themes/" style="font-size:10px;">Create your mobile menu sidebar and config from Section > Mobile Menu</a></li>
    {%- endif -%}
 </ul>
+<div class="paw-menu-footer">
+  {%- if pages['contact'] != blank -%}<a href="{{ pages['contact'].url }}">{% render 'paw-menu-icon', icon: 'help' %}{{ 'general.mobile_menu.help_center' | t }}<span aria-hidden="true">&rsaquo;</span></a>{%- endif -%}
+  {%- if shop.shipping_policy != blank -%}<a href="{{ shop.shipping_policy.url }}">{% render 'paw-menu-icon', icon: 'track' %}{{ shop.shipping_policy.title | escape }}<span aria-hidden="true">&rsaquo;</span></a>{%- endif -%}
+  {%- if shop.refund_policy != blank -%}<a href="{{ shop.refund_policy.url }}">{% render 'paw-menu-icon', icon: 'help' %}{{ shop.refund_policy.title | escape }}<span aria-hidden="true">&rsaquo;</span></a>{%- endif -%}
+</div>
 {%- else -%}
 <div data-section-id="{{ sid }}"></div>
 {%- endif -%}
