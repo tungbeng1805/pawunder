@@ -63,6 +63,7 @@
           "type": "collection",
           "settings": {
             "collection": "best-sale",
+            "image": "shopify://shop_images/1793178081772_6205455399737755752_g1999108096142304712_d256296a7d2783611a95d04ec5b19ade.jpg",
             "collection_title": ""
           }
         },
@@ -70,6 +71,7 @@
           "type": "collection",
           "settings": {
             "collection": "personalized-pet-wall-art",
+            "image": "shopify://shop_images/1793178081759_6205455399737755752_g1999108096142304712_276445d51b67b81a24cd2bc13992fb62.jpg",
             "collection_title": ""
           }
         },
@@ -77,6 +79,7 @@
           "type": "collection",
           "settings": {
             "collection": "cat-mom-cat-dad-gifts",
+            "image": "shopify://shop_images/1793178081770_6205455399737755752_g1999108096142304712_ae1d73c495599134b6f543b6f37e90b4.jpg",
             "collection_title": ""
           }
         },
@@ -84,6 +87,7 @@
           "type": "collection",
           "settings": {
             "collection": "pet-toys",
+            "image": "shopify://shop_images/1793178081771_6205455399737755752_g1999108096142304712_31f4dae715de4cdcd288e6cee5ba4434.jpg",
             "collection_title": ""
           }
         },
@@ -91,6 +95,7 @@
           "type": "collection",
           "settings": {
             "collection": "travel-outdoor",
+            "image": "shopify://shop_images/1793178081769_6205455399737755752_g1999108096142304712_401ce5148045e2115a39ff1671a9e05f.jpg",
             "collection_title": ""
           }
         },
@@ -98,7 +103,7 @@
           "type": "collection",
           "settings": {
             "collection": "personalized-pet-keepsakes",
-            "image": "shopify://shop_images/Copy_of_382026.1.png",
+            "image": "shopify://shop_images/1793178081768_6205455399737755752_g1999108096142304712_1e8541ea52bb4db03bb93bcea67d5a5c.jpg",
             "collection_title": ""
           }
         }
@@ -112,7 +117,7 @@
         "3819762b-01e1-42a2-9ff2-3a58b005b4a6"
       ],
       "settings": {
-        "cat_design": "4",
+        "cat_design": "8",
         "title_cl": "#ffffff",
         "title_cl_hover": "#222222",
         "subtitle_cl": "#222222",
