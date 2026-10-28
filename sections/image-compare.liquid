@@ -1,0 +1,65 @@
+{{ 'image-compare.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'image-compare.js' | asset_url }}" defer="defer"></script>
+
+<section class="t4s-image-compare" style="--compare-background: {{ section.settings.background }}; --compare-text: {{ section.settings.text_color }}; --compare-padding: {{ section.settings.padding }}px; --compare-padding-mobile: {{ section.settings.padding_mobile }}px;">
+  <div class="t4s-container">
+    <div class="t4s-image-compare__layout">
+      <div class="t4s-image-compare__content">
+        {% if section.settings.heading != blank %}
+          <h2 class="t4s-image-compare__heading">{{ section.settings.heading | escape }}</h2>
+        {% endif %}
+        {% if section.settings.description != blank %}
+          <div class="t4s-image-compare__description t4s-rte">{{ section.settings.description }}</div>
+        {% endif %}
+      </div>
+      <t4s-image-compare class="t4s-image-compare__viewer" style="--compare-position: {{ section.settings.position }}%; --compare-ratio: {{ section.settings.aspect_ratio }};">
+        <div class="t4s-image-compare__image t4s-image-compare__after">
+          {% if section.settings.after_image != blank %}
+            {{ section.settings.after_image | image_url: width: 1800 | image_tag: loading: 'lazy', widths: '360, 540, 720, 960, 1200, 1500, 1800', sizes: '(min-width: 768px) 45vw, 100vw' }}
+          {% else %}
+            {{ 'lifestyle-2' | placeholder_svg_tag: 't4s-image-compare__placeholder' }}
+          {% endif %}
+        </div>
+        <div class="t4s-image-compare__image t4s-image-compare__before">
+          {% if section.settings.before_image != blank %}
+            {{ section.settings.before_image | image_url: width: 1800 | image_tag: loading: 'lazy', widths: '360, 540, 720, 960, 1200, 1500, 1800', sizes: '(min-width: 768px) 45vw, 100vw' }}
+          {% else %}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 't4s-image-compare__placeholder' }}
+          {% endif %}
+        </div>
+        <div class="t4s-image-compare__divider" aria-hidden="true">
+          <span class="t4s-image-compare__handle">
+            <svg width="28" height="20" viewBox="0 0 28 20" fill="none"><path d="m10 5-5 5 5 5m8-10 5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+        <input class="t4s-image-compare__range" type="range" min="0" max="100" step="1" value="{{ section.settings.position }}" aria-label="{{ section.settings.slider_label | escape }}">
+      </t4s-image-compare>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image compare",
+  "tag": "section",
+  "class": "t4s-section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "See the Magic: Before & After Transformation" },
+    { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Turn your pet’s photo into a one-of-a-kind hand-drawn portrait, lovingly crafted to capture their unique personality and charm.</p>" },
+    { "type": "image_picker", "id": "before_image", "label": "Before image (left)" },
+    { "type": "image_picker", "id": "after_image", "label": "After image (right)" },
+    { "type": "select", "id": "aspect_ratio", "label": "Image ratio", "default": "1 / 1", "options": [
+      { "value": "1 / 1", "label": "Square" },
+      { "value": "3 / 4", "label": "Portrait" },
+      { "value": "4 / 3", "label": "Landscape" }
+    ] },
+    { "type": "range", "id": "position", "label": "Initial slider position", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 50 },
+    { "type": "text", "id": "slider_label", "label": "Slider accessibility label", "default": "Compare before and after images" },
+    { "type": "color", "id": "background", "label": "Background", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#333333" },
+    { "type": "range", "id": "padding", "label": "Vertical spacing", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 40 },
+    { "type": "range", "id": "padding_mobile", "label": "Mobile vertical spacing", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 28 }
+  ],
+  "presets": [{ "name": "Image compare" }]
+}
+{% endschema %}
