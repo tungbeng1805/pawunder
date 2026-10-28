@@ -1,0 +1,355 @@
+{% doc %}
+  @prompt
+    Tạo cho tôi 1 section Image compare, Tôi muốn chia section làm 2, nửa bên trái là nội dung, content, nửa bên phải là image compare, oke rồi nhưng đang chưa sử dụng class container theo theme, nên layout đang chưa thẳng so với các section khác
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-compare-split-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    color: {{ block.settings.text_color }};
+    font-family: inherit;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__container {
+    width: {{ block.settings.desktop_width_percent }}%;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: {{ block.settings.column_gap }}px;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__content {
+    padding: {{ block.settings.content_padding }}px 0;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__eyebrow {
+    margin: 0 0 12px;
+    color: {{ block.settings.accent_color }};
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__heading {
+    margin: 0 0 16px;
+    color: {{ block.settings.text_color }};
+    font-size: clamp(26px, 3.5vw, {{ block.settings.heading_size }}px);
+    line-height: 1.15;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__body {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.body_size }}px;
+    line-height: 1.7;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__body p {
+    margin: 0 0 14px;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
+    padding: 13px 24px;
+    border: 1px solid {{ block.settings.button_background }};
+    border-radius: {{ block.settings.button_radius }}px;
+    background: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 150ms ease;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__button:hover {
+    opacity: 0.86;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__button:focus-visible {
+    outline: 3px solid {{ block.settings.accent_color }};
+    outline-offset: 3px;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__compare {
+    display: block;
+    width: 100%;
+    color: {{ block.settings.text_color }};
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: {{ block.settings.aspect_ratio }};
+    overflow: hidden;
+    border-radius: {{ block.settings.corner_radius }}px;
+    background: #f2f2f2;
+    isolation: isolate;
+    touch-action: pan-y;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__image,
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__image {
+    display: block;
+    object-fit: cover;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;
+    color: #555;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__placeholder svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    fill: #d8d8d8;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__empty-note {
+    position: absolute;
+    z-index: 3;
+    bottom: 14px;
+    left: 50%;
+    width: max-content;
+    max-width: calc(100% - 28px);
+    transform: translateX(-50%);
+    padding: 7px 11px;
+    border-radius: 4px;
+    background: #fff;
+    color: #333;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__after {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    clip-path: inset(0 0 0 var(--ai-compare-position, 50%));
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__divider {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    left: var(--ai-compare-position, 50%);
+    width: 2px;
+    transform: translateX(-50%);
+    background: {{ block.settings.divider_color }};
+    pointer-events: none;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    transform: translate(-50%, -50%);
+    border: 2px solid {{ block.settings.divider_color }};
+    border-radius: 50%;
+    background: {{ block.settings.handle_background }};
+    color: {{ block.settings.handle_icon_color }};
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__handle svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__label {
+    position: absolute;
+    z-index: 2;
+    top: 14px;
+    padding: 7px 11px;
+    border-radius: 4px;
+    background: {{ block.settings.label_background }};
+    color: {{ block.settings.label_text_color }};
+    font-size: 13px;
+    line-height: 1.2;
+    pointer-events: none;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__label--before {
+    left: 14px;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__label--after {
+    right: 14px;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__range {
+    position: absolute;
+    z-index: 4;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+  }
+
+  .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__range:focus-visible {
+    opacity: 1;
+    outline: 3px solid {{ block.settings.focus_color }};
+    outline-offset: -4px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__container {
+      width: 100%;
+    }
+
+    .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__layout {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+    }
+
+    .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__content {
+      padding: 0;
+    }
+
+    .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__heading {
+      margin-bottom: 12px;
+    }
+
+    .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__label {
+      top: 10px;
+      font-size: 12px;
+    }
+
+    .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__label--before {
+      left: 10px;
+    }
+
+    .ai-compare-split-{{ ai_gen_id }} .ai-compare-split__label--after {
+      right: 10px;
+    }
+  }
+{% endstyle %}
+
+<image-compare-split-{{ ai_gen_id }} class="ai-compare-split-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-compare-split__container container">
+    <div class="ai-compare-split__layout">
+      <div class="ai-compare-split__content">
+        {% if block.settings.eyebrow != blank %}<p class="ai-compare-split__eyebrow">{{ block.settings.eyebrow | escape }}</p>{% endif %}
+        {% if block.settings.heading != blank %}<h2 class="ai-compare-split__heading">{{ block.settings.heading | escape }}</h2>{% endif %}
+        {% if block.settings.content != blank %}<div class="ai-compare-split__body">{{ block.settings.content }}</div>{% endif %}
+        {% if block.settings.button_label != blank and block.settings.button_link != blank %}<a class="ai-compare-split__button" href="{{ block.settings.button_link }}">{{ block.settings.button_label | escape }}</a>{% endif %}
+      </div>
+      <div class="ai-compare-split__compare">
+        <div class="ai-compare-split__frame" style="--ai-compare-position: {{ block.settings.start_position }}%;">
+          {% if block.settings.before_image != blank %}
+            <img class="ai-compare-split__image" src="{{ block.settings.before_image | image_url: width: 2000 }}" alt="{{ block.settings.before_image.alt | default: block.settings.before_label | escape }}" loading="lazy" width="{{ block.settings.before_image.width }}" height="{{ block.settings.before_image.height }}">
+          {% else %}
+            <div class="ai-compare-split__placeholder">{{ 'image' | placeholder_svg_tag }}{% if block.settings.after_image == blank %}<span class="ai-compare-split__empty-note">Chọn ảnh trước và ảnh sau để bắt đầu</span>{% endif %}</div>
+          {% endif %}
+          <div class="ai-compare-split__after">
+            {% if block.settings.after_image != blank %}
+              <img class="ai-compare-split__image" src="{{ block.settings.after_image | image_url: width: 2000 }}" alt="{{ block.settings.after_image.alt | default: block.settings.after_label | escape }}" loading="lazy" width="{{ block.settings.after_image.width }}" height="{{ block.settings.after_image.height }}">
+            {% else %}<div class="ai-compare-split__placeholder">{{ 'image' | placeholder_svg_tag }}</div>{% endif %}
+          </div>
+          {% if block.settings.before_label != blank %}<span class="ai-compare-split__label ai-compare-split__label--before">{{ block.settings.before_label | escape }}</span>{% endif %}
+          {% if block.settings.after_label != blank %}<span class="ai-compare-split__label ai-compare-split__label--after">{{ block.settings.after_label | escape }}</span>{% endif %}
+          <div class="ai-compare-split__divider" aria-hidden="true"><span class="ai-compare-split__handle"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 7 3 12l5 5M16 7l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+          <input class="ai-compare-split__range" type="range" min="0" max="100" value="{{ block.settings.start_position }}" aria-label="{{ block.settings.slider_aria_label | escape }}">
+        </div>
+      </div>
+    </div>
+  </div>
+</image-compare-split-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    var tagName = 'image-compare-split-{{ ai_gen_id }}';
+    if (customElements.get(tagName)) return;
+    class ImageCompareSplit extends HTMLElement {
+      connectedCallback() {
+        this.frame = this.querySelector('.ai-compare-split__frame');
+        this.range = this.querySelector('.ai-compare-split__range');
+        if (!this.frame || !this.range) return;
+        this.updatePosition = this.updatePosition || (() => {
+          this.frame.style.setProperty('--ai-compare-position', this.range.value + '%');
+        });
+        this.range.addEventListener('input', this.updatePosition);
+        this.updatePosition();
+      }
+      disconnectedCallback() {
+        if (this.range && this.updatePosition) this.range.removeEventListener('input', this.updatePosition);
+      }
+    }
+    customElements.define(tagName, ImageCompareSplit);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Split image compare",
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Made for your pet" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "See the transformation" },
+    { "type": "richtext", "id": "content", "label": "Text", "default": "<p>Compare the original image with the finished result. Drag the slider to see every detail.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Explore the collection" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "header", "content": "Image comparison" },
+    { "type": "image_picker", "id": "before_image", "label": "Before image" },
+    { "type": "image_picker", "id": "after_image", "label": "After image" },
+    { "type": "text", "id": "before_label", "label": "Before label", "default": "Before" },
+    { "type": "text", "id": "after_label", "label": "After label", "default": "After" },
+    { "type": "text", "id": "slider_aria_label", "label": "Slider accessibility label", "default": "Drag to compare images" },
+    { "type": "range", "id": "start_position", "label": "Starting position", "min": 10, "max": 90, "step": 5, "unit": "%", "default": 50 },
+    { "type": "select", "id": "aspect_ratio", "label": "Image ratio", "options": [{ "value": "1 / 1", "label": "Square" }, { "value": "4 / 3", "label": "Landscape" }, { "value": "3 / 4", "label": "Portrait" }, { "value": "16 / 9", "label": "Wide" }], "default": "4 / 3" },
+    { "type": "header", "content": "Layout and style" },
+    { "type": "range", "id": "desktop_width_percent", "label": "Desktop width", "min": 50, "max": 100, "step": 5, "unit": "%", "default": 100 },
+    { "type": "range", "id": "column_gap", "label": "Column gap", "min": 10, "max": 80, "step": 5, "unit": "px", "default": 40 },
+    { "type": "range", "id": "content_padding", "label": "Content vertical spacing", "min": 0, "max": 80, "step": 5, "unit": "px", "default": 20 },
+    { "type": "range", "id": "heading_size", "label": "Heading size", "min": 24, "max": 56, "step": 2, "unit": "px", "default": 40 },
+    { "type": "range", "id": "body_size", "label": "Body text size", "min": 12, "max": 22, "step": 1, "unit": "px", "default": 16 },
+    { "type": "range", "id": "corner_radius", "label": "Image corner radius", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 12 },
+    { "type": "range", "id": "button_radius", "label": "Button corner radius", "min": 0, "max": 30, "step": 2, "unit": "px", "default": 4 },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#222222" },
+    { "type": "color", "id": "accent_color", "label": "Accent", "default": "#F06724" },
+    { "type": "color", "id": "button_background", "label": "Button background", "default": "#222222" },
+    { "type": "color", "id": "button_text_color", "label": "Button text", "default": "#FFFFFF" },
+    { "type": "color", "id": "divider_color", "label": "Divider and handle border", "default": "#FFFFFF" },
+    { "type": "color", "id": "handle_background", "label": "Handle background", "default": "#222222" },
+    { "type": "color", "id": "handle_icon_color", "label": "Handle icon", "default": "#FFFFFF" },
+    { "type": "color", "id": "label_background", "label": "Image label background", "default": "#222222" },
+    { "type": "color", "id": "label_text_color", "label": "Image label text", "default": "#FFFFFF" },
+    { "type": "color", "id": "focus_color", "label": "Keyboard focus", "default": "#F06724" }
+  ],
+  "presets": [{ "name": "Split image compare" }],
+  "tag": null,
+  "class": "split-image-compare-block"
+}
+{% endschema %}

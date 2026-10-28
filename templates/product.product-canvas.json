@@ -343,6 +343,7 @@
     },
     "recently-viewed-products": {
       "type": "recently_viewed",
+      "disabled": true,
       "settings": {
         "show": true,
         "design_heading": "1",
@@ -395,12 +396,17 @@
         "mg_mb": ",,30px,",
         "pd_mb": ""
       }
+    },
+    "17931742165241d48d": {
+      "type": "_blocks",
+      "settings": {}
     }
   },
   "order": [
     "main",
     "sidebar",
     "product-recommendations",
-    "recently-viewed-products"
+    "recently-viewed-products",
+    "17931742165241d48d"
   ]
 }
