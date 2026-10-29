@@ -691,6 +691,22 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "custom_liquid_B8yWDz": {
+      "type": "custom-liquid",
+      "name": "Custom Liquid",
+      "settings": {
+        "custom_liquid": "<div id=\"bundle-product_reviews\"></div>",
+        "layout": "t4s-container-wrap",
+        "cl_bg": "",
+        "cl_bg_gradient": "",
+        "mg": ",,50px,",
+        "pd": "",
+        "mg_tb": "",
+        "pd_tb": "",
+        "mg_mb": ",,30px,",
+        "pd_mb": ""
+      }
     }
   },
   "order": [
@@ -700,6 +716,7 @@
     "banner_9DiqxA",
     "featured_collection_h6fy9G",
     "product_video_section_ieWGjR",
-    "17921675055c15ab28"
+    "17921675055c15ab28",
+    "custom_liquid_B8yWDz"
   ]
 }
