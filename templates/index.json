@@ -679,15 +679,6 @@
     },
     "17921675055c15ab28": {
       "type": "apps",
-      "blocks": {
-        "vitals_all_reviews_badge_tKjEzT": {
-          "type": "shopify://apps/vitals/blocks/all-reviews-badge/aeb48102-2a5a-4f39-bdbd-d8d49f4e20b8",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "vitals_all_reviews_badge_tKjEzT"
-      ],
       "settings": {
         "include_margins": true
       }
