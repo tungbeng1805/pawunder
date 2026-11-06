@@ -800,7 +800,7 @@
         "limit": 8,
         "img_effect": "none",
         "b_effect": "none",
-        "image_ratio": "ratioadapt",
+        "image_ratio": "ratio1_1",
         "image_size": "cover",
         "image_position": "8",
         "col_dk": "3",
